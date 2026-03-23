@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,15 +17,24 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); margin: 0; padding: 20px; color: #333; }
         .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         
-        .header-info { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; font-weight: bold; }
+        .header-info { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; font-weight: bold; position: sticky; top: 0; background: white; z-index: 100; padding-top: 10px;}
         #timer { color: var(--error); font-size: 1.2rem; }
 
-        #login-section { text-align: center; padding: 40px 0; }
+        #login-section { text-align: center; padding: 20px 0; }
         input[type="text"] { padding: 12px; width: 60%; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 20px; font-size: 1rem; }
         
-        .btn-main { padding: 12px 25px; background: var(--secondary); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: bold; transition: 0.3s; }
-        .btn-main:hover { background: #2980b9; }
+        /* Grid de Temas */
+        .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 30px; }
+        .topic-card { background: var(--secondary); color: white; padding: 20px; border-radius: 8px; cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: 0.3s; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .topic-card:hover { background: #2980b9; transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        .topic-all { background: var(--primary); }
+        .topic-all:hover { background: #1a252f; }
 
+        .btn-main { padding: 12px 25px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: 0.3s; width: 100%; margin-top: 30px;}
+        .btn-main:hover { background: #1a252f; }
+
+        /* Estilos de las preguntas continuas */
+        .question-block { background: #fff; border: 1px solid #e1e8ed; border-radius: 10px; padding: 25px; margin-bottom: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
         .question-header { color: var(--primary); border-bottom: 2px solid var(--secondary); padding-bottom: 8px; margin-bottom: 15px; font-size: 1.1rem; }
         .question-text { font-size: 1.3rem; font-weight: 600; margin-bottom: 20px; }
         
@@ -48,31 +56,31 @@
         .ranking-table th { background: var(--primary); color: white; padding: 12px; }
         .ranking-table td { padding: 12px; border-bottom: 1px solid #ddd; }
         .ranking-table tr:hover { background: #f5f5f5; }
-
-        button#next-btn { margin-top: 25px; display: none; width: 100%; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div id="login-section">
-        <h1 style="color: var(--primary);">Test de Evaluación Profesional</h1>
-        <p>Introduce tu nombre para registrar tu tiempo y puntuación en el ranking local.</p>
+        <h1 style="color: var(--primary);">Test de Evaluación 3º Trimestre</h1>
+        <p>Introduce tu nombre y selecciona el bloque que deseas practicar.</p>
         <input type="text" id="username" placeholder="Nombre completo..." required>
-        <br>
-        <button class="btn-main" onclick="startTest()">Comenzar Prueba</button>
+        
+        <h3 style="margin-top: 20px; color: #555;">Selecciona un Tema para empezar:</h3>
+        <div class="topics-grid" id="topics-grid">
+            </div>
     </div>
 
     <div id="test-section" style="display:none;">
         <div class="header-info">
             <div>👤 <span id="display-name"></span></div>
-            <div>🕒 <span id="current-time"></span></div>
+            <div>📚 <span id="display-topic"></span></div>
             <div id="timer">⏱️ 00:00</div>
         </div>
         
-        <div id="question-container"></div>
-        <div id="explanation-box" class="explanation"></div>
-        <button id="next-btn" class="btn-main" onclick="nextQuestion()">Siguiente Pregunta ➔</button>
+        <div id="questions-list"></div>
+        
+        <button id="finish-btn" class="btn-main" onclick="finishTest()">Finalizar y Ver Resultados ➔</button>
     </div>
 
     <div id="results-section">
@@ -89,6 +97,7 @@
                 <tr>
                     <th>#</th>
                     <th>Candidato</th>
+                    <th>Tema</th>
                     <th>Aciertos</th>
                     <th>Tiempo</th>
                 </tr>
@@ -96,12 +105,12 @@
             <tbody id="ranking-body"></tbody>
         </table>
         <br><br>
-        <button class="btn-main" onclick="location.reload()">↻ Repetir Test</button>
+        <button class="btn-main" onclick="location.reload()">↻ Volver al Menú Principal</button>
     </div>
 </div>
 
 <script>
-    // ZONA DE PREGUNTAS
+    // ZONA DE PREGUNTAS (Base de datos completa)
     const misPreguntas = [
         // TEMA 1
         { m: "Sostenibilidad", t: "Tema 1", u: "Cuestionario", p: "¿Qué es la sostenibilidad?", r: ["Capacidad de satisfacer las necesidades del presente sin comprometer las de futuras generaciones", "Proteger el medio ambiente paralizando totalmente el desarrollo industrial", "Explotar los recursos actuales para garantizar el crecimiento económico a corto plazo"], c: "Capacidad de satisfacer las necesidades del presente sin comprometer las de futuras generaciones", e: "La sostenibilidad busca un equilibrio que garantice recursos tanto ahora como en el futuro." },
@@ -195,24 +204,56 @@
         { m: "Sostenibilidad", t: "Tema 6", u: "Cuestionario", p: "¿Quién tiene que hacer el estudio de impacto medioambiental de un proyecto?", r: ["Las Administraciones Públicas", "El inversor del proyecto", "Los grupos de interés del proyecto", "El promotor del proyecto"], c: "El promotor del proyecto", e: "La responsabilidad legal de costear y presentar el análisis recae sobre quien promueve la ejecución de la obra o actividad." }
     ];
 
-    let currentQuestionIndex = 0, score = 0, startTime, timerInterval, userName = "";
+    let currentQuestions = [];
+    let answeredStatus = {};
+    let startTime, timerInterval;
+    let userName = "";
+    let selectedTopicName = "";
 
-    function startTest() {
+    // Generar los botones de temas dinámicamente al cargar
+    window.onload = function() {
+        const topics = [...new Set(misPreguntas.map(q => q.t))]; // Extraer temas únicos
+        const grid = document.getElementById('topics-grid');
+        
+        topics.forEach(topic => {
+            const btn = document.createElement('button');
+            btn.className = 'topic-card';
+            btn.innerText = topic;
+            btn.onclick = () => startTest(topic);
+            grid.appendChild(btn);
+        });
+
+        // Botón para hacer todos los temas juntos
+        const btnAll = document.createElement('button');
+        btnAll.className = 'topic-card topic-all';
+        btnAll.innerText = "Todos los temas";
+        btnAll.onclick = () => startTest('Todos');
+        grid.appendChild(btnAll);
+    };
+
+    function startTest(topic) {
         userName = document.getElementById('username').value.trim();
-        if (!userName) return alert("Nombre requerido");
+        if (!userName) return alert("Por favor, introduce tu nombre antes de seleccionar un tema.");
+
+        selectedTopicName = topic;
+        document.getElementById('display-topic').innerText = topic === 'Todos' ? 'Test Global' : topic;
+
+        // Filtrar preguntas por tema
+        if (topic === 'Todos') {
+            currentQuestions = [...misPreguntas];
+        } else {
+            currentQuestions = misPreguntas.filter(q => q.t === topic);
+        }
+
         document.getElementById('login-section').style.display = 'none';
         document.getElementById('test-section').style.display = 'block';
         document.getElementById('display-name').innerText = userName;
+        
         startTime = new Date();
-        updateClock();
         timerInterval = setInterval(updateTimer, 1000);
-        shuffleArray(misPreguntas);
-        showQuestion();
-    }
-
-    function updateClock() {
-        document.getElementById('current-time').innerText = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-        setTimeout(updateClock, 1000);
+        
+        shuffleArray(currentQuestions);
+        renderAllQuestions();
     }
 
     function updateTimer() {
@@ -220,48 +261,95 @@
         document.getElementById('timer').innerText = `⏱️ ${Math.floor(diff / 60).toString().padStart(2, '0')}:${(diff % 60).toString().padStart(2, '0')}`;
     }
 
-    function showQuestion() {
-        const q = misPreguntas[currentQuestionIndex];
-        const container = document.getElementById('question-container');
-        document.getElementById('explanation-box').style.display = 'none';
-        document.getElementById('next-btn').style.display = 'none';
-        let options = [...q.r];
-        shuffleArray(options);
-        container.innerHTML = `
-            <h3 class="question-header">${q.m} | ${q.t} - ${q.u}</h3>
-            <div class="question-text">${currentQuestionIndex + 1}/${misPreguntas.length}. ${q.p}</div>
-            <div class="options-container">
-                ${options.map(opt => `<button class="option-btn" onclick="checkAnswer(this, '${opt.replace(/'/g, "\\'")}', '${q.c.replace(/'/g, "\\'")}', '${q.e ? q.e.replace(/'/g, "\\'") : ""}')">${opt}</button>`).join('')}
-            </div>`;
+    function renderAllQuestions() {
+        const container = document.getElementById('questions-list');
+        container.innerHTML = '';
+        answeredStatus = {}; // Resetear estado de respuestas
+
+        currentQuestions.forEach((q, index) => {
+            let options = [...q.r];
+            shuffleArray(options);
+            
+            const qBlock = document.createElement('div');
+            qBlock.className = 'question-block';
+            qBlock.innerHTML = `
+                <h3 class="question-header">${q.m} | ${q.t} - ${q.u}</h3>
+                <div class="question-text">${index + 1}/${currentQuestions.length}. ${q.p}</div>
+                <div class="options-container" id="options-${index}">
+                    ${options.map(opt => `<button class="option-btn" onclick="checkAnswer(this, ${index}, '${opt.replace(/'/g, "\\'")}', '${q.c.replace(/'/g, "\\'")}', '${q.e ? q.e.replace(/'/g, "\\'") : ""}')">${opt}</button>`).join('')}
+                </div>
+                <div id="explanation-${index}" class="explanation"></div>
+            `;
+            container.appendChild(qBlock);
+        });
     }
 
-    function checkAnswer(btn, selected, correct, info) {
-        document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
-        if (selected === correct) { btn.classList.add('correct'); score++; } 
-        else { btn.classList.add('wrong'); document.querySelectorAll('.option-btn').forEach(b => { if(b.innerText.trim() === correct) b.classList.add('correct'); }); }
-        if (info) { const eb = document.getElementById('explanation-box'); eb.innerHTML = `<strong>💡 Aclaración:</strong> ${info}`; eb.style.display = 'block'; }
-        document.getElementById('next-btn').style.display = 'block';
-    }
+    // Adaptado para trabajar con bloques específicos
+    function checkAnswer(btn, index, selected, correct, info) {
+        // Evitar que se responda dos veces la misma pregunta
+        if (answeredStatus[index] !== undefined) return; 
 
-    function nextQuestion() {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < misPreguntas.length) showQuestion(); else finishTest();
+        const optionsContainer = document.getElementById(`options-${index}`);
+        const buttons = optionsContainer.querySelectorAll('.option-btn');
+        
+        // Bloquear los botones de esta pregunta
+        buttons.forEach(b => b.disabled = true);
+
+        if (selected === correct) { 
+            btn.classList.add('correct'); 
+            answeredStatus[index] = true; // Guardar como acertada
+        } else { 
+            btn.classList.add('wrong'); 
+            answeredStatus[index] = false; // Guardar como fallada
+            // Marcar la correcta
+            buttons.forEach(b => { 
+                if(b.innerText.trim() === correct) b.classList.add('correct'); 
+            }); 
+        }
+
+        // Mostrar explicación debajo de la pregunta
+        if (info) { 
+            const eb = document.getElementById(`explanation-${index}`); 
+            eb.innerHTML = `<strong>💡 Aclaración:</strong> ${info}`; 
+            eb.style.display = 'block'; 
+        }
     }
 
     function finishTest() {
+        // Confirmar si faltan preguntas por responder
+        const totalAnswered = Object.keys(answeredStatus).length;
+        if (totalAnswered < currentQuestions.length) {
+            if (!confirm(`Has respondido ${totalAnswered} de ${currentQuestions.length} preguntas. ¿Seguro que quieres finalizar el test?`)) {
+                return;
+            }
+        }
+
         clearInterval(timerInterval);
+        
+        // Calcular puntuación
+        let finalScore = Object.values(answeredStatus).filter(v => v === true).length;
+
         document.getElementById('test-section').style.display = 'none';
         document.getElementById('results-section').style.display = 'block';
+        
         const finalTime = document.getElementById('timer').innerText.replace('⏱️ ', '');
-        document.getElementById('final-stats').innerText = `Has acertado ${score} de ${misPreguntas.length} preguntas en ${finalTime}.`;
-        saveRanking(userName, score, finalTime);
+        document.getElementById('final-stats').innerText = `Has acertado ${finalScore} de ${currentQuestions.length} preguntas en ${finalTime}.`;
+        
+        saveRanking(userName, selectedTopicName, finalScore, finalTime);
         displayRanking();
-        drawChart(score, misPreguntas.length);
+        drawChart(finalScore, currentQuestions.length);
+        
+        // Hacer scroll hasta arriba para ver los resultados
+        window.scrollTo(0,0);
     }
 
     function shuffleArray(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
 
     function drawChart(s, t) {
+        // Destruir gráfico anterior si existe para evitar superposiciones al repetir test
+        let chartStatus = Chart.getChart("resultChart"); 
+        if (chartStatus != undefined) chartStatus.destroy();
+
         new Chart(document.getElementById('resultChart'), {
             type: 'doughnut',
             data: { datasets: [{ data: [s, t - s], backgroundColor: ['#27ae60', '#e74c3c'], borderWidth: 0 }] },
@@ -270,17 +358,17 @@
         document.getElementById('percentage-text').innerText = Math.round((s/t)*100) + "%";
     }
 
-    function saveRanking(n, p, t) {
-        let r = JSON.parse(localStorage.getItem('ranking_test') || '[]');
-        r.push({ n, p, t });
+    function saveRanking(name, topic, score, time) {
+        let r = JSON.parse(localStorage.getItem('ranking_test_v2') || '[]');
+        r.push({ n: name, topic: topic, p: score, t: time });
         r.sort((a, b) => b.p - a.p || a.t.localeCompare(b.t));
-        localStorage.setItem('ranking_test', JSON.stringify(r.slice(0, 10)));
+        localStorage.setItem('ranking_test_v2', JSON.stringify(r.slice(0, 10)));
     }
 
     function displayRanking() {
-        const r = JSON.parse(localStorage.getItem('ranking_test') || '[]');
-        document.getElementById('ranking-body').innerHTML = r.map((u, i) => `<tr><td><strong>${i+1}</strong></td><td>${u.n}</td><td style="color: var(--success); font-weight: bold;">${u.p}</td><td>${u.t}</td></tr>`).join('');
+        const r = JSON.parse(localStorage.getItem('ranking_test_v2') || '[]');
+        document.getElementById('ranking-body').innerHTML = r.map((u, i) => `<tr><td><strong>${i+1}</strong></td><td>${u.n}</td><td><span style="background:#eee; padding:2px 6px; border-radius:4px; font-size:0.85em;">${u.topic}</span></td><td style="color: var(--success); font-weight: bold;">${u.p}</td><td>${u.t}</td></tr>`).join('');
     }
 </script>
 </body>
-</html>  
+</html>
