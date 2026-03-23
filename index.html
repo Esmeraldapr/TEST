@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Profesional - Sostenibilidad Completo</title>
+    <title>Test Profesional - Multimateria</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
@@ -23,9 +23,13 @@
         #login-section { text-align: center; padding: 20px 0; }
         input[type="text"] { padding: 12px; width: 60%; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 20px; font-size: 1rem; }
         
+        /* Bloque de Materias (NUEVO) */
+        .subject-block { background: #fdfdfd; border: 2px solid #e1e8ed; border-radius: 12px; padding: 25px; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .subject-title { color: var(--primary); font-size: 1.5rem; margin-top: 0; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid var(--secondary); text-align: left; display: flex; align-items: center; gap: 10px;}
+        
         /* Grid de Temas */
-        .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 30px; }
-        .topic-card { background: var(--secondary); color: white; padding: 20px; border-radius: 8px; cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: 0.3s; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .topic-card { background: var(--secondary); color: white; padding: 15px; border-radius: 8px; cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: 0.3s; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .topic-card:hover { background: #2980b9; transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
         .topic-all { background: var(--primary); }
         .topic-all:hover { background: #1a252f; }
@@ -66,9 +70,9 @@
         <p>Introduce tu nombre y selecciona el bloque que deseas practicar.</p>
         <input type="text" id="username" placeholder="Nombre completo..." required>
         
-        <h3 style="margin-top: 20px; color: #555;">Selecciona un Tema para empezar:</h3>
-        <div class="topics-grid" id="topics-grid">
-            </div>
+        <h3 style="margin-top: 20px; color: #555; margin-bottom: 30px;">Selecciona una Materia y un Tema:</h3>
+        
+        <div id="subjects-container"></div>
     </div>
 
     <div id="test-section" style="display:none;">
@@ -97,7 +101,7 @@
                 <tr>
                     <th>#</th>
                     <th>Candidato</th>
-                    <th>Tema</th>
+                    <th>Materia / Tema</th>
                     <th>Aciertos</th>
                     <th>Tiempo</th>
                 </tr>
@@ -208,41 +212,74 @@
     let answeredStatus = {};
     let startTime, timerInterval;
     let userName = "";
+    let selectedSubject = "";
     let selectedTopicName = "";
 
-    // Generar los botones de temas dinámicamente al cargar
+    // Generar los contenedores de Materias y sus botones dinámicamente
     window.onload = function() {
-        const topics = [...new Set(misPreguntas.map(q => q.t))]; // Extraer temas únicos
-        const grid = document.getElementById('topics-grid');
+        const container = document.getElementById('subjects-container');
         
-        topics.forEach(topic => {
-            const btn = document.createElement('button');
-            btn.className = 'topic-card';
-            btn.innerText = topic;
-            btn.onclick = () => startTest(topic);
-            grid.appendChild(btn);
-        });
+        // Obtener las materias únicas (ej: Sostenibilidad, Matemáticas, etc.)
+        const subjects = [...new Set(misPreguntas.map(q => q.m))]; 
 
-        // Botón para hacer todos los temas juntos
-        const btnAll = document.createElement('button');
-        btnAll.className = 'topic-card topic-all';
-        btnAll.innerText = "Todos los temas";
-        btnAll.onclick = () => startTest('Todos');
-        grid.appendChild(btnAll);
+        subjects.forEach(subject => {
+            // Filtrar las preguntas solo para esta materia
+            const subjectQuestions = misPreguntas.filter(q => q.m === subject);
+            
+            // Obtener los temas únicos dentro de esta materia
+            const topics = [...new Set(subjectQuestions.map(q => q.t))]; 
+
+            // Crear el bloque/recuadro para la materia
+            const subjectDiv = document.createElement('div');
+            subjectDiv.className = 'subject-block';
+            
+            // Título de la materia
+            const title = document.createElement('h2');
+            title.className = 'subject-title';
+            title.innerHTML = `📘 ${subject}`;
+            subjectDiv.appendChild(title);
+
+            // Grid para los temas
+            const grid = document.createElement('div');
+            grid.className = 'topics-grid';
+
+            // Añadir los botones de cada tema
+            topics.forEach(topic => {
+                const btn = document.createElement('button');
+                btn.className = 'topic-card';
+                btn.innerText = topic;
+                btn.onclick = () => startTest(subject, topic);
+                grid.appendChild(btn);
+            });
+
+            // Añadir el botón de "Todos los temas" para esta materia
+            const btnAll = document.createElement('button');
+            btnAll.className = 'topic-card topic-all';
+            btnAll.innerText = `Todos los temas`;
+            btnAll.onclick = () => startTest(subject, 'Todos');
+            grid.appendChild(btnAll);
+
+            // Añadir todo al DOM
+            subjectDiv.appendChild(grid);
+            container.appendChild(subjectDiv);
+        });
     };
 
-    function startTest(topic) {
+    function startTest(subject, topic) {
         userName = document.getElementById('username').value.trim();
         if (!userName) return alert("Por favor, introduce tu nombre antes de seleccionar un tema.");
 
+        selectedSubject = subject;
         selectedTopicName = topic;
-        document.getElementById('display-topic').innerText = topic === 'Todos' ? 'Test Global' : topic;
+        
+        // Mostrar título arriba (Ej: "Sostenibilidad - Tema 1")
+        document.getElementById('display-topic').innerText = topic === 'Todos' ? `${subject} (Test Global)` : `${subject} - ${topic}`;
 
-        // Filtrar preguntas por tema
+        // Filtrar preguntas por materia y tema
         if (topic === 'Todos') {
-            currentQuestions = [...misPreguntas];
+            currentQuestions = misPreguntas.filter(q => q.m === subject);
         } else {
-            currentQuestions = misPreguntas.filter(q => q.t === topic);
+            currentQuestions = misPreguntas.filter(q => q.m === subject && q.t === topic);
         }
 
         document.getElementById('login-section').style.display = 'none';
@@ -273,7 +310,7 @@
             const qBlock = document.createElement('div');
             qBlock.className = 'question-block';
             qBlock.innerHTML = `
-                <h3 class="question-header">${q.m} | ${q.t} - ${q.u}</h3>
+                <h3 class="question-header">${q.m} | ${q.t}</h3>
                 <div class="question-text">${index + 1}/${currentQuestions.length}. ${q.p}</div>
                 <div class="options-container" id="options-${index}">
                     ${options.map(opt => `<button class="option-btn" onclick="checkAnswer(this, ${index}, '${opt.replace(/'/g, "\\'")}', '${q.c.replace(/'/g, "\\'")}', '${q.e ? q.e.replace(/'/g, "\\'") : ""}')">${opt}</button>`).join('')}
@@ -284,7 +321,6 @@
         });
     }
 
-    // Adaptado para trabajar con bloques específicos
     function checkAnswer(btn, index, selected, correct, info) {
         // Evitar que se responda dos veces la misma pregunta
         if (answeredStatus[index] !== undefined) return; 
@@ -335,7 +371,9 @@
         const finalTime = document.getElementById('timer').innerText.replace('⏱️ ', '');
         document.getElementById('final-stats').innerText = `Has acertado ${finalScore} de ${currentQuestions.length} preguntas en ${finalTime}.`;
         
-        saveRanking(userName, selectedTopicName, finalScore, finalTime);
+        // Guardamos tanto la materia como el tema en el ranking
+        const rankingTopic = selectedTopicName === 'Todos' ? `${selectedSubject} (Global)` : `${selectedSubject} - ${selectedTopicName}`;
+        saveRanking(userName, rankingTopic, finalScore, finalTime);
         displayRanking();
         drawChart(finalScore, currentQuestions.length);
         
@@ -346,7 +384,6 @@
     function shuffleArray(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
 
     function drawChart(s, t) {
-        // Destruir gráfico anterior si existe para evitar superposiciones al repetir test
         let chartStatus = Chart.getChart("resultChart"); 
         if (chartStatus != undefined) chartStatus.destroy();
 
@@ -359,14 +396,14 @@
     }
 
     function saveRanking(name, topic, score, time) {
-        let r = JSON.parse(localStorage.getItem('ranking_test_v2') || '[]');
+        let r = JSON.parse(localStorage.getItem('ranking_test_v3') || '[]');
         r.push({ n: name, topic: topic, p: score, t: time });
         r.sort((a, b) => b.p - a.p || a.t.localeCompare(b.t));
-        localStorage.setItem('ranking_test_v2', JSON.stringify(r.slice(0, 10)));
+        localStorage.setItem('ranking_test_v3', JSON.stringify(r.slice(0, 10)));
     }
 
     function displayRanking() {
-        const r = JSON.parse(localStorage.getItem('ranking_test_v2') || '[]');
+        const r = JSON.parse(localStorage.getItem('ranking_test_v3') || '[]');
         document.getElementById('ranking-body').innerHTML = r.map((u, i) => `<tr><td><strong>${i+1}</strong></td><td>${u.n}</td><td><span style="background:#eee; padding:2px 6px; border-radius:4px; font-size:0.85em;">${u.topic}</span></td><td style="color: var(--success); font-weight: bold;">${u.p}</td><td>${u.t}</td></tr>`).join('');
     }
 </script>
