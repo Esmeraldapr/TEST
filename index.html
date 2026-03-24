@@ -745,7 +745,7 @@
                 const btn = document.createElement('button');
                 btn.className = 'topic-card';
                 
-                // Comprobar si ya está hecho para poner el check y ponerlo verde
+                // Comprobar si ya está hecho para poner el check
                 const testId = `${subject} - ${topic}`;
                 if (completedTests.includes(testId)) {
                     btn.innerText = `${topic} ✅`;
@@ -754,7 +754,15 @@
                     btn.innerText = topic;
                 }
                 
+                // Click normal (Izquierdo) -> Empieza el test
                 btn.onclick = () => startTest(subject, topic);
+                
+                // Click Derecho -> Desmarca el test
+                btn.oncontextmenu = (e) => {
+                    e.preventDefault(); // Evita que salga el menú de opciones del navegador
+                    uncheckTest(testId);
+                };
+
                 grid.appendChild(btn);
             });
 
@@ -770,12 +778,31 @@
             }
             
             btnAll.onclick = () => startTest(subject, 'Todos');
+            
+            // Click Derecho para "Todos los temas"
+            btnAll.oncontextmenu = (e) => {
+                e.preventDefault();
+                uncheckTest(allId);
+            };
+
             grid.appendChild(btnAll);
 
             subjectDiv.appendChild(grid);
             container.appendChild(subjectDiv);
         });
     };
+
+    // --- NUEVA FUNCIÓN PARA DESMARCAR UN SOLO TEMA ---
+    function uncheckTest(testId) {
+        if(confirm(`¿Quieres quitar el check de completado de este tema?`)) {
+            let completed = JSON.parse(localStorage.getItem('completed_tests_v3') || '[]');
+            // Filtramos la lista para borrar solo el ID que hemos pinchado
+            completed = completed.filter(id => id !== testId);
+            localStorage.setItem('completed_tests_v3', JSON.stringify(completed));
+            // Recargamos la página para que el botón vuelva a su color azul original
+            location.reload();
+        }
+    }
 
     function startTest(subject, topic) {
         const userInp = document.getElementById('username');
@@ -900,7 +927,7 @@
         const rankingTopic = selectedTopicName === 'Todos' ? `${selectedSubject} (Global)` : `${selectedSubject} - ${selectedTopicName}`;
         saveRanking(userName, rankingTopic, finalScore, finalTime);
         
-        // --- GUARDAR EL TEMA COMO COMPLETADO ---
+        // Guardar el tema como completado
         let completed = JSON.parse(localStorage.getItem('completed_tests_v3') || '[]');
         let currentTestId = `${selectedSubject} - ${selectedTopicName}`;
         if (!completed.includes(currentTestId)) {
