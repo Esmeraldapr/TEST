@@ -853,7 +853,7 @@
         });
     }
 
-   function checkAnswer(btn, index, selected, correct, info) {
+  function checkAnswer(btn, index, selected, correct, info) {
         // Evitar responder dos veces
         if (answeredStatus[index] !== undefined) return; 
 
@@ -882,30 +882,6 @@
             eb.style.display = 'block'; 
         }
     }
-        
-        // Bloquear los botones de esta pregunta
-        buttons.forEach(b => b.disabled = true);
-
-        if (selected === correct) { 
-            btn.classList.add('correct'); 
-            answeredStatus[index] = true; // Guardar como acertada
-        } else { 
-            btn.classList.add('wrong'); 
-            answeredStatus[index] = false; // Guardar como fallada
-            // Marcar la correcta
-            buttons.forEach(b => { 
-                if(b.innerText.trim() === correct) b.classList.add('correct'); 
-            }); 
-        }
-
-        // Mostrar explicación debajo de la pregunta
-        if (info) { 
-            const eb = document.getElementById(`explanation-${index}`); 
-            eb.innerHTML = `<strong>💡 Aclaración:</strong> ${info}`; 
-            eb.style.display = 'block'; 
-        }
-    }
-
     function finishTest() {
         // Confirmar si faltan preguntas por responder
         const totalAnswered = Object.keys(answeredStatus).length;
