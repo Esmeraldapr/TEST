@@ -709,7 +709,7 @@
 
     ];
 
-    let currentQuestions = [];
+   let currentQuestions = [];
     let answeredStatus = {};
     let startTime, timerInterval;
     let userName = "";
@@ -719,32 +719,23 @@
     // Generar los contenedores de Materias y sus botones dinámicamente
     window.onload = function() {
         const container = document.getElementById('subjects-container');
-        
-        // Obtener las materias únicas (ej: Sostenibilidad, Matemáticas, etc.)
         const subjects = [...new Set(misPreguntas.map(q => q.m))]; 
 
         subjects.forEach(subject => {
-            // Filtrar las preguntas solo para esta materia
             const subjectQuestions = misPreguntas.filter(q => q.m === subject);
-            
-            // Obtener los temas únicos dentro de esta materia
             const topics = [...new Set(subjectQuestions.map(q => q.t))]; 
 
-            // Crear el bloque/recuadro para la materia
             const subjectDiv = document.createElement('div');
             subjectDiv.className = 'subject-block';
             
-            // Título de la materia
             const title = document.createElement('h2');
             title.className = 'subject-title';
             title.innerHTML = `📘 ${subject}`;
             subjectDiv.appendChild(title);
 
-            // Grid para los temas
             const grid = document.createElement('div');
             grid.className = 'topics-grid';
 
-            // Añadir los botones de cada tema
             topics.forEach(topic => {
                 const btn = document.createElement('button');
                 btn.className = 'topic-card';
@@ -753,30 +744,26 @@
                 grid.appendChild(btn);
             });
 
-            // Añadir el botón de "Todos los temas" para esta materia
             const btnAll = document.createElement('button');
             btnAll.className = 'topic-card topic-all';
             btnAll.innerText = `Todos los temas`;
             btnAll.onclick = () => startTest(subject, 'Todos');
             grid.appendChild(btnAll);
 
-            // Añadir todo al DOM
             subjectDiv.appendChild(grid);
             container.appendChild(subjectDiv);
         });
     };
 
     function startTest(subject, topic) {
-        // Si hay texto lo usa, si no, asigna "Anónimo" automáticamente. ¡Adiós al alert!
-        userName = document.getElementById('username').value.trim() || "Anónimo";
+        // Asignamos Anónimo si no hay nombre
+        userName = document.getElementById('username').value.trim() || "Anónimo";
 
         selectedSubject = subject;
         selectedTopicName = topic;
         
-        // Mostrar título arriba (Ej: "Sostenibilidad - Tema 1")
         document.getElementById('display-topic').innerText = topic === 'Todos' ? `${subject} (Test Global)` : `${subject} - ${topic}`;
 
-        // Filtrar preguntas por materia y tema
         if (topic === 'Todos') {
             currentQuestions = misPreguntas.filter(q => q.m === subject);
         } else {
@@ -799,68 +786,58 @@
         document.getElementById('timer').innerText = `⏱️ ${Math.floor(diff / 60).toString().padStart(2, '0')}:${(diff % 60).toString().padStart(2, '0')}`;
     }
 
-   function renderAllQuestions() {
-        const container = document.getElementById('questions-list');
-        container.innerHTML = '';
-        answeredStatus = {}; // Resetear estado de respuestas
+    function renderAllQuestions() {
+        const container = document.getElementById('questions-list');
+        container.innerHTML = '';
+        answeredStatus = {};
 
-        currentQuestions.forEach((q, index) => {
-            let options = [...q.r];
-            shuffleArray(options);
-            
-            // 1. Contenedor del bloque de la pregunta
-            const qBlock = document.createElement('div');
-            qBlock.className = 'question-block';
-            
-            // 2. Título y texto de la pregunta
-            const header = document.createElement('h3');
-            header.className = 'question-header';
-            header.innerText = `${q.m} | ${q.t}`;
-            qBlock.appendChild(header);
-            
-            const qText = document.createElement('div');
-            qText.className = 'question-text';
-            qText.innerText = `${index + 1}/${currentQuestions.length}. ${q.p}`;
-            qBlock.appendChild(qText);
-            
-            // 3. Contenedor de las opciones
-            const optionsContainer = document.createElement('div');
-            optionsContainer.className = 'options-container';
-            optionsContainer.id = `options-${index}`;
-            
-            // 4. Construir botones de forma 100% segura
-            options.forEach(opt => {
-                const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.innerText = opt; // Trata el texto como texto, no como HTML
-                
-                // Asignar el evento directamente evita problemas de comillas
-                btn.onclick = function() {
-                    checkAnswer(this, index, opt, q.c, q.e);
-                };
-                
-                optionsContainer.appendChild(btn);
-            });
-            qBlock.appendChild(optionsContainer);
-            
-            // 5. Contenedor de la explicación
-            const expl = document.createElement('div');
-            expl.id = `explanation-${index}`;
-            expl.className = 'explanation';
-            qBlock.appendChild(expl);
-            
-            container.appendChild(qBlock);
-        });
-    }
+        currentQuestions.forEach((q, index) => {
+            let options = [...q.r];
+            shuffleArray(options);
+            
+            const qBlock = document.createElement('div');
+            qBlock.className = 'question-block';
+            
+            const header = document.createElement('h3');
+            header.className = 'question-header';
+            header.innerText = `${q.m} | ${q.t}`;
+            qBlock.appendChild(header);
+            
+            const qText = document.createElement('div');
+            qText.className = 'question-text';
+            qText.innerText = `${index + 1}/${currentQuestions.length}. ${q.p}`;
+            qBlock.appendChild(qText);
+            
+            const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'options-container';
+            optionsContainer.id = `options-${index}`;
+            
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt;
+                btn.onclick = function() {
+                    checkAnswer(this, index, opt, q.c, q.e);
+                };
+                optionsContainer.appendChild(btn);
+            });
+            qBlock.appendChild(optionsContainer);
+            
+            const expl = document.createElement('div');
+            expl.id = `explanation-${index}`;
+            expl.className = 'explanation';
+            qBlock.appendChild(expl);
+            
+            container.appendChild(qBlock);
+        });
+    }
 
-  function checkAnswer(btn, index, selected, correct, info) {
-        // Evitar responder dos veces
+    function checkAnswer(btn, index, selected, correct, info) {
         if (answeredStatus[index] !== undefined) return; 
 
         const optionsContainer = document.getElementById(`options-${index}`);
         const buttons = optionsContainer.querySelectorAll('.option-btn');
         
-        // Bloquear los botones
         buttons.forEach(b => b.disabled = true);
 
         if (selected === correct) { 
@@ -869,21 +846,19 @@
         } else { 
             btn.classList.add('wrong'); 
             answeredStatus[index] = false; 
-            // Marcar la correcta comparando directamente el texto
             buttons.forEach(b => { 
                 if(b.innerText === correct) b.classList.add('correct'); 
             }); 
         }
 
-        // Mostrar explicación
         if (info) { 
             const eb = document.getElementById(`explanation-${index}`); 
             eb.innerHTML = `<strong>💡 Aclaración:</strong> ${info}`; 
             eb.style.display = 'block'; 
         }
     }
+
     function finishTest() {
-        // Confirmar si faltan preguntas por responder
         const totalAnswered = Object.keys(answeredStatus).length;
         if (totalAnswered < currentQuestions.length) {
             if (!confirm(`Has respondido ${totalAnswered} de ${currentQuestions.length} preguntas. ¿Seguro que quieres finalizar el test?`)) {
@@ -893,7 +868,6 @@
 
         clearInterval(timerInterval);
         
-        // Calcular puntuación
         let finalScore = Object.values(answeredStatus).filter(v => v === true).length;
 
         document.getElementById('test-section').style.display = 'none';
@@ -902,13 +876,11 @@
         const finalTime = document.getElementById('timer').innerText.replace('⏱️ ', '');
         document.getElementById('final-stats').innerText = `Has acertado ${finalScore} de ${currentQuestions.length} preguntas en ${finalTime}.`;
         
-        // Guardamos tanto la materia como el tema en el ranking
         const rankingTopic = selectedTopicName === 'Todos' ? `${selectedSubject} (Global)` : `${selectedSubject} - ${selectedTopicName}`;
         saveRanking(userName, rankingTopic, finalScore, finalTime);
         displayRanking();
         drawChart(finalScore, currentQuestions.length);
         
-        // Hacer scroll hasta arriba para ver los resultados
         window.scrollTo(0,0);
     }
 
@@ -940,3 +912,27 @@
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
