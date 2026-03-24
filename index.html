@@ -799,35 +799,89 @@
         document.getElementById('timer').innerText = `⏱️ ${Math.floor(diff / 60).toString().padStart(2, '0')}:${(diff % 60).toString().padStart(2, '0')}`;
     }
 
-    function renderAllQuestions() {
-        const container = document.getElementById('questions-list');
-        container.innerHTML = '';
-        answeredStatus = {}; // Resetear estado de respuestas
+   function renderAllQuestions() {
+        const container = document.getElementById('questions-list');
+        container.innerHTML = '';
+        answeredStatus = {}; // Resetear estado de respuestas
 
-        currentQuestions.forEach((q, index) => {
-            let options = [...q.r];
-            shuffleArray(options);
-            
-            const qBlock = document.createElement('div');
-            qBlock.className = 'question-block';
-            qBlock.innerHTML = `
-                <h3 class="question-header">${q.m} | ${q.t}</h3>
-                <div class="question-text">${index + 1}/${currentQuestions.length}. ${q.p}</div>
-                <div class="options-container" id="options-${index}">
-                    ${options.map(opt => `<button class="option-btn" onclick="checkAnswer(this, ${index}, '${opt.replace(/'/g, "\\'")}', '${q.c.replace(/'/g, "\\'")}', '${q.e ? q.e.replace(/'/g, "\\'") : ""}')">${opt}</button>`).join('')}
-                </div>
-                <div id="explanation-${index}" class="explanation"></div>
-            `;
-            container.appendChild(qBlock);
-        });
-    }
+        currentQuestions.forEach((q, index) => {
+            let options = [...q.r];
+            shuffleArray(options);
+            
+            // 1. Contenedor del bloque de la pregunta
+            const qBlock = document.createElement('div');
+            qBlock.className = 'question-block';
+            
+            // 2. Título y texto de la pregunta
+            const header = document.createElement('h3');
+            header.className = 'question-header';
+            header.innerText = `${q.m} | ${q.t}`;
+            qBlock.appendChild(header);
+            
+            const qText = document.createElement('div');
+            qText.className = 'question-text';
+            qText.innerText = `${index + 1}/${currentQuestions.length}. ${q.p}`;
+            qBlock.appendChild(qText);
+            
+            // 3. Contenedor de las opciones
+            const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'options-container';
+            optionsContainer.id = `options-${index}`;
+            
+            // 4. Construir botones de forma 100% segura
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt; // Trata el texto como texto, no como HTML
+                
+                // Asignar el evento directamente evita problemas de comillas
+                btn.onclick = function() {
+                    checkAnswer(this, index, opt, q.c, q.e);
+                };
+                
+                optionsContainer.appendChild(btn);
+            });
+            qBlock.appendChild(optionsContainer);
+            
+            // 5. Contenedor de la explicación
+            const expl = document.createElement('div');
+            expl.id = `explanation-${index}`;
+            expl.className = 'explanation';
+            qBlock.appendChild(expl);
+            
+            container.appendChild(qBlock);
+        });
+    }
 
-    function checkAnswer(btn, index, selected, correct, info) {
-        // Evitar que se responda dos veces la misma pregunta
-        if (answeredStatus[index] !== undefined) return; 
+    function checkAnswer(btn, index, selected, correct, info) {
+        // Evitar responder dos veces
+        if (answeredStatus[index] !== undefined) return; 
 
-        const optionsContainer = document.getElementById(`options-${index}`);
-        const buttons = optionsContainer.querySelectorAll('.option-btn');
+        const optionsContainer = document.getElementById(`options-${index}`);
+        const buttons = optionsContainer.querySelectorAll('.option-btn');
+        
+        // Bloquear los botones
+        buttons.forEach(b => b.disabled = true);
+
+        if (selected === correct) { 
+            btn.classList.add('correct'); 
+            answeredStatus[index] = true; 
+        } else { 
+            btn.classList.add('wrong'); 
+            answeredStatus[index] = false; 
+            // Marcar la correcta comparando directamente el texto
+            buttons.forEach(b => { 
+                if(b.innerText === correct) b.classList.add('correct'); 
+            }); 
+        }
+
+        // Mostrar explicación
+        if (info) { 
+            const eb = document.getElementById(`explanation-${index}`); 
+            eb.innerHTML = `<strong>💡 Aclaración:</strong> ${info}`; 
+            eb.style.display = 'block'; 
+        }
+    }
         
         // Bloquear los botones de esta pregunta
         buttons.forEach(b => b.disabled = true);
