@@ -709,7 +709,7 @@
 
     ];
 
-   let currentQuestions = [];
+  let currentQuestions = [];
     let answeredStatus = {};
     let startTime, timerInterval;
     let userName = "";
@@ -720,6 +720,9 @@
     window.onload = function() {
         const container = document.getElementById('subjects-container');
         const subjects = [...new Set(misPreguntas.map(q => q.m))]; 
+        
+        // Recuperar los tests completados de la memoria del navegador
+        const completedTests = JSON.parse(localStorage.getItem('completed_tests_v3') || '[]');
 
         subjects.forEach(subject => {
             const subjectQuestions = misPreguntas.filter(q => q.m === subject);
@@ -739,14 +742,31 @@
             topics.forEach(topic => {
                 const btn = document.createElement('button');
                 btn.className = 'topic-card';
-                btn.innerText = topic;
+                
+                // Comprobar si ya está hecho para poner el check y ponerlo verde
+                const testId = `${subject} - ${topic}`;
+                if (completedTests.includes(testId)) {
+                    btn.innerText = `${topic} ✅`;
+                    btn.style.background = '#27ae60'; 
+                } else {
+                    btn.innerText = topic;
+                }
+                
                 btn.onclick = () => startTest(subject, topic);
                 grid.appendChild(btn);
             });
 
             const btnAll = document.createElement('button');
             btnAll.className = 'topic-card topic-all';
-            btnAll.innerText = `Todos los temas`;
+            
+            const allId = `${subject} - Todos`;
+            if (completedTests.includes(allId)) {
+                btnAll.innerText = `Todos los temas ✅`;
+                btnAll.style.background = '#27ae60';
+            } else {
+                btnAll.innerText = `Todos los temas`;
+            }
+            
             btnAll.onclick = () => startTest(subject, 'Todos');
             grid.appendChild(btnAll);
 
@@ -756,9 +776,7 @@
     };
 
     function startTest(subject, topic) {
-        // Asignamos Anónimo si no hay nombre
         userName = document.getElementById('username').value.trim() || "Anónimo";
-
         selectedSubject = subject;
         selectedTopicName = topic;
         
@@ -878,6 +896,15 @@
         
         const rankingTopic = selectedTopicName === 'Todos' ? `${selectedSubject} (Global)` : `${selectedSubject} - ${selectedTopicName}`;
         saveRanking(userName, rankingTopic, finalScore, finalTime);
+        
+        // --- GUARDAR EL TEMA COMO COMPLETADO ---
+        let completed = JSON.parse(localStorage.getItem('completed_tests_v3') || '[]');
+        let currentTestId = `${selectedSubject} - ${selectedTopicName}`;
+        if (!completed.includes(currentTestId)) {
+            completed.push(currentTestId);
+            localStorage.setItem('completed_tests_v3', JSON.stringify(completed));
+        }
+        
         displayRanking();
         drawChart(finalScore, currentQuestions.length);
         
@@ -912,27 +939,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
