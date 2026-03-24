@@ -853,35 +853,35 @@
         });
     }
 
-    function checkAnswer(btn, index, selected, correct, info) {
-        // Evitar responder dos veces
-        if (answeredStatus[index] !== undefined) return; 
+   function checkAnswer(btn, index, selected, correct, info) {
+        // Evitar responder dos veces
+        if (answeredStatus[index] !== undefined) return; 
 
-        const optionsContainer = document.getElementById(`options-${index}`);
-        const buttons = optionsContainer.querySelectorAll('.option-btn');
-        
-        // Bloquear los botones
-        buttons.forEach(b => b.disabled = true);
+        const optionsContainer = document.getElementById(`options-${index}`);
+        const buttons = optionsContainer.querySelectorAll('.option-btn');
+        
+        // Bloquear los botones
+        buttons.forEach(b => b.disabled = true);
 
-        if (selected === correct) { 
-            btn.classList.add('correct'); 
-            answeredStatus[index] = true; 
-        } else { 
-            btn.classList.add('wrong'); 
-            answeredStatus[index] = false; 
-            // Marcar la correcta comparando directamente el texto
-            buttons.forEach(b => { 
-                if(b.innerText === correct) b.classList.add('correct'); 
-            }); 
-        }
+        if (selected === correct) { 
+            btn.classList.add('correct'); 
+            answeredStatus[index] = true; 
+        } else { 
+            btn.classList.add('wrong'); 
+            answeredStatus[index] = false; 
+            // Marcar la correcta comparando directamente el texto
+            buttons.forEach(b => { 
+                if(b.innerText === correct) b.classList.add('correct'); 
+            }); 
+        }
 
-        // Mostrar explicación
-        if (info) { 
-            const eb = document.getElementById(`explanation-${index}`); 
-            eb.innerHTML = `<strong>💡 Aclaración:</strong> ${info}`; 
-            eb.style.display = 'block'; 
-        }
-    }
+        // Mostrar explicación
+        if (info) { 
+            const eb = document.getElementById(`explanation-${index}`); 
+            eb.innerHTML = `<strong>💡 Aclaración:</strong> ${info}`; 
+            eb.style.display = 'block'; 
+        }
+    }
         
         // Bloquear los botones de esta pregunta
         buttons.forEach(b => b.disabled = true);
