@@ -21,9 +21,8 @@
         #timer { color: var(--error); font-size: 1.2rem; }
 
         #login-section { text-align: center; padding: 20px 0; }
-        input[type="text"] { padding: 12px; width: 60%; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 20px; font-size: 1rem; }
         
-        /* Bloque de Materias (NUEVO) */
+        /* Bloque de Materias */
         .subject-block { background: #fdfdfd; border: 2px solid #e1e8ed; border-radius: 12px; padding: 25px; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
         .subject-title { color: var(--primary); font-size: 1.5rem; margin-top: 0; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid var(--secondary); text-align: left; display: flex; align-items: center; gap: 10px;}
         
@@ -36,8 +35,10 @@
 
         .btn-main { padding: 12px 25px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: 0.3s; width: 100%; margin-top: 30px;}
         .btn-main:hover { background: #1a252f; }
+        .btn-danger { background: var(--error); width: auto; margin-top: 10px; font-size: 0.9rem; padding: 8px 15px;}
+        .btn-danger:hover { background: #c0392b; }
 
-        /* Estilos de las preguntas continuas */
+        /* Estilos de las preguntas */
         .question-block { background: #fff; border: 1px solid #e1e8ed; border-radius: 10px; padding: 25px; margin-bottom: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
         .question-header { color: var(--primary); border-bottom: 2px solid var(--secondary); padding-bottom: 8px; margin-bottom: 15px; font-size: 1.1rem; }
         .question-text { font-size: 1.3rem; font-weight: 600; margin-bottom: 20px; }
@@ -67,17 +68,18 @@
 <div class="container">
     <div id="login-section">
         <h1 style="color: var(--primary);">Test de Evaluación 3º Trimestre</h1>
-        <p>¡¡¡SUERTE!!!</p>
-                <input type="text" id="username" style="display: none;">
+        <p>Selecciona el bloque que deseas practicar para comenzar directamente.</p>
         
-        <h3 style="margin-top: 20px; color: #555; margin-bottom: 30px;">Selecciona una Materia y un Tema:</h3>
+        <input type="text" id="username" style="display: none;">
         
-        <div id="subjects-container"></div>
+        <button class="btn-main btn-danger" onclick="resetProgress()">🗑️ Borrar mi progreso</button>
+
+        <div id="subjects-container" style="margin-top: 30px;"></div>
     </div>
 
     <div id="test-section" style="display:none;">
         <div class="header-info">
-            <div>👤 <span id="display-name"></span></div>
+            <div>👤 <span>Anónimo</span></div>
             <div>📚 <span id="display-topic"></span></div>
             <div id="timer">⏱️ 00:00</div>
         </div>
@@ -709,7 +711,7 @@
 
     ];
 
-  let currentQuestions = [];
+ let currentQuestions = [];
     let answeredStatus = {};
     let startTime, timerInterval;
     let userName = "";
@@ -776,7 +778,8 @@
     };
 
     function startTest(subject, topic) {
-        userName = document.getElementById('username').value.trim() || "Anónimo";
+        const userInp = document.getElementById('username');
+        userName = userInp ? (userInp.value.trim() || "Anónimo") : "Anónimo";
         selectedSubject = subject;
         selectedTopicName = topic;
         
@@ -909,6 +912,14 @@
         drawChart(finalScore, currentQuestions.length);
         
         window.scrollTo(0,0);
+    }
+
+    function resetProgress() {
+        if(confirm("¿Seguro que quieres borrar todo tu progreso y el ranking?")) {
+            localStorage.removeItem('ranking_test_v3');
+            localStorage.removeItem('completed_tests_v3');
+            location.reload();
+        }
     }
 
     function shuffleArray(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
