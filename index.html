@@ -53,6 +53,20 @@
         .wrong { background-color: var(--error) !important; color: white; border-color: var(--error); }
         
         .explanation { margin-top: 20px; padding: 15px; background: #e8f4fd; border-left: 5px solid var(--secondary); display: none; border-radius: 4px; line-height: 1.5; }
+
+        /* --- Estilos para el Gráfico Donut --- */
+        .gauge-container { display: flex; justify-content: center; margin: 30px 0; }
+        .gauge-outer { 
+            width: 180px; height: 180px; border-radius: 50%; 
+            background: conic-gradient(var(--success) 0%, var(--error) 0); 
+            display: flex; align-items: center; justify-content: center; position: relative; 
+        }
+        .gauge-outer::after { 
+            content: ''; width: 130px; height: 130px; border-radius: 50%; 
+            background: white; position: absolute; 
+        }
+        .gauge-inner { z-index: 1; text-align: center; }
+        #score-text { font-size: 2.5rem; font-weight: bold; color: var(--primary); }
     </style>
 </head>
 <body>
@@ -75,14 +89,23 @@
         
         <div id="questions-list"></div>
         
-        <button id="finish-btn" class="btn-main" onclick="finishTest()">Finalizar ➔</button>
+        <button id="finish-btn" class="btn-main" onclick="finishTest()">Finalizar Test ➔</button>
     </div>
 
   <div id="results-section" style="text-align: center; display: none; padding: 40px 0;">
     <h2 style="color: var(--primary);">¡Test Finalizado! 🎉</h2>
-    <p style="font-size: 1.2rem; margin-bottom: 30px;">Has completado el repaso de este bloque. Tu progreso ha sido guardado.</p>
+    
+    <div class="gauge-container">
+        <div class="gauge-outer" id="gauge-chart">
+            <div class="gauge-inner">
+                <span id="score-text">0/0</span>
+            </div>
+        </div>
+    </div>
+
+    <p id="results-detail-text" style="font-size: 1.2rem; margin-bottom: 30px;"></p>
     <button class="btn-main" onclick="location.reload()"> ↻ Volver al Menú Principal</button>
-</div>
+  </div>
 </div>
 <script>
     // ZONA DE PREGUNTAS (Base de datos completa)
@@ -680,20 +703,16 @@
 
     ];
 
- let currentQuestions = [];
-    let currentQuestions = [];
+let currentQuestions = [];
     let answeredStatus = {};
     let startTime, timerInterval;
-    // Ya no hay userName
     let selectedSubject = "";
     let selectedTopicName = "";
 
-    // Generar los contenedores de Materias y sus botones dinámicamente
     window.onload = function() {
         const container = document.getElementById('subjects-container');
         const subjects = [...new Set(misPreguntas.map(q => q.m))]; 
         
-        // Recuperar los tests completados de la memoria del navegador
         const completedTests = JSON.parse(localStorage.getItem('completed_tests_v3') || '[]');
 
         subjects.forEach(subject => {
@@ -715,7 +734,6 @@
                 const btn = document.createElement('button');
                 btn.className = 'topic-card';
                 
-                // Comprobar si ya está hecho para poner el check
                 const testId = `${subject} - ${topic}`;
                 if (completedTests.includes(testId)) {
                     btn.innerText = `${topic} ✅`;
@@ -724,12 +742,11 @@
                     btn.innerText = topic;
                 }
                 
-                // Click normal (Izquierdo) -> Empieza el test
                 btn.onclick = () => startTest(subject, topic);
                 
-                // Click Derecho -> Desmarca el test
+                // Clic derecho para desmarcar el tema
                 btn.oncontextmenu = (e) => {
-                    e.preventDefault(); // Evita que salga el menú de opciones del navegador
+                    e.preventDefault(); 
                     uncheckTest(testId);
                 };
 
@@ -748,28 +765,22 @@
             }
             
             btnAll.onclick = () => startTest(subject, 'Todos');
-            
-            // Click Derecho para "Todos los temas"
             btnAll.oncontextmenu = (e) => {
                 e.preventDefault();
                 uncheckTest(allId);
             };
 
             grid.appendChild(btnAll);
-
             subjectDiv.appendChild(grid);
             container.appendChild(subjectDiv);
         });
     };
 
-    // --- NUEVA FUNCIÓN PARA DESMARCAR UN SOLO TEMA ---
     function uncheckTest(testId) {
         if(confirm(`¿Quieres quitar el check de completado de este tema?`)) {
             let completed = JSON.parse(localStorage.getItem('completed_tests_v3') || '[]');
-            // Filtramos la lista para borrar solo el ID que hemos pinchado
             completed = completed.filter(id => id !== testId);
             localStorage.setItem('completed_tests_v3', JSON.stringify(completed));
-            // Recargamos la página para que el botón vuelva a su color azul original
             location.reload();
         }
     }
@@ -861,11 +872,13 @@
         } else { 
             btn.classList.add('wrong'); 
             answeredStatus[index] = false; 
+            // Marcar la que era correcta
             buttons.forEach(b => { 
                 if(b.innerText === correct) b.classList.add('correct'); 
             }); 
         }
 
+        // Mostrar aclaración si la hay
         if (info) { 
             const eb = document.getElementById(`explanation-${index}`); 
             eb.innerHTML = `<strong>💡 Aclaración:</strong> ${info}`; 
@@ -874,21 +887,36 @@
     }
 
     function finishTest() {
+        const totalQuestions = currentQuestions.length;
         const totalAnswered = Object.keys(answeredStatus).length;
-        if (totalAnswered < currentQuestions.length) {
-            if (!confirm(`Has respondido ${totalAnswered} de ${currentQuestions.length} preguntas. ¿Seguro que quieres finalizar el test?`)) {
+        
+        if (totalAnswered < totalQuestions) {
+            if (!confirm(`Has respondido ${totalAnswered} de ${totalQuestions} preguntas. ¿Seguro que quieres finalizar el test?`)) {
                 return;
             }
         }
 
-        // Detener el temporizador
         clearInterval(timerInterval);
         
-        // Ocultar test y mostrar resultados simples
+        // Calcular aciertos y fallos
+        let correctCount = Object.values(answeredStatus).filter(v => v === true).length;
+        let incorrectCount = totalQuestions - correctCount;
+        let percentage = totalQuestions > 0 ? (correctCount / totalQuestions) * 100 : 0;
+
+        // Ocultar test y preparar gráfico
         document.getElementById('test-section').style.display = 'none';
+        
+        const successColor = getComputedStyle(document.documentElement).getPropertyValue('--success').trim();
+        const errorColor = getComputedStyle(document.documentElement).getPropertyValue('--error').trim();
+        
+        document.getElementById('gauge-chart').style.background = `conic-gradient(${successColor} ${percentage}%, ${errorColor} 0)`;
+        document.getElementById('score-text').innerText = `${correctCount}/${totalQuestions}`;
+        
+        document.getElementById('results-detail-text').innerHTML = `Has acertado <strong><span style="color: var(--success);">${correctCount}</span></strong> y fallado <strong><span style="color: var(--error);">${incorrectCount}</span></strong> de un total de ${totalQuestions} preguntas.`;
+        
         document.getElementById('results-section').style.display = 'block';
         
-        // Guardar el tema como completado
+        // Guardar el progreso
         let completed = JSON.parse(localStorage.getItem('completed_tests_v3') || '[]');
         let currentTestId = `${selectedSubject} - ${selectedTopicName}`;
         if (!completed.includes(currentTestId)) {
@@ -900,7 +928,7 @@
     }
 
     function resetProgress() {
-        if(confirm("¿Seguro que quieres borrar todo tu progreso?")) {
+        if(confirm("¿Seguro que quieres borrar todo tu progreso? Esto quitará todos los ✅ de los temas.")) {
             localStorage.removeItem('completed_tests_v3');
             location.reload();
         }
