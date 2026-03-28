@@ -988,26 +988,18 @@ let currentQuestions = [];
     let answeredStatus = {};
     let startTime, timerInterval;
     let selectedSubject = "";
+    let selectedCategory = "";
     let selectedTopicName = "";
-
-    // Función inteligente para detectar dónde has escrito el nombre del tema
-    function getTopicName(q) {
-        if (q.t === "Test por Unidades" || q.t === "Cuestionario") {
-            return q.u; // Formato nuevo (el tema está en la 'u')
-        }
-        return q.t; // Formato antiguo (el tema está en la 't')
-    }
 
     window.onload = function() {
         const container = document.getElementById('subjects-container');
+        // 1er Nivel: Sacar las Materias (m)
         const subjects = [...new Set(misPreguntas.map(q => q.m))]; 
         
-        const completedTests = JSON.parse(localStorage.getItem('completed_tests_v3') || '[]');
+        const completedTests = JSON.parse(localStorage.getItem('completed_tests_v4') || '[]');
 
         subjects.forEach(subject => {
-            const subjectQuestions = misPreguntas.filter(q => q.m === subject);
-            const topics = [...new Set(subjectQuestions.map(q => getTopicName(q)))]; 
-
+            // Contenedor principal de la MATERIA
             const subjectDiv = document.createElement('div');
             subjectDiv.className = 'subject-block';
             
@@ -1016,74 +1008,105 @@ let currentQuestions = [];
             title.innerHTML = `📘 ${subject}`;
             subjectDiv.appendChild(title);
 
-            const grid = document.createElement('div');
-            grid.className = 'topics-grid';
+            const subjectQuestions = misPreguntas.filter(q => q.m === subject);
+            
+            // 2º Nivel: Sacar los Bloques (t) de esta Materia
+            const categories = [...new Set(subjectQuestions.map(q => q.t))]; 
 
-            topics.forEach(topic => {
-                const btn = document.createElement('button');
-                btn.className = 'topic-card';
+            categories.forEach(category => {
+                // Contenedor anidado para el BLOQUE
+                const catDiv = document.createElement('div');
+                catDiv.style.marginBottom = "25px";
+                catDiv.style.padding = "20px";
+                catDiv.style.background = "#eef2f5"; // Fondo gris clarito
+                catDiv.style.borderRadius = "10px";
+                catDiv.style.borderLeft = "5px solid var(--secondary)";
+
+                const catTitle = document.createElement('h3');
+                catTitle.style.color = "var(--primary)";
+                catTitle.style.marginTop = "0";
+                catTitle.style.marginBottom = "15px";
+                catTitle.innerHTML = `📁 ${category}`;
+                catDiv.appendChild(catTitle);
+
+                const grid = document.createElement('div');
+                grid.className = 'topics-grid';
+
+                const categoryQuestions = subjectQuestions.filter(q => q.t === category);
                 
-                const testId = `${subject} - ${topic}`;
-                if (completedTests.includes(testId)) {
-                    btn.innerText = `${topic} ✅`;
-                    btn.style.background = '#27ae60'; 
+                // 3er Nivel: Sacar los Temas (u) de este Bloque
+                const topics = [...new Set(categoryQuestions.map(q => q.u))]; 
+
+                topics.forEach(topic => {
+                    const btn = document.createElement('button');
+                    btn.className = 'topic-card';
+                    
+                    const testId = `${subject}-${category}-${topic}`;
+                    if (completedTests.includes(testId)) {
+                        btn.innerText = `${topic} ✅`;
+                        btn.style.background = '#27ae60'; 
+                    } else {
+                        btn.innerText = topic;
+                    }
+                    
+                    btn.onclick = () => startTest(subject, category, topic);
+                    
+                    // Clic derecho para desmarcar el tema
+                    btn.oncontextmenu = (e) => {
+                        e.preventDefault(); 
+                        uncheckTest(testId);
+                    };
+
+                    grid.appendChild(btn);
+                });
+
+                // Botón de "Todo el Bloque"
+                const btnAll = document.createElement('button');
+                btnAll.className = 'topic-card topic-all';
+                
+                const allId = `${subject}-${category}-Todos`;
+                if (completedTests.includes(allId)) {
+                    btnAll.innerText = `Todo el bloque ✅`;
+                    btnAll.style.background = '#27ae60';
                 } else {
-                    btn.innerText = topic;
+                    btnAll.innerText = `Todo el bloque`;
                 }
                 
-                btn.onclick = () => startTest(subject, topic);
-                
-                // Clic derecho para desmarcar el tema
-                btn.oncontextmenu = (e) => {
-                    e.preventDefault(); 
-                    uncheckTest(testId);
+                btnAll.onclick = () => startTest(subject, category, 'Todos');
+                btnAll.oncontextmenu = (e) => {
+                    e.preventDefault();
+                    uncheckTest(allId);
                 };
 
-                grid.appendChild(btn);
+                grid.appendChild(btnAll);
+                catDiv.appendChild(grid);
+                subjectDiv.appendChild(catDiv);
             });
 
-            const btnAll = document.createElement('button');
-            btnAll.className = 'topic-card topic-all';
-            
-            const allId = `${subject} - Todos`;
-            if (completedTests.includes(allId)) {
-                btnAll.innerText = `Todos los temas ✅`;
-                btnAll.style.background = '#27ae60';
-            } else {
-                btnAll.innerText = `Todos los temas`;
-            }
-            
-            btnAll.onclick = () => startTest(subject, 'Todos');
-            btnAll.oncontextmenu = (e) => {
-                e.preventDefault();
-                uncheckTest(allId);
-            };
-
-            grid.appendChild(btnAll);
-            subjectDiv.appendChild(grid);
             container.appendChild(subjectDiv);
         });
     };
 
     function uncheckTest(testId) {
         if(confirm(`¿Quieres quitar el check de completado de este tema?`)) {
-            let completed = JSON.parse(localStorage.getItem('completed_tests_v3') || '[]');
+            let completed = JSON.parse(localStorage.getItem('completed_tests_v4') || '[]');
             completed = completed.filter(id => id !== testId);
-            localStorage.setItem('completed_tests_v3', JSON.stringify(completed));
+            localStorage.setItem('completed_tests_v4', JSON.stringify(completed));
             location.reload();
         }
     }
 
-    function startTest(subject, topic) {
+    function startTest(subject, category, topic) {
         selectedSubject = subject;
+        selectedCategory = category;
         selectedTopicName = topic;
         
-        document.getElementById('display-topic').innerText = topic === 'Todos' ? `${subject} (Test Global)` : `${subject} - ${topic}`;
+        document.getElementById('display-topic').innerText = topic === 'Todos' ? `${subject} - ${category} (Global)` : `${subject} - ${category} - ${topic}`;
 
         if (topic === 'Todos') {
-            currentQuestions = misPreguntas.filter(q => q.m === subject);
+            currentQuestions = misPreguntas.filter(q => q.m === subject && q.t === category);
         } else {
-            currentQuestions = misPreguntas.filter(q => q.m === subject && getTopicName(q) === topic);
+            currentQuestions = misPreguntas.filter(q => q.m === subject && q.t === category && q.u === topic);
         }
 
         document.getElementById('login-section').style.display = 'none';
@@ -1115,7 +1138,8 @@ let currentQuestions = [];
             
             const header = document.createElement('h3');
             header.className = 'question-header';
-            header.innerText = `${q.m} | ${getTopicName(q)}`;
+            // Ahora la cabecera muestra los 3 niveles: Materia | Bloque | Tema
+            header.innerText = `${q.m} | ${q.t} | ${q.u}`;
             qBlock.appendChild(header);
             
             const qText = document.createElement('div');
@@ -1161,14 +1185,14 @@ let currentQuestions = [];
         } else { 
             btn.classList.add('wrong'); 
             answeredStatus[index] = false; 
-            // Marcar la que era correcta
+            // Marcar la que era correcta en verde
             buttons.forEach(b => { 
                 if(b.innerText === correct) b.classList.add('correct'); 
             }); 
         }
 
-        // Mostrar aclaración si la hay
-        if (info) { 
+        // Mostrar aclaración si la hay (debajo de la pregunta)
+        if (info && info.trim() !== "") { 
             const eb = document.getElementById(`explanation-${index}`); 
             eb.innerHTML = `<strong>💡 Aclaración:</strong> ${info}`; 
             eb.style.display = 'block'; 
@@ -1180,19 +1204,18 @@ let currentQuestions = [];
         const totalAnswered = Object.keys(answeredStatus).length;
         
         if (totalAnswered < totalQuestions) {
-            if (!confirm(`Has respondido ${totalAnswered} de ${totalQuestions} preguntas. ¿Seguro que quieres finalizar el test?`)) {
+            if (!confirm(`Has respondido ${totalAnswered} de ${totalQuestions} preguntas. ¿Seguro que quieres finalizar el test y calcular la nota?`)) {
                 return;
             }
         }
 
         clearInterval(timerInterval);
         
-        // Calcular aciertos y fallos
+        // Calcular aciertos y fallos para el Donut
         let correctCount = Object.values(answeredStatus).filter(v => v === true).length;
         let incorrectCount = totalQuestions - correctCount;
         let percentage = totalQuestions > 0 ? (correctCount / totalQuestions) * 100 : 0;
 
-        // Ocultar test y preparar gráfico
         document.getElementById('test-section').style.display = 'none';
         
         const successColor = getComputedStyle(document.documentElement).getPropertyValue('--success').trim();
@@ -1205,12 +1228,12 @@ let currentQuestions = [];
         
         document.getElementById('results-section').style.display = 'block';
         
-        // Guardar el progreso
-        let completed = JSON.parse(localStorage.getItem('completed_tests_v3') || '[]');
-        let currentTestId = `${selectedSubject} - ${selectedTopicName}`;
+        // Guardar el progreso (Check verde)
+        let completed = JSON.parse(localStorage.getItem('completed_tests_v4') || '[]');
+        let currentTestId = `${selectedSubject}-${selectedCategory}-${selectedTopicName}`;
         if (!completed.includes(currentTestId)) {
             completed.push(currentTestId);
-            localStorage.setItem('completed_tests_v3', JSON.stringify(completed));
+            localStorage.setItem('completed_tests_v4', JSON.stringify(completed));
         }
         
         window.scrollTo(0,0);
@@ -1218,7 +1241,7 @@ let currentQuestions = [];
 
     function resetProgress() {
         if(confirm("¿Seguro que quieres borrar todo tu progreso? Esto quitará todos los ✅ de los temas.")) {
-            localStorage.removeItem('completed_tests_v3');
+            localStorage.removeItem('completed_tests_v4');
             location.reload();
         }
     }
