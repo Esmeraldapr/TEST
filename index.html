@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Profesional - Multimateria</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary: #2c3e50;
@@ -54,13 +53,6 @@
         .wrong { background-color: var(--error) !important; color: white; border-color: var(--error); }
         
         .explanation { margin-top: 20px; padding: 15px; background: #e8f4fd; border-left: 5px solid var(--secondary); display: none; border-radius: 4px; line-height: 1.5; }
-
-        #results-section { text-align: center; display: none; }
-        .chart-container { position: relative; width: 220px; height: 220px; margin: 20px auto; }
-        .ranking-table { width: 100%; border-collapse: collapse; margin-top: 30px; text-align: left; }
-        .ranking-table th { background: var(--primary); color: white; padding: 12px; }
-        .ranking-table td { padding: 12px; border-bottom: 1px solid #ddd; }
-        .ranking-table tr:hover { background: #f5f5f5; }
     </style>
 </head>
 <body>
@@ -70,8 +62,6 @@
         <h1 style="color: var(--primary);">Test de Evaluación 3º Trimestre</h1>
         <p>Selecciona el bloque que deseas practicar para comenzar directamente.</p>
         
-        <input type="text" id="username" style="display: none;">
-        
         <button class="btn-main btn-danger" onclick="resetProgress()">🗑️ Borrar mi progreso</button>
 
         <div id="subjects-container" style="margin-top: 30px;"></div>
@@ -79,14 +69,13 @@
 
     <div id="test-section" style="display:none;">
         <div class="header-info">
-            <div>👤 <span>Anónimo</span></div>
             <div>📚 <span id="display-topic"></span></div>
             <div id="timer">⏱️ 00:00</div>
         </div>
         
         <div id="questions-list"></div>
         
-        <button id="finish-btn" class="btn-main" onclick="finishTest()">Finalizar y Ver Resultados ➔</button>
+        <button id="finish-btn" class="btn-main" onclick="finishTest()">Finalizar ➔</button>
     </div>
 
   <div id="results-section" style="text-align: center; display: none; padding: 40px 0;">
@@ -95,7 +84,6 @@
     <button class="btn-main" onclick="location.reload()"> ↻ Volver al Menú Principal</button>
 </div>
 </div>
-
 <script>
     // ZONA DE PREGUNTAS (Base de datos completa)
     const misPreguntas = [
@@ -693,9 +681,10 @@
     ];
 
  let currentQuestions = [];
+    let currentQuestions = [];
     let answeredStatus = {};
     let startTime, timerInterval;
-    let userName = "";
+    // Ya no hay userName
     let selectedSubject = "";
     let selectedTopicName = "";
 
@@ -786,8 +775,6 @@
     }
 
     function startTest(subject, topic) {
-        const userInp = document.getElementById('username');
-        userName = userInp ? (userInp.value.trim() || "Anónimo") : "Anónimo";
         selectedSubject = subject;
         selectedTopicName = topic;
         
@@ -801,7 +788,6 @@
 
         document.getElementById('login-section').style.display = 'none';
         document.getElementById('test-section').style.display = 'block';
-        document.getElementById('display-name').innerText = userName;
         
         startTime = new Date();
         timerInterval = setInterval(updateTimer, 1000);
@@ -895,18 +881,12 @@
             }
         }
 
+        // Detener el temporizador
         clearInterval(timerInterval);
         
-        let finalScore = Object.values(answeredStatus).filter(v => v === true).length;
-
+        // Ocultar test y mostrar resultados simples
         document.getElementById('test-section').style.display = 'none';
         document.getElementById('results-section').style.display = 'block';
-        
-        const finalTime = document.getElementById('timer').innerText.replace('⏱️ ', '');
-        document.getElementById('final-stats').innerText = `Has acertado ${finalScore} de ${currentQuestions.length} preguntas en ${finalTime}.`;
-        
-        const rankingTopic = selectedTopicName === 'Todos' ? `${selectedSubject} (Global)` : `${selectedSubject} - ${selectedTopicName}`;
-        saveRanking(userName, rankingTopic, finalScore, finalTime);
         
         // Guardar el tema como completado
         let completed = JSON.parse(localStorage.getItem('completed_tests_v3') || '[]');
@@ -916,45 +896,17 @@
             localStorage.setItem('completed_tests_v3', JSON.stringify(completed));
         }
         
-        displayRanking();
-        drawChart(finalScore, currentQuestions.length);
-        
         window.scrollTo(0,0);
     }
 
     function resetProgress() {
-        if(confirm("¿Seguro que quieres borrar todo tu progreso y el ranking?")) {
-            localStorage.removeItem('ranking_test_v3');
+        if(confirm("¿Seguro que quieres borrar todo tu progreso?")) {
             localStorage.removeItem('completed_tests_v3');
             location.reload();
         }
     }
 
     function shuffleArray(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
-
-    function drawChart(s, t) {
-        let chartStatus = Chart.getChart("resultChart"); 
-        if (chartStatus != undefined) chartStatus.destroy();
-
-        new Chart(document.getElementById('resultChart'), {
-            type: 'doughnut',
-            data: { datasets: [{ data: [s, t - s], backgroundColor: ['#27ae60', '#e74c3c'], borderWidth: 0 }] },
-            options: { cutout: '75%', plugins: { legend: { display: false } } }
-        });
-        document.getElementById('percentage-text').innerText = Math.round((s/t)*100) + "%";
-    }
-
-    function saveRanking(name, topic, score, time) {
-        let r = JSON.parse(localStorage.getItem('ranking_test_v3') || '[]');
-        r.push({ n: name, topic: topic, p: score, t: time });
-        r.sort((a, b) => b.p - a.p || a.t.localeCompare(b.t));
-        localStorage.setItem('ranking_test_v3', JSON.stringify(r.slice(0, 10)));
-    }
-
-    function displayRanking() {
-        const r = JSON.parse(localStorage.getItem('ranking_test_v3') || '[]');
-        document.getElementById('ranking-body').innerHTML = r.map((u, i) => `<tr><td><strong>${i+1}</strong></td><td>${u.n}</td><td><span style="background:#eee; padding:2px 6px; border-radius:4px; font-size:0.85em;">${u.topic}</span></td><td style="color: var(--success); font-weight: bold;">${u.p}</td><td>${u.t}</td></tr>`).join('');
-    }
 </script>
 </body>
 </html>
