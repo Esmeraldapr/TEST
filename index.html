@@ -108,7 +108,6 @@
   </div>
 </div>
 <script>
-    // ZONA DE PREGUNTAS (Base de datos completa)
     const misPreguntas = [
         // TEMA 1
         { m: "Sostenibilidad", t: "Tema 1", u: "Cuestionario", p: "¿Qué es la sostenibilidad?", r: ["Capacidad de satisfacer las necesidades del presente sin comprometer las de futuras generaciones", "Proteger el medio ambiente paralizando totalmente el desarrollo industrial", "Explotar los recursos actuales para garantizar el crecimiento económico a corto plazo"], c: "Capacidad de satisfacer las necesidades del presente sin comprometer las de futuras generaciones", e: "La sostenibilidad busca un equilibrio que garantice recursos tanto ahora como en el futuro." },
@@ -991,6 +990,14 @@ let currentQuestions = [];
     let selectedSubject = "";
     let selectedTopicName = "";
 
+    // Función inteligente para detectar dónde has escrito el nombre del tema
+    function getTopicName(q) {
+        if (q.t === "Test por Unidades" || q.t === "Cuestionario") {
+            return q.u; // Formato nuevo (el tema está en la 'u')
+        }
+        return q.t; // Formato antiguo (el tema está en la 't')
+    }
+
     window.onload = function() {
         const container = document.getElementById('subjects-container');
         const subjects = [...new Set(misPreguntas.map(q => q.m))]; 
@@ -999,7 +1006,7 @@ let currentQuestions = [];
 
         subjects.forEach(subject => {
             const subjectQuestions = misPreguntas.filter(q => q.m === subject);
-            const topics = [...new Set(subjectQuestions.map(q => q.t))]; 
+            const topics = [...new Set(subjectQuestions.map(q => getTopicName(q)))]; 
 
             const subjectDiv = document.createElement('div');
             subjectDiv.className = 'subject-block';
@@ -1076,7 +1083,7 @@ let currentQuestions = [];
         if (topic === 'Todos') {
             currentQuestions = misPreguntas.filter(q => q.m === subject);
         } else {
-            currentQuestions = misPreguntas.filter(q => q.m === subject && q.t === topic);
+            currentQuestions = misPreguntas.filter(q => q.m === subject && getTopicName(q) === topic);
         }
 
         document.getElementById('login-section').style.display = 'none';
@@ -1108,7 +1115,7 @@ let currentQuestions = [];
             
             const header = document.createElement('h3');
             header.className = 'question-header';
-            header.innerText = `${q.m} | ${q.t}`;
+            header.innerText = `${q.m} | ${getTopicName(q)}`;
             qBlock.appendChild(header);
             
             const qText = document.createElement('div');
