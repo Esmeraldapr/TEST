@@ -89,30 +89,11 @@
         <button id="finish-btn" class="btn-main" onclick="finishTest()">Finalizar y Ver Resultados ➔</button>
     </div>
 
-    <div id="results-section">
-        <h2 style="color: var(--primary);">Resultados del Test</h2>
-        <div class="chart-container">
-            <canvas id="resultChart"></canvas>
-            <div id="percentage-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.8rem; font-weight: bold; color: var(--primary);"></div>
-        </div>
-        <h3 id="final-stats" style="color: #555;"></h3>
-        
-        <h3 style="margin-top: 40px; text-align: left;">🏆 Ranking Local (Top 10)</h3>
-        <table class="ranking-table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Candidato</th>
-                    <th>Materia / Tema</th>
-                    <th>Aciertos</th>
-                    <th>Tiempo</th>
-                </tr>
-            </thead>
-            <tbody id="ranking-body"></tbody>
-        </table>
-        <br><br>
-        <button class="btn-main" onclick="location.reload()">↻ Volver al Menú Principal</button>
-    </div>
+  <div id="results-section" style="text-align: center; display: none; padding: 40px 0;">
+    <h2 style="color: var(--primary);">¡Test Finalizado! 🎉</h2>
+    <p style="font-size: 1.2rem; margin-bottom: 30px;">Has completado el repaso de este bloque. Tu progreso ha sido guardado.</p>
+    <button class="btn-main" onclick="location.reload()"> ↻ Volver al Menú Principal</button>
+</div>
 </div>
 
 <script>
