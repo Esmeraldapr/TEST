@@ -82,10 +82,14 @@
     </div>
 
     <div id="test-section" style="display:none;">
-        <div class="header-info">
-            <div>📚 <span id="display-topic"></span></div>
-            <div id="timer">⏱️ 00:00</div>
+    <div class="header-info">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <button onclick="goBackToMenu()" style="padding: 6px 12px; border: none; border-radius: 6px; background: var(--secondary); color: white; font-weight: bold; cursor: pointer;">🔙 Volver</button>
+            <div> 📚  <span id="display-topic"></span></div>
         </div>
+        <div id="timer"> ⏱️  00:00</div>
+    </div>
+
         
         <div id="questions-list"></div>
         
@@ -104,7 +108,7 @@
     </div>
 
     <p id="results-detail-text" style="font-size: 1.2rem; margin-bottom: 30px;"></p>
-    <button class="btn-main" onclick="location.reload()"> ↻ Volver al Menú Principal</button>
+   <button class="btn-main" onclick="goBackToMenu()">  ↻  Volver al Menú Principal</button>
   </div>
 </div>
 <script>
@@ -449,6 +453,590 @@
         { m: "Sostenibilidad", t: "Preguntas de las presentaciones", u: "UF6", p: "¿Quién es el encargado legal de elaborar el 'Estudio de impacto ambiental'?", r: ["El promotor del proyecto, obra o actividad concreta.", "El Ministerio de Transición Ecológica.", "La comunidad de ciudadanos locales afectados.", "La autoridad medioambiental autonómica."], c: "El promotor del proyecto, obra o actividad concreta.", e: "El que propone realizar la obra es quien debe elaborar y presentar el estudio a las autoridades." },
         { m: "Sostenibilidad", t: "Preguntas de las presentaciones", u: "UF6", p: "¿Quién es el encargado de valorar el estudio presentado y emitir la 'Declaración o informe de impacto ambiental' (resolución final)?", r: ["La autoridad medioambiental.", "La empresa constructora.", "El propio promotor del proyecto.", "Una entidad bancaria externa."], c: "La autoridad medioambiental.", e: "El órgano público es el que analiza el estudio y determina si el proyecto se puede realizar y bajo qué condiciones." },
         { m: "Sostenibilidad", t: "Preguntas de las presentaciones", u: "UF6", p: "¿Qué contenido principal debe tener un Estudio de impacto ambiental?", r: ["El proyecto y sus acciones, alternativas justificadas, efectos ambientales/riesgos y medidas de prevención, corrección y compensación.", "Solamente el coste económico total y presupuestos de la obra.", "El plan de marketing y publicidad para los futuros clientes del proyecto.", "Las nóminas de los trabajadores implicados en la construcción."], c: "El proyecto y sus acciones, alternativas justificadas, efectos ambientales/riesgos y medidas de prevención, corrección y compensación.", e: "Debe plantear todas las amenazas al entorno natural y cómo el promotor piensa mitigarlas o compensarlas." },
+
+// ==========================================
+    // SOSTENIBILIDAD - PREGUNTAS DE DESARROLLO
+    // ==========================================
+
+    // TEMA 1: Conceptos Básicos y Ecosistemas
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "1. Conceptos Básicos",
+        p: "¿Qué es la Sostenibilidad?",
+        r: [
+            "Capacidad de satisfacer las necesidades del presente sin comprometer las de futuras generaciones.",
+            "El uso ilimitado de recursos naturales para garantizar el crecimiento económico continuo.",
+            "La eliminación total de la huella de carbono en los procesos industriales a corto plazo.",
+            "La preservación estricta de espacios naturales prohibiendo cualquier actividad humana."
+        ],
+        c: "Capacidad de satisfacer las necesidades del presente sin comprometer las de futuras generaciones.",
+        e: "Su pilar fundamental es la relación entre crecimiento económico, equidad social y protección ambiental."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "1. Conceptos Básicos",
+        p: "¿Cuáles son los pilares fundamentales en los que se apoya la sostenibilidad?",
+        r: [
+            "La relación entre el crecimiento económico, la equidad social y la protección ambiental.",
+            "La reducción de impuestos, el control demográfico y la reforestación.",
+            "El reciclaje, la economía lineal y el uso de combustibles fósiles.",
+            "La innovación tecnológica, la expansión urbana y el libre mercado."
+        ],
+        c: "La relación entre el crecimiento económico, la equidad social y la protección ambiental.",
+        e: "Estos tres elementos deben estar en equilibrio para lograr un desarrollo sostenible."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "1. Conceptos Básicos",
+        p: "¿Qué es un ecosistema?",
+        r: [
+            "Un sistema biológico formado por una comunidad de seres vivos que habita un medio físico.",
+            "Un conjunto de normas medioambientales dictadas por la Unión Europea.",
+            "Una zona industrial diseñada para reducir las emisiones de CO2.",
+            "Un área protegida donde solo habitan especies en peligro de extinción."
+        ],
+        c: "Un sistema biológico formado por una comunidad de seres vivos que habita un medio físico.",
+        e: "Estos organismos generan entre sí relaciones de interdependencia que mantienen el equilibrio."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "1. Conceptos Básicos",
+        p: "¿Qué es un sumidero en términos medioambientales?",
+        r: [
+            "Donde van a parar los residuos que genera la actividad humana para ser degradados por los ecosistemas.",
+            "Un depósito subterráneo artificial creado para almacenar residuos radiactivos.",
+            "Una planta de reciclaje de plásticos y metales pesados.",
+            "Un filtro instalado en las chimeneas industriales para atrapar gases tóxicos."
+        ],
+        c: "Donde van a parar los residuos que genera la actividad humana para ser degradados por los ecosistemas.",
+        e: "Los ecosistemas transforman esos residuos en fuentes que quedan a disposición de la actividad económica."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "1. Conceptos Básicos",
+        p: "¿A qué llamamos 'Capacidad de carga' o 'Biocapacidad'?",
+        r: [
+            "A la capacidad de un área para producir recursos renovables y para absorber o filtrar desechos.",
+            "Al peso máximo de residuos que puede procesar una planta de reciclaje al día.",
+            "Al número de habitantes que puede albergar una ciudad sin sufrir contaminación.",
+            "A la cantidad de energía eléctrica que puede generar un parque eólico."
+        ],
+        c: "A la capacidad de un área para producir recursos renovables y para absorber o filtrar desechos.",
+        e: "Considera las prácticas de manejo y extracción actualmente vigentes."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "1. Conceptos Básicos",
+        p: "¿Qué es la huella ecológica?",
+        r: [
+            "Un indicador del impacto ambiental calculando la superficie productiva necesaria para producir recursos y absorber desechos.",
+            "La marca física que dejan las maquinarias pesadas en los entornos naturales protegidos.",
+            "La cantidad de agua dulce que gasta una persona a lo largo de un año.",
+            "El volumen total de basura que genera una ciudad durante un mes."
+        ],
+        c: "Un indicador del impacto ambiental calculando la superficie productiva necesaria para producir recursos y absorber desechos.",
+        e: "Mide el impacto ambiental global de las actividades humanas."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "1. Conceptos Básicos",
+        p: "¿En qué se diferencia la huella de carbono de la huella ecológica?",
+        r: [
+            "La huella de carbono cuantifica las emisiones de gases de efecto invernadero (GEI).",
+            "La huella de carbono solo mide la contaminación del agua producida por el petróleo.",
+            "La huella de carbono es exclusiva para medir el impacto de las industrias, no de los individuos.",
+            "La huella de carbono mide la deforestación y la ecológica las emisiones al aire."
+        ],
+        c: "La huella de carbono cuantifica las emisiones de gases de efecto invernadero (GEI).",
+        e: "Puede ser generada por un individuo, empresa o actividad."
+    },
+
+    // TEMA 2: Cambio Climático y ODS
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "2. Cambio Climático y ODS",
+        p: "¿Qué es el cambio climático?",
+        r: [
+            "Una alteración del sistema climático de la Tierra que provoca un aumento de las temperaturas globales.",
+            "El cambio natural de las estaciones del año debido a la rotación terrestre.",
+            "La disminución de la capa de ozono exclusivamente en la zona de la Antártida.",
+            "Un fenómeno temporal causado por la erupción de volcanes."
+        ],
+        c: "Una alteración del sistema climático de la Tierra que provoca un aumento de las temperaturas globales.",
+        e: "Conocido comúnmente como calentamiento global."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "2. Cambio Climático y ODS",
+        p: "¿Cuál de estos es un reto SOCIAL agravado por el cambio climático?",
+        r: [
+            "Los fenómenos migratorios y el aumento de las desigualdades.",
+            "La pérdida de biodiversidad en los océanos.",
+            "El derretimiento acelerado de los polos.",
+            "El incremento en la frecuencia de las sequías."
+        ],
+        c: "Los fenómenos migratorios y el aumento de las desigualdades.",
+        e: "Otros retos sociales son la persistencia de la pobreza y el subdesarrollo económico."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "2. Cambio Climático y ODS",
+        p: "¿Cuál de estos es un reto MEDIOAMBIENTAL consecuencia del cambio climático?",
+        r: [
+            "La desertización y los fenómenos meteorológicos extremos.",
+            "El aumento de la pobreza en países en vías de desarrollo.",
+            "El cierre de empresas multinacionales por falta de recursos.",
+            "La creación de aranceles y nuevas normativas internacionales."
+        ],
+        c: "La desertización y los fenómenos meteorológicos extremos.",
+        e: "Otros son la deforestación, la pérdida de biodiversidad y el derretimiento de los polos."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "2. Cambio Climático y ODS",
+        p: "¿Qué consecuencia directa tiene el cambio climático para el sector agrícola y forestal?",
+        r: [
+            "Menor productividad por sequías, dificultando el regadío y encareciendo los productos.",
+            "Un aumento de las zonas fértiles debido al deshielo de los polos.",
+            "Una reducción de los precios de mercado por el exceso de producción en invierno.",
+            "La eliminación total de plagas de insectos debido al calor extremo."
+        ],
+        c: "Menor productividad por sequías, dificultando el regadío y encareciendo los productos.",
+        e: "También incrementa significativamente el riesgo de incendios."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "2. Cambio Climático y ODS",
+        p: "¿Cómo afecta el cambio climático al gasto en infraestructuras y energía de las empresas?",
+        r: [
+            "Muchos edificios requieren gasto extra en climatización al no estar diseñados para temperaturas extremas.",
+            "Permite ahorrar dinero ya que en verano no es necesario usar energía eólica ni hidráulica.",
+            "Reduce el coste de los seguros empresariales al haber menos días de lluvia intensa.",
+            "Fomenta que las empresas dejen de usar carreteras y pasen toda su logística al transporte aéreo."
+        ],
+        c: "Muchos edificios requieren gasto extra en climatización al no estar diseñados para temperaturas extremas.",
+        e: "Además, los fenómenos extremos dañan más a menudo carreteras y líneas eléctricas."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "2. Cambio Climático y ODS",
+        p: "¿Por qué el reciclaje NO se considera la opción 'perfecta' en la lucha contra el cambio climático?",
+        r: [
+            "Porque las plantas de reciclado causan contaminación por emisión de gases al quemar y tratar residuos.",
+            "Porque los materiales reciclados son de peor calidad y nadie quiere comprarlos.",
+            "Porque el proceso de reciclaje consume toda el agua dulce disponible de la región.",
+            "Porque es ilegal reciclar ciertos plásticos según la normativa europea."
+        ],
+        c: "Porque las plantas de reciclado causan contaminación por emisión de gases al quemar y tratar residuos.",
+        e: "Sin embargo, se considera la opción menos mala porque su impacto es menor que no reciclar."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "2. Cambio Climático y ODS",
+        p: "Para desandar el cambio climático, la acción de 'Desmaterializar' se basa en:",
+        r: [
+            "Reducir las necesidades de materiales en la producción y usar materiales reciclados.",
+            "Eliminar cualquier tipo de tecnología física en la empresa pasando todo a servidores en la nube.",
+            "Prohibir el uso de madera y papel en todas las oficinas públicas.",
+            "Reducir las emisiones atmosféricas cambiando a energías renovables."
+        ],
+        c: "Reducir las necesidades de materiales en la producción y usar materiales reciclados.",
+        e: "Es una de las dos acciones principales, junto a la descarbonización."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "2. Cambio Climático y ODS",
+        p: "Para desandar el cambio climático, la acción de 'Descarbonizar' se basa en:",
+        r: [
+            "Reducir o eliminar la emisión de gases usando energías renovables en lugar de fósiles.",
+            "Extraer carbono del subsuelo para almacenarlo en depósitos de seguridad.",
+            "Reducir el tamaño de los productos para que gasten menos material en su fabricación.",
+            "Obligar a todos los ciudadanos a plantar árboles en zonas urbanas."
+        ],
+        c: "Reducir o eliminar la emisión de gases usando energías renovables en lugar de fósiles.",
+        e: "Pretende reducir el efecto invernadero en la atmósfera."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "2. Cambio Climático y ODS",
+        p: "¿Cuál es el objetivo principal del Pacto Verde Europeo?",
+        r: [
+            "Que la Unión Europea sea neutral en emisiones de carbono para el año 2050.",
+            "Que la Unión Europea prohíba el uso del vehículo privado para el año 2030.",
+            "Que el 100% de la agricultura europea sea estrictamente ecológica en 2040.",
+            "Crear un impuesto unificado sobre el plástico a nivel mundial."
+        ],
+        c: "Que la Unión Europea sea neutral en emisiones de carbono para el año 2050.",
+        e: "Es decir, que la cantidad de carbono emitida sea igual a la que se captura de la atmósfera."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "2. Cambio Climático y ODS",
+        p: "Dentro de los ODS, ¿qué diferencia hay entre una 'Meta' y un 'Indicador'?",
+        r: [
+            "La meta es el aspecto que se pretende conseguir y el indicador es el medidor de la distancia hacia esa meta.",
+            "La meta es obligatoria por ley y el indicador es una recomendación opcional.",
+            "La meta se aplica a nivel mundial y el indicador se aplica solo a nivel de empresas locales.",
+            "El indicador es un objetivo cualitativo y la meta es un objetivo exclusivamente económico."
+        ],
+        c: "La meta es el aspecto que se pretende conseguir y el indicador es el medidor de la distancia hacia esa meta.",
+        e: "El indicador determina el grado de cumplimiento de los ODS de un país."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "2. Cambio Climático y ODS",
+        p: "El ODS 8 pretende promover el crecimiento económico y... ",
+        r: [
+            "El pleno empleo sostenible, productivo y decente para todos.",
+            "La erradicación total del hambre en los países del tercer mundo.",
+            "El acceso universal a fuentes de agua potable libres de contaminación.",
+            "La educación primaria gratuita para todos los niños del planeta."
+        ],
+        c: "El pleno empleo sostenible, productivo y decente para todos.",
+        e: "Una de sus metas es proteger los derechos laborales y promover un entorno seguro de trabajo."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "2. Cambio Climático y ODS",
+        p: "¿Qué acción ciudadana contribuye específicamente al ODS 6 (Agua limpia y saneamiento)?",
+        r: [
+            "Colocar economizadores de agua y mantener en buen estado las conducciones.",
+            "Comprar exclusivamente productos con ecoetiquetas europeas.",
+            "Separar la basura en los contenedores amarillo, azul y verde.",
+            "Utilizar el transporte público en lugar del vehículo privado."
+        ],
+        c: "Colocar economizadores de agua y mantener en buen estado las conducciones.",
+        e: "También cargar los electrodomésticos (lavadora, lavavajillas) hasta su tope antes de usarlos."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "2. Cambio Climático y ODS",
+        p: "¿Qué persigue la Estrategia de Movilidad Sostenible para Europa de cara a 2030?",
+        r: [
+            "La neutralidad de emisiones en 100 ciudades o llegar a 30 millones de coches eléctricos/híbridos.",
+            "La prohibición total de los vuelos comerciales de corta distancia dentro de Europa.",
+            "El establecimiento de peajes obligatorios en todas las autovías de la UE.",
+            "El transporte público gratuito para todos los ciudadanos europeos."
+        ],
+        c: "La neutralidad de emisiones en 100 ciudades o llegar a 30 millones de coches eléctricos/híbridos.",
+        e: "También fomenta el desarrollo de coches impulsados por Hidrógeno."
+    },
+
+    // TEMA 3: Empresa y Grupos de Interés
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "3. La Empresa Sostenible",
+        p: "¿Qué son los 'grupos de interés' de una empresa?",
+        r: [
+            "Colectivos con objetivos propios cuyo cumplimiento depende de las decisiones y resultados de la empresa.",
+            "Los accionistas mayoritarios que tienen poder de decisión en el Consejo de Administración.",
+            "Asociaciones ecologistas que auditan las prácticas medioambientales de la compañía.",
+            "Departamentos internos de la empresa dedicados a la responsabilidad social."
+        ],
+        c: "Colectivos con objetivos propios cuyo cumplimiento depende de las decisiones y resultados de la empresa.",
+        e: "Estos grupos influyen en la empresa y viceversa (clientes, trabajadores, proveedores, AAPP, etc.)."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "3. La Empresa Sostenible",
+        p: "¿Cuáles de los siguientes son ejemplos de grupos de interés de una empresa?",
+        r: [
+            "Propietarios, trabajadores, proveedores, clientes, entidades financieras y Administraciones Públicas.",
+            "Únicamente los accionistas y la alta dirección de la compañía.",
+            "Los ministerios del gobierno central y los sindicatos a nivel nacional.",
+            "Los tribunales de justicia, la policía y los organismos internacionales de comercio."
+        ],
+        c: "Propietarios, trabajadores, proveedores, clientes, entidades financieras y Administraciones Públicas.",
+        e: "Todo el ecosistema que interactúa económica o socialmente con la empresa."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "3. La Empresa Sostenible",
+        p: "Como grupo de interés, ¿cuál es el interés principal de los CLIENTES en la empresa?",
+        r: [
+            "Obtener el mejor producto posible al menor precio posible.",
+            "Que la empresa pague altos dividendos a final de año.",
+            "Conseguir condiciones laborales óptimas para la plantilla.",
+            "Que la empresa devuelva puntualmente los préstamos al banco."
+        ],
+        c: "Obtener el mejor producto posible al menor precio posible.",
+        e: "Aportan ingresos al comprar, pero su riesgo es que dejen de comprar o emitan opiniones negativas."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "3. La Empresa Sostenible",
+        p: "¿Qué ventaja tiene para la empresa la incorporación de aspectos ASG referida a la FINANCIACIÓN?",
+        r: [
+            "Los inversores privados y organismos públicos tienen cada vez más en cuenta los aspectos ASG para invertir.",
+            "Los bancos eliminan totalmente los intereses en los préstamos si la empresa es sostenible.",
+            "La empresa deja de pagar impuestos de sociedades al estado.",
+            "Permite a la empresa emitir su propia moneda virtual respaldada en bonos verdes."
+        ],
+        c: "Los inversores privados y organismos públicos tienen cada vez más en cuenta los aspectos ASG para invertir.",
+        e: "Supone un mejor y más fácil acceso a la financiación externa."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "3. La Empresa Sostenible",
+        p: "¿De qué forma mejora la integración de aspectos ASG los recursos humanos de la empresa?",
+        r: [
+            "Aumenta la motivación de la plantilla y ayuda a la atracción y retención de talento.",
+            "Permite reducir los salarios legalmente por considerarse una 'empresa solidaria'.",
+            "Obliga a los trabajadores a hacer horas extra no remuneradas por el bien del medio ambiente.",
+            "Elimina la necesidad de tener sindicatos dentro de la estructura corporativa."
+        ],
+        c: "Aumenta la motivación de la plantilla y ayuda a la atracción y retención de talento.",
+        e: "Cumplir con la responsabilidad social crea un mayor sentimiento de pertenencia."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "3. La Empresa Sostenible",
+        p: "¿Qué regulan las Normas NEIS (Normas Europeas de Información sobre Sostenibilidad)?",
+        r: [
+            "La información que las empresas deben presentar sobre riesgos y oportunidades en aspectos ASG.",
+            "El porcentaje exacto de materiales reciclados que debe llevar cada producto fabricado en Europa.",
+            "Los salarios mínimos interprofesionales vinculados a la sostenibilidad ambiental.",
+            "Los horarios de apertura de los mercados financieros para empresas verdes."
+        ],
+        c: "La información que las empresas deben presentar sobre riesgos y oportunidades en aspectos ASG.",
+        e: "Son obligatorias para unifica criterios de información no financiera en Europa."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "3. La Empresa Sostenible",
+        p: "¿Qué es el 'Estado no financiero o de sostenibilidad'?",
+        r: [
+            "Un documento dentro del Informe de Gestión que incluye el análisis de aspectos ASG relevantes.",
+            "Un certificado emitido por Hacienda indicando que la empresa no tiene deudas.",
+            "Un informe que demuestra que la empresa ha sufrido pérdidas económicas por causas climáticas.",
+            "Un listado público de las empresas europeas que más contaminan."
+        ],
+        c: "Un documento dentro del Informe de Gestión que incluye el análisis de aspectos ASG relevantes.",
+        e: "La propia UE indica cómo debe reflejarse esta información legal."
+    },
+
+    // TEMA 4: Economía Lineal vs Circular
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "4. Economía Lineal vs Circular",
+        p: "¿Cómo se define el modelo de producción y consumo LINEAL?",
+        r: [
+            "Cada fase del ciclo de vida del producto se conecta solo con la anterior y la siguiente, terminando en desecho.",
+            "Los residuos generados se reincorporan a la cadena de producción como materia prima secundaria.",
+            "La fabricación se realiza en línea recta dentro de la misma fábrica sin transporte externo.",
+            "El precio del producto va subiendo de forma constante a medida que se va consumiendo."
+        ],
+        c: "Cada fase del ciclo de vida del producto se conecta solo con la anterior y la siguiente, terminando en desecho.",
+        e: "Sus fases son: Diseño, Producción, Distribución, Consumo y Desecho."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "4. Economía Lineal vs Circular",
+        p: "¿Cuál es un riesgo grave provocado por la economía lineal?",
+        r: [
+            "La utilización de recursos no renovables cada vez más escasos y el diseño de ciclo de vida corto.",
+            "La excesiva colaboración y comunicación con los clientes que satura las líneas de producción.",
+            "El aumento desmesurado de la vida útil de los productos que hace que las empresas quiebren.",
+            "El uso obligatorio de ecodiseño que ralentiza los ritmos de fabricación."
+        ],
+        c: "La utilización de recursos no renovables cada vez más escasos y el diseño de ciclo de vida corto.",
+        e: "También provoca falta de innovación y adaptación a los cambios ambientales."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "4. Economía Lineal vs Circular",
+        p: "¿Qué pretende lograr la Economía Verde o Circular?",
+        r: [
+            "Conservar el valor del producto en todas sus fases, reduciendo la generación de residuos.",
+            "Fomentar que los productos sean de usar y tirar pero fabricados con plásticos de color verde.",
+            "Eliminar completamente el consumo privado y que todos los bienes sean propiedad del estado.",
+            "Acelerar el ciclo de consumo para aumentar los beneficios financieros a corto plazo."
+        ],
+        c: "Conservar el valor del producto en todas sus fases, reduciendo la generación de residuos.",
+        e: "Busca que el valor dure lo máximo posible mejorando también la equidad social."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "4. Economía Lineal vs Circular",
+        p: "En la economía circular, ¿a qué se refiere el beneficio de 'Eficiencia y ahorro de costes'?",
+        r: [
+            "A obtener más con menos, reduciendo el consumo de recursos lo que puede bajar el coste por unidad.",
+            "A despedir personal humano y sustituirlo por máquinas eficientes que no contaminan.",
+            "A dejar de pagar aranceles internacionales por transportar mercancías recicladas.",
+            "A evitar diseñar productos nuevos y vender únicamente los modelos de años anteriores."
+        ],
+        c: "A obtener más con menos, reduciendo el consumo de recursos lo que puede bajar el coste por unidad.",
+        e: "Al consumir menos recursos nuevos en la producción, la eficiencia económica mejora."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "4. Economía Lineal vs Circular",
+        p: "En la economía circular, ¿cómo se mejora la 'Fidelización de clientes'?",
+        r: [
+            "Al alargar la fase de consumo aumentan las oportunidades de contacto (servicio posventa, reparaciones).",
+            "Al obligar al cliente mediante contratos a largo plazo a no comprar a la competencia.",
+            "Al regalar un producto extra por cada envase vacío que el cliente devuelva a la tienda.",
+            "Al inundar al cliente con correos electrónicos detallando las métricas de contaminación."
+        ],
+        c: "Al alargar la fase de consumo aumentan las oportunidades de contacto (servicio posventa, reparaciones).",
+        e: "La relación con clientes y proveedores se vuelve más estrecha y estable."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "4. Economía Lineal vs Circular",
+        p: "Otro beneficio de la economía circular para las empresas es tener un 'Menor Riesgo Legal'. ¿Por qué?",
+        r: [
+            "Porque sus prácticas se alinean con la normativa medioambiental actual y futura, evitando sanciones.",
+            "Porque están exentas de cumplir el Estatuto de los Trabajadores al considerarse empresas de utilidad pública.",
+            "Porque la Unión Europea prohíbe demandar judicialmente a las empresas que tienen la ecoetiqueta.",
+            "Porque pueden operar en paraísos fiscales siempre y cuando demuestren que plantan árboles."
+        ],
+        c: "Porque sus prácticas se alinean con la normativa medioambiental actual y futura, evitando sanciones.",
+        e: "Previene costes en medidas correctoras de contaminación."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "4. Economía Lineal vs Circular",
+        p: "¿Cuál es la primera fase en la evaluación de una producción limpia?",
+        r: [
+            "1. Recogida y análisis de datos.",
+            "1. Análisis de viabilidad financiera.",
+            "1. Implementación de los filtros anticontaminación.",
+            "1. Generación de opciones de marketing verde."
+        ],
+        c: "1. Recogida y análisis de datos.",
+        e: "Le siguen: Generación de opciones, Análisis de viabilidad, Implementación, y Evaluación/Control."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "4. Economía Lineal vs Circular",
+        p: "¿Qué es el Ecodiseño o diseño ecológico?",
+        r: [
+            "La integración de aspectos medioambientales en el diseño para minimizar impactos en el ciclo de vida del producto.",
+            "El rediseño de los logotipos de la empresa usando tonalidades relacionadas con la naturaleza.",
+            "La arquitectura empleada únicamente para construir fábricas de reciclaje de vidrio.",
+            "La técnica de empaquetar productos usando cajas de cartón sin ningún tipo de impresión gráfica."
+        ],
+        c: "La integración de aspectos medioambientales en el diseño para minimizar impactos en el ciclo de vida del producto.",
+        e: "Afecta a todo el desarrollo y composición física del artículo."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "4. Economía Lineal vs Circular",
+        p: "¿Cuáles de los siguientes son principios clave del Ecodiseño?",
+        r: [
+            "Desmaterialización, uso de materiales renovables y sencillez en el desmontaje.",
+            "Obsolescencia programada, plásticos de un solo uso y tintas indelebles.",
+            "Importación exclusiva desde el continente asiático para abaratar la mano de obra.",
+            "Soldado permanente de piezas para evitar que el usuario final pueda abrir el producto."
+        ],
+        c: "Desmaterialización, uso de materiales renovables y sencillez en el desmontaje.",
+        e: "También incluye usar proveedores locales y materiales libres de sustancias tóxicas."
+    },
+
+    // TEMA 5: Herramientas, Indicadores y Documentación ASG
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "5. Herramientas y Normativa ASG",
+        p: "Para incorporar un indicador de desempeño ambiental, la 1ª fase es la 'Definición del indicador'. ¿Cuál es la 2ª fase?",
+        r: [
+            "Establecimiento de una fórmula para poder calcularlo.",
+            "Pagar la tasa correspondiente al Ministerio de Transición Ecológica.",
+            "Efectuar un seguimiento del indicador publicándolo en redes sociales.",
+            "Establecer el nivel mínimo exigido por la competencia."
+        ],
+        c: "Establecimiento de una fórmula para poder calcularlo.",
+        e: "Las fases son: Definición, Fórmula, Nivel deseado y Seguimiento."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "5. Herramientas y Normativa ASG",
+        p: "¿Qué es una Ecoetiqueta?",
+        r: [
+            "Una licencia de sostenibilidad desarrollada por instituciones ajenas para productos con bajo impacto ambiental.",
+            "Un pegatina verde obligatoria que deben llevar todos los electrodomésticos para indicar su precio.",
+            "Un sello que el fabricante se pone a sí mismo sin ninguna supervisión externa.",
+            "Un impuesto especial que pagan los productos que superan los límites de contaminación."
+        ],
+        c: "Una licencia de sostenibilidad desarrollada por instituciones ajenas para productos con bajo impacto ambiental.",
+        e: "Se concede si el producto llega a los principios mínimos exigidos en su ciclo de vida."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "5. Herramientas y Normativa ASG",
+        p: "A diferencia de las ecoetiquetas, ¿qué son las Autodeclaraciones Ambientales?",
+        r: [
+            "Declaraciones que hacen las propias empresas sobre su producto sin ser verificadas por una entidad ajena.",
+            "Documentos notariales donde la empresa jura que no utiliza energía nuclear.",
+            "Declaraciones fiscales que permiten desgravar impuestos por reciclar papel.",
+            "Sellos oficiales otorgados por la Unión Europea tras pasar una auditoría técnica muy estricta."
+        ],
+        c: "Declaraciones que hacen las propias empresas sobre su producto sin ser verificadas por una entidad ajena.",
+        e: "Son afirmaciones de marketing ambiental elaboradas directamente por el fabricante."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "5. Herramientas y Normativa ASG",
+        p: "¿Qué significa ISR en el ámbito de las finanzas?",
+        r: [
+            "Inversión Medioambiental y Socialmente Responsable.",
+            "Impuesto sobre Residuos Sólidos.",
+            "Indicador de Sostenibilidad y Riesgo.",
+            "Instituto de Saneamiento y Reciclaje."
+        ],
+        c: "Inversión Medioambiental y Socialmente Responsable.",
+        e: "Valora conjuntamente la rentabilidad, riesgo y liquidez con el impacto ASG de la empresa."
+    },
+    {
+        m: "Sostenibilidad",
+        t: "Preguntas de desarrollo",
+        u: "5. Herramientas y Normativa ASG",
+        p: "¿Qué finalidad tiene el documento conocido como 'Plan de Sostenibilidad' en una empresa?",
+        r: [
+            "Guiar de forma estratégica las acciones de la organización en materia de sostenibilidad a medio y largo plazo.",
+            "Justificar ante Hacienda el impago de multas medioambientales de años anteriores.",
+            "Reflejar exclusivamente los beneficios netos obtenidos durante el último trimestre del año.",
+            
         
 // MATERIA: GESTIÓN DE BASES DE DATOS
 
@@ -1156,6 +1744,1235 @@
 { m: "Gestión de BD", t: "Test por Unidades", u: "bloque 4: Docker y K8s", p: "¿Qué es un 'Deployment' en Kubernetes?", r: ["Un objeto declarativo que gestiona cómo se deben desplegar, actualizar y escalar (número de réplicas) los Pods de una aplicación", "Una herramienta para apagar el clúster", "Una regla de cortafuegos de red", "Un volumen de almacenamiento en disco"], c: "Un objeto declarativo que gestiona cómo se deben desplegar, actualizar y escalar (número de réplicas) los Pods de una aplicación", e: "Normalmente en K8s no creas Pods a mano; creas un Deployment y este se encarga de fabricar los Pods necesarios." },
 { m: "Gestión de BD", t: "Test por Unidades", u: "bloque 4: Docker y K8s", p: "¿Qué componente del Control Plane tiene la función de buscar Pods recién creados que no tienen un Nodo asignado y decidir en qué máquina encajan mejor?", r: ["El Kube-scheduler", "El Kubelet", "El Controller Manager", "El etcd"], c: "El Kube-scheduler", e: "Analiza CPU, RAM libre y reglas de afinidad para 'aparcar' los Pods en los servidores adecuados." },
 { m: "Gestión de BD", t: "Test por Unidades", u: "bloque 4: Docker y K8s", p: "¿Qué objeto de Kubernetes permite inyectar variables de entorno y archivos de configuración en los Pods sin tener que reconstruir la imagen Docker?", r: ["ConfigMap", "Secret", "Namespace", "Environment-Object"], c: "ConfigMap", e: "Permite separar el código fuente de la configuración (ej: la URL de la base de datos para entornos de Pruebas o Producción)." },
+// =========================================================================
+    // GESTIÓN DE BD - GESTIÓN DE USUARIOS (SEGURIDAD)
+    // =========================================================================
+
+    // TEMA 1: Acceso y Creación de Cuentas
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "1. Acceso y Creación de Cuentas",
+        p: "En el control de acceso a una base de datos MySQL, ¿en qué consiste la comprobación de Nivel 1?",
+        r: [
+            "En verificar desde dónde se conecta el usuario, su nombre y su contraseña consultando la tabla 'user'.",
+            "En comprobar si el usuario tiene privilegios para efectuar sentencias DML sobre la tabla especificada.",
+            "En revisar exclusivamente la tabla 'db' para confirmar que el usuario tiene acceso a la base de datos solicitada.",
+            "En desencriptar el protocolo SSL de la conexión cliente-servidor antes de validar las credenciales."
+        ],
+        c: "En verificar desde dónde se conecta el usuario, su nombre y su contraseña consultando la tabla 'user'.",
+        e: "El Nivel 1 comprueba la conexión (desde dónde se conecta, nombre y contraseña consultando la tabla mysql.user). El Nivel 2 es la comprobación de los privilegios."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "1. Acceso y Creación de Cuentas",
+        p: "Una vez superado el Nivel 1 de conexión, el Nivel 2 de comprobación de privilegios consulta las siguientes tablas del sistema:",
+        r: [
+            "user, db, tables_priv, columns_priv, procs_priv.",
+            "privileges_global, privileges_local, routines_priv.",
+            "mysql.access, mysql.grants, mysql.roles.",
+            "information_schema.user_privileges e information_schema.role_table_grants."
+        ],
+        c: "user, db, tables_priv, columns_priv, procs_priv.",
+        e: "Por cada petición en la conexión se comprueba si hay privilegios consultando estas tablas específicas dentro de la base de datos mysql."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "1. Acceso y Creación de Cuentas",
+        p: "En la tabla mysql.user, ¿qué implica que el campo 'Host' de un usuario tenga el valor '%'?",
+        r: [
+            "Que el usuario puede conectarse desde cualquier dirección IP.",
+            "Que el usuario solo puede conectarse desde la máquina local (localhost).",
+            "Que la cuenta de usuario está desactivada temporalmente.",
+            "Que el usuario puede acceder a cualquier base de datos del servidor."
+        ],
+        c: "Que el usuario puede conectarse desde cualquier dirección IP.",
+        e: "El símbolo '%' actúa como comodín para indicar cualquier dirección IP. 'localhost' o '127.0.0.1' restringe el acceso a la máquina local."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "1. Acceso y Creación de Cuentas",
+        p: "¿Es posible utilizar el símbolo '%' como parte de un nombre de host o una subred en MySQL?",
+        r: [
+            "Sí, es posible usarlo de la forma '%.mysql.com' o '192.168.1.%'.",
+            "No, '%' solo se puede usar de forma aislada para representar 'cualquier IP'.",
+            "Sí, pero solo para rangos de IP (ej. 192.168.1.%), no para nombres de dominio.",
+            "No, para subredes se debe utilizar obligatoriamente la máscara de red en formato CIDR (/24)."
+        ],
+        c: "Sí, es posible usarlo de la forma '%.mysql.com' o '192.168.1.%'.",
+        e: "MySQL permite utilizar '%' como comodín para cualquier parte de una dirección IP o de un nombre de host."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "1. Acceso y Creación de Cuentas",
+        p: "¿Qué ocurre si creas un usuario mediante la sentencia CREATE USER pero no le otorgas ningún privilegio posterior?",
+        r: [
+            "El usuario podrá conectarse al servidor MySQL, pero no podrá realizar ninguna acción.",
+            "El servidor MySQL rechazará la conexión del usuario en el Nivel 1 de seguridad.",
+            "El usuario heredará automáticamente los privilegios de lectura (SELECT) sobre las tablas públicas.",
+            "La sentencia CREATE USER fallará indicando que falta la cláusula GRANT."
+        ],
+        c: "El usuario podrá conectarse al servidor MySQL, pero no podrá realizar ninguna acción.",
+        e: "Una vez creado, el usuario puede conectarse al servidor, pero al no tener permisos en el Nivel 2, cualquier orden SQL será denegada."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "1. Acceso y Creación de Cuentas",
+        p: "¿Cuál es la sintaxis correcta para crear un usuario llamado 'admin' que solo pueda conectarse desde el host '10.0.0.5' con la contraseña 'secreta'?",
+        r: [
+            "CREATE USER 'admin'@'10.0.0.5' IDENTIFIED BY 'secreta';",
+            "CREATE USER 'admin' IN HOST '10.0.0.5' WITH PASSWORD 'secreta';",
+            "ADD USER 'admin' AT '10.0.0.5' SET PASSWORD = 'secreta';",
+            "CREATE ACCOUNT 'admin'@'10.0.0.5' IDENTIFIED AS 'secreta';"
+        ],
+        c: "CREATE USER 'admin'@'10.0.0.5' IDENTIFIED BY 'secreta';",
+        e: "La sintaxis es CREATE USER account_name IDENTIFIED BY 'password'; donde account_name consta de username@hostname."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "1. Acceso y Creación de Cuentas",
+        p: "Al ejecutar la sentencia CREATE USER, ¿qué sucede si se omite la parte del host en el nombre de la cuenta (ej. CREATE USER 'maria' IDENTIFIED BY '123')?",
+        r: [
+            "El usuario podrá conectarse desde cualquier host (equivale a 'maria'@'%').",
+            "El usuario solo podrá conectarse desde localhost por defecto.",
+            "Dará un error de sintaxis, ya que el @host es obligatorio en MySQL.",
+            "El usuario se creará, pero su acceso quedará bloqueado hasta que el administrador defina un host."
+        ],
+        c: "El usuario podrá conectarse desde cualquier host (equivale a 'maria'@'%').",
+        e: "La parte hostname del nombre de cuenta es opcional. Si se omite, el valor predeterminado es '%', que significa cualquier host."
+    },
+
+    // TEMA 2: Privilegios y GRANT/REVOKE
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "2. Privilegios (GRANT/REVOKE)",
+        p: "En MySQL, los niveles de privilegios se dividen jerárquicamente en:",
+        r: [
+            "Global, Base de datos, Tabla, Columna y Rutina.",
+            "Servidor, Instancia, Esquema y Fila.",
+            "Administrador, Desarrollador, Lectura y Denegado.",
+            "Sistema, Objeto, Registro y Disparador."
+        ],
+        c: "Global, Base de datos, Tabla, Columna y Rutina.",
+        e: "También existe el nivel Proxy. Cada nivel determina hasta qué punto se aplican los privilegios."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "2. Privilegios (GRANT/REVOKE)",
+        p: "¿Cuál es la sintaxis correcta para otorgar TODOS los privilegios a nivel GLOBAL a un usuario?",
+        r: [
+            "GRANT ALL PRIVILEGES ON *.* TO 'usuario'@'localhost';",
+            "GRANT GLOBAL PRIVILEGES TO 'usuario'@'localhost';",
+            "GRANT ALL ON DATABASE * TO 'usuario'@'localhost';",
+            "GRANT ADMIN ON *.* TO 'usuario'@'localhost';"
+        ],
+        c: "GRANT ALL PRIVILEGES ON *.* TO 'usuario'@'localhost';",
+        e: "El nivel global se especifica mediante ON *.* (todas las bases de datos y todas sus tablas)."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "2. Privilegios (GRANT/REVOKE)",
+        p: "¿Cuál es la sintaxis correcta para otorgar todos los privilegios a nivel de BASE DE DATOS sobre una BD llamada 'ventas'?",
+        r: [
+            "GRANT ALL PRIVILEGES ON ventas.* TO 'usuario'@'localhost';",
+            "GRANT ALL PRIVILEGES ON DATABASE ventas TO 'usuario'@'localhost';",
+            "GRANT ALL PRIVILEGES TO 'usuario'@'localhost' FOR ventas;",
+            "GRANT DATABASE ventas ALL PRIVILEGES TO 'usuario'@'localhost';"
+        ],
+        c: "GRANT ALL PRIVILEGES ON ventas.* TO 'usuario'@'localhost';",
+        e: "El nivel de base de datos se especifica mediante ON db_name.* (en este caso, ventas.*)."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "2. Privilegios (GRANT/REVOKE)",
+        p: "Para otorgar permisos específicos a nivel de TABLA, ¿cuál de estas sentencias usarías?",
+        r: [
+            "GRANT SELECT, INSERT ON ventas.clientes TO 'user1'@'localhost';",
+            "GRANT SELECT, INSERT ON TABLE clientes FROM ventas TO 'user1'@'localhost';",
+            "GRANT SELECT, INSERT ON ventas.*.clientes TO 'user1'@'localhost';",
+            "GRANT TABLE clientes PRIVILEGES SELECT, INSERT TO 'user1'@'localhost';"
+        ],
+        c: "GRANT SELECT, INSERT ON ventas.clientes TO 'user1'@'localhost';",
+        e: "El nivel de tabla se especifica con la sintaxis ON base_de_datos.tabla (ej. ventas.clientes)."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "2. Privilegios (GRANT/REVOKE)",
+        p: "¿Cómo se otorgan permisos a nivel de COLUMNA (por ejemplo, solo para actualizar el 'salario' en la tabla 'empleados' de la BD 'rrhh')?",
+        r: [
+            "GRANT UPDATE (salario) ON rrhh.empleados TO 'user1'@'localhost';",
+            "GRANT UPDATE ON rrhh.empleados(salario) TO 'user1'@'localhost';",
+            "GRANT COLUMN salario UPDATE ON rrhh.empleados TO 'user1'@'localhost';",
+            "GRANT UPDATE ON COLUMN salario FROM rrhh.empleados TO 'user1'@'localhost';"
+        ],
+        c: "GRANT UPDATE (salario) ON rrhh.empleados TO 'user1'@'localhost';",
+        e: "Para asignar privilegios a nivel de columna, se debe especificar la columna o columnas entre paréntesis inmediatamente después del nombre del privilegio."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "2. Privilegios (GRANT/REVOKE)",
+        p: "¿Qué indica la cláusula opcional 'WITH GRANT OPTION' al final de una sentencia GRANT?",
+        r: [
+            "Que el usuario receptor puede, a su vez, otorgar a otros usuarios los privilegios que acaba de recibir.",
+            "Que los privilegios otorgados son temporales y se revocarán automáticamente al cerrar la sesión.",
+            "Que el administrador se reserva el derecho de auditar las consultas del usuario.",
+            "Que el usuario puede crear sus propias bases de datos saltándose las restricciones de espacio."
+        ],
+        c: "Que el usuario receptor puede, a su vez, otorgar a otros usuarios los privilegios que acaba de recibir.",
+        e: "Permite delegar la administración de esos privilegios a la cuenta de usuario especificada."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "2. Privilegios (GRANT/REVOKE)",
+        p: "Si queremos revocar un permiso a un usuario usando la instrucción REVOKE, ¿qué condición se debe cumplir respecto al nivel del objeto?",
+        r: [
+            "La revocación se debe hacer exactamente al mismo nivel de privilegios con el que se otorgó usando GRANT.",
+            "Se puede revocar a nivel global (ON *.*) y MySQL eliminará automáticamente cualquier permiso inferior (tabla/columna).",
+            "La revocación se hace indicando solo el nombre del usuario, sin necesidad de especificar el objeto afectado.",
+            "Solo se pueden revocar privilegios si el usuario no tiene ninguna sesión activa en ese momento."
+        ],
+        c: "La revocación se debe hacer exactamente al mismo nivel de privilegios con el que se otorgó usando GRANT.",
+        e: "Si otorgaste el permiso a nivel de tabla (db.tabla), el REVOKE debe hacerse apuntando a db.tabla, no vale hacerlo globalmente (*.*)."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "2. Privilegios (GRANT/REVOKE)",
+        p: "¿Cuál es el comando correcto para visualizar los privilegios actuales que tiene asignados un usuario?",
+        r: [
+            "SHOW GRANTS FOR 'user1'@'localhost';",
+            "SELECT PRIVILEGES FROM 'user1'@'localhost';",
+            "DISPLAY PERMISSIONS FOR 'user1'@'localhost';",
+            "SHOW PRIVILEGES ON USER 'user1'@'localhost';"
+        ],
+        c: "SHOW GRANTS FOR 'user1'@'localhost';",
+        e: "SHOW GRANTS FOR account_name es la orden en MySQL para listar las sentencias GRANT que replican los permisos actuales del usuario."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "2. Privilegios (GRANT/REVOKE)",
+        p: "¿En qué tabla interna guarda MySQL los privilegios que han sido asignados a NIVEL DE BASE DE DATOS?",
+        r: [
+            "En la tabla 'mysql.db'.",
+            "En la tabla 'mysql.user'.",
+            "En la tabla 'mysql.tables_priv'.",
+            "En la tabla 'mysql.schema_grants'."
+        ],
+        c: "En la tabla 'mysql.db'.",
+        e: "Los permisos globales van a mysql.user, los de base de datos a mysql.db, los de tabla a mysql.tables_priv y los de columna a mysql.columns_priv."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "2. Privilegios (GRANT/REVOKE)",
+        p: "¿Cuál de las siguientes órdenes sirve para eliminar por completo la cuenta de un usuario en MySQL?",
+        r: [
+            "DROP USER 'user1'@'localhost';",
+            "DELETE USER 'user1'@'localhost';",
+            "REMOVE USER 'user1'@'localhost';",
+            "TRUNCATE USER 'user1'@'localhost';"
+        ],
+        c: "DROP USER 'user1'@'localhost';",
+        e: "La sentencia DROP USER elimina la cuenta de usuario y todos sus privilegios de las tablas del sistema."
+    },
+
+    // TEMA 3: Contraseñas y Roles
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "3. Contraseñas y Roles",
+        p: "Para asignar una contraseña a un usuario existente SIN afectar a sus permisos actuales, ¿cuál de estas estrategias recomienda MySQL usando DCL?",
+        r: [
+            "Usar GRANT USAGE ON *.* TO 'user'@'host' IDENTIFIED BY 'nueva_pass';",
+            "Usar GRANT PASSWORD 'nueva_pass' TO 'user'@'host';",
+            "Usar ALTER USER 'user'@'host' REPLACE PASSWORD 'nueva_pass';",
+            "Usar REVOKE PASSWORD FROM 'user'@'host' AND GRANT 'nueva_pass';"
+        ],
+        c: "Usar GRANT USAGE ON *.* TO 'user'@'host' IDENTIFIED BY 'nueva_pass';",
+        e: "El privilegio USAGE equivale a 'sin privilegios', por lo que esta sentencia permite modificar la contraseña sin alterar los permisos preexistentes."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "3. Contraseñas y Roles",
+        p: "Si actualizas la contraseña de un usuario modificando directamente la tabla con un UPDATE (ej. UPDATE mysql.user SET Password=...), ¿qué comando es obligatorio ejecutar después?",
+        r: [
+            "FLUSH PRIVILEGES;",
+            "COMMIT;",
+            "RELOAD USERS;",
+            "RESTART MYSQL;"
+        ],
+        c: "FLUSH PRIVILEGES;",
+        e: "Si se modifican directamente las tablas de concesión del sistema (como mysql.user), hay que indicar al servidor que recargue los privilegios en memoria con FLUSH PRIVILEGES."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "3. Contraseñas y Roles",
+        p: "Si olvidas la contraseña del usuario raíz (root), ¿con qué opción debes arrancar el servicio 'mysqld' para poder entrar sin contraseña y cambiarla?",
+        r: [
+            "mysqld --skip-grant-tables",
+            "mysqld --safe-mode",
+            "mysqld --ignore-security",
+            "mysqld --no-password-prompt"
+        ],
+        c: "mysqld --skip-grant-tables",
+        e: "Arrancar con --skip-grant-tables hace que MySQL no compruebe la tabla de usuarios, permitiendo entrar como root sin clave para luego hacer un UPDATE a la contraseña."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "3. Contraseñas y Roles",
+        p: "¿Qué es un ROL en MySQL (introducido de forma nativa a partir de la versión 8.0)?",
+        r: [
+            "Una colección de privilegios con nombre que simplifica la administración al poder asignarse en bloque a múltiples usuarios.",
+            "Un usuario especial del sistema que no puede iniciar sesión pero puede ser propietario de tablas.",
+            "Un procedimiento almacenado que se ejecuta cada vez que un usuario nuevo hace login en la base de datos.",
+            "Un cifrado de seguridad aplicado a los datos sensibles de ciertas columnas."
+        ],
+        c: "Una colección de privilegios con nombre que simplifica la administración al poder asignarse en bloque a múltiples usuarios.",
+        e: "Los roles evitan tener que asignar los permisos uno a uno para cada usuario. Si se modifican los permisos del rol, afectan a todos los usuarios que lo tengan asignado."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "3. Contraseñas y Roles",
+        p: "¿Cuál es la sentencia correcta para crear un rol llamado 'crm_read'?",
+        r: [
+            "CREATE ROLE crm_read;",
+            "ADD ROLE crm_read;",
+            "INSERT INTO mysql.roles VALUES ('crm_read');",
+            "CREATE GROUP crm_read;"
+        ],
+        c: "CREATE ROLE crm_read;",
+        e: "La sintaxis es CREATE ROLE [IF NOT EXISTS] role_name. El nombre del rol internamente es similar a la cuenta de usuario (nombre y host)."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "3. Contraseñas y Roles",
+        p: "Una vez creado un rol y otorgados los privilegios al mismo, ¿cómo se asigna ese rol a un usuario concreto?",
+        r: [
+            "Utilizando el comando GRANT (ej: GRANT crm_read TO 'usuario'@'localhost');",
+            "Utilizando el comando ALTER USER (ej: ALTER USER 'usuario' SET ROLE crm_read);",
+            "Utilizando el comando ASSIGN (ej: ASSIGN ROLE crm_read TO 'usuario');",
+            "Añadiendo el usuario al rol (ej: ADD 'usuario' TO ROLE crm_read);"
+        ],
+        c: "Utilizando el comando GRANT (ej: GRANT crm_read TO 'usuario'@'localhost');",
+        e: "Al igual que con los privilegios normales, los roles se otorgan a las cuentas de usuario mediante la instrucción GRANT."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "3. Contraseñas y Roles",
+        p: "Si usas la sentencia REVOKE para quitarle un privilegio a un ROL, ¿qué efecto tiene sobre los usuarios?",
+        r: [
+            "Afecta no solo al rol, sino también inmediatamente a cualquier cuenta de usuario a la que se le haya otorgado dicho rol.",
+            "Solo afecta a los nuevos usuarios a los que se asigne el rol; los antiguos conservan el privilegio.",
+            "MySQL denegará el REVOKE a menos que primero retires el rol a todos los usuarios que lo posean.",
+            "Afecta al rol, pero los usuarios mantienen el privilegio de forma individual hasta que reinicies el servicio."
+        ],
+        c: "Afecta no solo al rol, sino también inmediatamente a cualquier cuenta de usuario a la que se le haya otorgado dicho rol.",
+        e: "Esta es la principal ventaja de los roles: centralizar y simplificar la administración de permisos masivos."
+    },
+
+    // TEMA 4: Variables y Control de Flujo
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "4. Variables y Estructuras de Control",
+        p: "En MySQL, ¿cuál es el prefijo que se debe usar para definir una variable de usuario que pase valores entre distintas sentencias SQL de una misma sesión?",
+        r: [
+            "El símbolo @ (ejemplo: @variable_name).",
+            "El símbolo @@ (ejemplo: @@variable_name).",
+            "La palabra clave VAR (ejemplo: VAR variable_name).",
+            "El símbolo $ (ejemplo: $variable_name)."
+        ],
+        c: "El símbolo @ (ejemplo: @variable_name).",
+        e: "En MySQL las variables definidas por el usuario están precedidas por el símbolo @ y no distinguen entre mayúsculas y minúsculas."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "4. Variables y Estructuras de Control",
+        p: "¿Cuáles son las dos formas principales de asignar un valor a una variable definida por el usuario en MySQL?",
+        r: [
+            "Usando la sentencia SET o usando la sentencia SELECT INTO.",
+            "Usando la sentencia DECLARE o usando la sentencia ASIGN.",
+            "Usando el operador := exclusivamente dentro del WHERE o usando INSERT.",
+            "Usando UPDATE VARIABLES o usando el operador =>."
+        ],
+        c: "Usando la sentencia SET o usando la sentencia SELECT INTO.",
+        e: "Se puede hacer directamente con SET @var = valor; o leyendo de una tabla con SELECT columna INTO @var FROM tabla;"
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "4. Variables y Estructuras de Control",
+        p: "Dentro de los procedimientos almacenados, ¿cuál es la ventaja de la sentencia condicional CASE frente a IF-THEN-ELSE?",
+        r: [
+            "Hace que el código sea más legible y eficiente, especialmente para coincidencias complejas o rangos equivalentes.",
+            "Es la única sentencia condicional que permite evaluar variables locales, ya que IF solo evalúa variables globales.",
+            "Se ejecuta compilada en C++, mientras que IF se interpreta, siendo mucho más lenta.",
+            "Permite retornar tablas virtuales, mientras que IF solo puede retornar valores escalares."
+        ],
+        c: "Hace que el código sea más legible y eficiente, especialmente para coincidencias complejas o rangos equivalentes.",
+        e: "La declaración CASE (en su forma simple o compleja) es equivalente a IF-THEN-ELSE pero resulta mucho más legible y estructurada para múltiples condiciones."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "4. Variables y Estructuras de Control",
+        p: "¿Cuál es la principal diferencia funcional entre un bucle WHILE y un bucle REPEAT en MySQL?",
+        r: [
+            "WHILE comprueba la condición antes de entrar al bucle, mientras que REPEAT ejecuta el código y evalúa la condición al final (UNTIL).",
+            "WHILE se usa para cursores y REPEAT solo sirve para variables numéricas enteras.",
+            "WHILE obliga a usar un contador estricto, mientras que REPEAT es un bucle infinito por defecto.",
+            "No hay diferencia, ambas palabras clave son alias del mismo tipo de estructura cíclica en SQL."
+        ],
+        c: "WHILE comprueba la condición antes de entrar al bucle, mientras que REPEAT ejecuta el código y evalúa la condición al final (UNTIL).",
+        e: "En la estructura [etiqueta:] REPEAT instrucciones UNTIL expresion END REPEAT, las instrucciones se ejecutan siempre al menos una vez."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "4. Variables y Estructuras de Control",
+        p: "En un 'Simple loop' (Bucle simple) en MySQL, ¿cuál es la sintaxis de cierre del bloque repetitivo?",
+        r: [
+            "END LOOP",
+            "END WHILE",
+            "UNTIL LOOP",
+            "EXIT LOOP"
+        ],
+        c: "END LOOP",
+        e: "La sintaxis del bucle simple es [etiqueta:] LOOP instrucciones END LOOP [etiqueta];"
+    },
+
+    // TEMA 5: Procedimientos, Funciones y Errores
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "5. Rutinas y Manejo de Errores",
+        p: "¿Cuál de las siguientes afirmaciones describe una diferencia clave entre Procedimientos (PROCEDURE) y Funciones (FUNCTION) almacenadas en MySQL?",
+        r: [
+            "Las funciones deben usar la cláusula RETURNS para devolver un valor, mientras que los procedimientos se invocan mediante CALL.",
+            "Los procedimientos se pueden llamar dentro de un SELECT, mientras que las funciones solo se invocan con CALL.",
+            "Las funciones permiten transacciones (COMMIT/ROLLBACK), mientras que los procedimientos no.",
+            "Los procedimientos solo soportan parámetros de tipo IN, mientras que las funciones soportan OUT e INOUT."
+        ],
+        c: "Las funciones deben usar la cláusula RETURNS para devolver un valor, mientras que los procedimientos se invocan mediante CALL.",
+        e: "El bloque CREATE FUNCTION especifica RETURNS type y termina con un RETURN, mientras que un procedimiento se ejecuta aisladamente con CALL sp_name()."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "5. Rutinas y Manejo de Errores",
+        p: "En un procedimiento almacenado, ¿qué comportamiento tiene el modo de parámetro 'OUT'?",
+        r: [
+            "Su valor puede ser modificado dentro del procedimiento y su valor actualizado se devuelve al programa que realizó la llamada.",
+            "Impide que el procedimiento modifique el valor pasado, haciéndolo de solo lectura.",
+            "Obliga a que el parámetro sea escrito en un archivo de texto de registro de salida del servidor.",
+            "Es el modo predeterminado en MySQL; si no se indica nada, todos los parámetros actúan como OUT."
+        ],
+        c: "Su valor puede ser modificado dentro del procedimiento y su valor actualizado se devuelve al programa que realizó la llamada.",
+        e: "A diferencia del modo IN (que es el predeterminado) y del INOUT, el parámetro OUT sirve exclusivamente como variable de salida de resultados hacia el entorno llamador."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "5. Rutinas y Manejo de Errores",
+        p: "Dentro de un bloque BEGIN/END, ¿cuál es la sintaxis correcta para declarar una variable local entera que inicie en 0?",
+        r: [
+            "DECLARE total INT DEFAULT 0;",
+            "SET LOCAL total AS INT = 0;",
+            "VAR total INTEGER INITIAL 0;",
+            "DECLARE total = 0 (INT);"
+        ],
+        c: "DECLARE total INT DEFAULT 0;",
+        e: "La sintaxis es DECLARE variable_name datatype [DEFAULT default_value]. Si se omite DEFAULT, su valor es NULL."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "5. Rutinas y Manejo de Errores",
+        p: "Para otorgar permisos de ejecución sobre una rutina concreta a un usuario, ¿qué instrucción debemos usar?",
+        r: [
+            "GRANT EXECUTE ON PROCEDURE db.rutina TO 'usuario'@'localhost';",
+            "GRANT RUN ON ROUTINE db.rutina TO 'usuario'@'localhost';",
+            "GRANT PROCEDURE db.rutina EXECUTE TO 'usuario'@'localhost';",
+            "GRANT CALL ON db.rutina TO 'usuario'@'localhost';"
+        ],
+        c: "GRANT EXECUTE ON PROCEDURE db.rutina TO 'usuario'@'localhost';",
+        e: "Para las rutinas se utiliza el privilegio EXECUTE aplicable sobre FUNCTION o PROCEDURE específicos."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "5. Rutinas y Manejo de Errores",
+        p: "En el manejo de errores dentro de una rutina (DECLARE ... HANDLER), ¿qué diferencia hay entre un handler 'EXIT' y uno 'CONTINUE'?",
+        r: [
+            "EXIT finaliza el bloque del procedimiento almacenado, mientras que CONTINUE permite que la ejecución siga en la siguiente instrucción.",
+            "EXIT cierra la conexión del usuario con el servidor MySQL, mientras que CONTINUE simplemente ignora la consulta fallida.",
+            "EXIT borra la tabla afectada por el error mediante un Rollback, mientras que CONTINUE comitea la transacción a medias.",
+            "No existe CONTINUE en MySQL, solo EXIT y ABORT."
+        ],
+        c: "EXIT finaliza el bloque del procedimiento almacenado, mientras que CONTINUE permite que la ejecución siga en la siguiente instrucción.",
+        e: "El HANDLER indica qué acción tomar. EXIT aborta el bloque actual, y CONTINUE permite retomar el flujo tras la declaración que causó el evento."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "5. Rutinas y Manejo de Errores",
+        p: "En un controlador de excepciones (HANDLER), ¿qué significa el condition_value 'NOT FOUND'?",
+        r: [
+            "Es una abreviatura para la clase de valores SQLSTATE que comienzan con '02' (ej. cursores que llegan al final o consultas SELECT sin resultados).",
+            "Es un error crítico que indica que la base de datos o la tabla consultada ha sido eliminada.",
+            "Es una advertencia (SQLWARNING) que indica que el servidor remoto no responde a los pings.",
+            "Indica que el procedimiento almacenado que se está invocando mediante CALL no existe en el catálogo."
+        ],
+        c: "Es una abreviatura para la clase de valores SQLSTATE que comienzan con '02' (ej. cursores que llegan al final o consultas SELECT sin resultados).",
+        e: "Muy utilizado junto a los cursores para detectar cuándo se han leído todas las filas devueltas."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Gestión de usuarios (seguridad)",
+        u: "5. Rutinas y Manejo de Errores",
+        p: "Al compilar por primera vez un procedimiento almacenado, MySQL...",
+        r: [
+            "Busca el procedimiento, lo compila, lo almacena en una memoria caché y lo ejecuta.",
+            "Genera un archivo ejecutable binario (.exe) en la carpeta de instalación del servidor.",
+            "Inyecta el código directamente en el motor de almacenamiento InnoDB ignorando la caché.",
+            "Detiene todas las consultas del resto de usuarios hasta validar que el procedimiento no tiene bucles infinitos."
+        ],
+// =========================================================================
+    // GESTIÓN DE BD - SEGURIDAD EN SQLSERVER
+    // =========================================================================
+
+    // TEMA 1: Conceptos Generales y Capas de Seguridad
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "1. Conceptos y Capas",
+        p: "¿Cómo se estructura el mecanismo de capas de seguridad en SQL Server (desde el nivel más externo al más interno)?",
+        r: [
+            "Sistema Operativo, SQL Server, Base de Datos, Objeto de la Base de Datos.",
+            "SQL Server, Sistema Operativo, Instancia, Tabla.",
+            "Red, Base de Datos, Esquema, Fila.",
+            "Autenticación, Autorización, Auditoría, Encriptación."
+        ],
+        c: "Sistema Operativo, SQL Server, Base de Datos, Objeto de la Base de Datos.",
+        e: "Hay que ir pasando cada una de estas cuatro capas mencionadas para llegar al punto o dato que deseamos."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "1. Conceptos y Capas",
+        p: "En la terminología de seguridad de SQL Server, ¿qué son los 'Securables' (Elementos asegurables)?",
+        r: [
+            "Son los objetos físicos o lógicos a los cuales se debe asegurar o controlar el acceso.",
+            "Son las identidades de seguridad que acceden a los recursos y realizan acciones.",
+            "Son las acciones específicas que los usuarios pueden realizar sobre la base de datos.",
+            "Son las copias de seguridad encriptadas que garantizan la integridad de los datos."
+        ],
+        c: "Son los objetos físicos o lógicos a los cuales se debe asegurar o controlar el acceso.",
+        e: "Los 'Securables' son los objetos que se protegen. Los 'Principals' son las entidades (usuarios/logins) que solicitan acceso."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "1. Conceptos y Capas",
+        p: "¿Qué comportamiento tienen por defecto las jerarquías de seguridad en SQL Server respecto a los permisos?",
+        r: [
+            "Los permisos se heredan a menos que sean explícitamente anulados o sobrescritos.",
+            "Los permisos no se heredan nunca; deben asignarse objeto por objeto.",
+            "Los permisos se heredan solo si el usuario pertenece al rol sysadmin.",
+            "Los permisos se heredan pero solo los permisos de lectura, los de escritura no."
+        ],
+        c: "Los permisos se heredan a menos que sean explícitamente anulados o sobrescritos.",
+        e: "En SQL Server, Securables y Principals pueden contener a otros (jerarquía), y los permisos se heredan por defecto a menos que se use un DENY."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "1. Conceptos y Capas",
+        p: "¿Cuáles son las tres figuras principales que se definen para el acceso y uso en SQL Server?",
+        r: [
+            "Login ID, Usuario de la base de datos, Funciones (Roles) de base de datos/servidor.",
+            "Administrador, Desarrollador, Operador.",
+            "Cuenta Windows, Cuenta SQL, Cuenta Guest.",
+            "Credenciales, Certificados, Claves asimétricas."
+        ],
+        c: "Login ID, Usuario de la base de datos, Funciones (Roles) de base de datos/servidor.",
+        e: "El Login permite acceder a SQL, el Usuario permite acceder a la BD, y los Roles agrupan conjuntos de permisos."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "1. Conceptos y Capas",
+        p: "Tras la instalación inicial de SQL Server, ¿qué dos identificadores de inicio de sesión (logins) se encuentran definidos por defecto?",
+        r: [
+            "BUILTIN\\Administradores y sa.",
+            "Administrador y guest.",
+            "root y public.",
+            "sysadmin y dbo."
+        ],
+        c: "BUILTIN\\Administradores y sa.",
+        e: "'sa' (system administrator) para autenticación SQL y 'BUILTIN\\Administradores' para la autenticación de Windows de los administradores locales."
+    },
+
+    // TEMA 2: Autenticación y Logins
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "2. Autenticación y Logins",
+        p: "En SQL Server, ¿qué identifica la 'Autenticación' (Nivel 1 de seguridad)?",
+        r: [
+            "Verifica la identidad del usuario y su habilidad para conectarse al servidor, pero no sus permisos sobre los datos.",
+            "Verifica que el usuario tenga permisos DML sobre todas las bases de datos.",
+            "Comprueba que la base de datos esté en línea y lista para recibir consultas.",
+            "Revisa si la dirección IP del cliente está en la lista blanca del Firewall de Windows."
+        ],
+        c: "Verifica la identidad del usuario y su habilidad para conectarse al servidor, pero no sus permisos sobre los datos.",
+        e: "Es solo un identificador de sesión. La validación de permisos en la base de datos es una fase posterior."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "2. Autenticación y Logins",
+        p: "¿Qué requiere el modo de 'Autenticación de Windows NT' en SQL Server?",
+        r: [
+            "El usuario no necesita una cuenta de SQL Server, un administrador define cuentas o grupos de Windows como válidas en SQL Server.",
+            "El usuario debe proporcionar obligatoriamente una clave generada dentro de SQL Server Management Studio.",
+            "El usuario necesita tanto una cuenta de Windows como una contraseña específica de SQL para validar el doble factor.",
+            "Solo funciona si el servidor y el cliente tienen exactamente el mismo sistema operativo instalado."
+        ],
+        c: "El usuario no necesita una cuenta de SQL Server, un administrador define cuentas o grupos de Windows como válidas en SQL Server.",
+        e: "La autenticación la delega SQL Server al sistema operativo Windows."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "2. Autenticación y Logins",
+        p: "¿Cuál es una ventaja clave del Modo de Autenticación SQL frente al de Windows?",
+        r: [
+            "Permite acceder al servidor a clientes No-Windows, clientes de Internet y agrupar usuarios en una sola cuenta SQL.",
+            "Permite disponer de características adicionales de Windows como expiración de contraseña de forma nativa.",
+            "Elimina la necesidad de usar contraseñas, permitiendo accesos mediante certificados digitales locales.",
+            "Acelera las consultas SELECT en un 30% al evitar las llamadas al directorio activo."
+        ],
+        c: "Permite acceder al servidor a clientes No-Windows, clientes de Internet y agrupar usuarios en una sola cuenta SQL.",
+        e: "Es fundamental para aplicaciones web o conexiones desde Linux/Mac donde no hay un dominio de Active Directory de Windows."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "2. Autenticación y Logins",
+        p: "¿Qué tabla del sistema registra la información cuando se crea un nuevo inicio de sesión (login) en SQL Server?",
+        r: [
+            "syslogins",
+            "sysusers",
+            "sysprotects",
+            "master.logins"
+        ],
+        c: "syslogins",
+        e: "Se añade un registro en syslogins, almacenando campos como suid (id único), dbname (BD por defecto), name y password."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "2. Autenticación y Logins",
+        p: "Para agregar un usuario O grupo de Windows como cuenta de inicio de sesión en SQL Server mediante T-SQL, ¿qué procedimiento almacenado se usa?",
+        r: [
+            "sp_grantlogin",
+            "sp_addlogin",
+            "sp_createlogin_windows",
+            "sp_windowsauth"
+        ],
+        c: "sp_grantlogin",
+        e: "sp_grantlogin [@loginame =] 'Dominio\\Usuario' se usa para cuentas de Windows, mientras que sp_addlogin se usa para crear cuentas puras de SQL Server."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "2. Autenticación y Logins",
+        p: "¿Para qué sirve exactamente el procedimiento almacenado `sp_denylogin`?",
+        r: [
+            "Impide que un usuario o un grupo de Windows específico se conecte a SQL Server, aunque pertenezcan a un grupo que sí tenga acceso.",
+            "Borra permanentemente la cuenta de usuario de Windows del Active Directory.",
+            "Revoca los permisos de SELECT a nivel de servidor para la cuenta especificada.",
+            "Bloquea la IP de la máquina cliente a nivel del Firewall de SQL Server."
+        ],
+        c: "Impide que un usuario o un grupo de Windows específico se conecte a SQL Server, aunque pertenezcan a un grupo que sí tenga acceso.",
+        e: "Se utiliza para crear excepciones denegando explícitamente el login a un miembro particular de un grupo."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "2. Autenticación y Logins",
+        p: "Si deseamos cambiar el idioma predeterminado de un inicio de sesión desde el Analizador de Consultas, el procedimiento a usar es:",
+        r: [
+            "sp_defaultlanguage",
+            "sp_changelang",
+            "sp_loginlanguage",
+            "ALTER LOGIN SET LANGUAGE"
+        ],
+        c: "sp_defaultlanguage",
+        e: "Se ejecuta como `sp_defaultlanguage 'login', 'language'`."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "2. Autenticación y Logins",
+        p: "En versiones más modernas de SQL Server (mediante T-SQL directo), ¿cuál es la sintaxis correcta para crear un inicio de sesión de Windows con una base de datos por defecto?",
+        r: [
+            "CREATE LOGIN [DOMINIO\\Usuario] FROM WINDOWS WITH DEFAULT_DATABASE = [basededatos];",
+            "ADD LOGIN [DOMINIO\\Usuario] SOURCE WINDOWS SET DB = [basededatos];",
+            "CREATE WINDOWS LOGIN DOMINIO\\Usuario FOR DATABASE [basededatos];",
+            "GRANT LOGIN TO [DOMINIO\\Usuario] DEFAULT DB [basededatos];"
+        ],
+        c: "CREATE LOGIN [DOMINIO\\Usuario] FROM WINDOWS WITH DEFAULT_DATABASE = [basededatos];",
+        e: "Esta es la instrucción estándar CREATE LOGIN ... FROM WINDOWS."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "2. Autenticación y Logins",
+        p: "Para crear un inicio de sesión SQL (no Windows) usando T-SQL y forzando a que cumpla las políticas de contraseña del servidor, se usaría:",
+        r: [
+            "CREATE LOGIN nombre WITH PASSWORD = 'clave', CHECK_POLICY = ON;",
+            "sp_addlogin 'nombre', 'clave', ENFORCE_POLICY = TRUE;",
+            "CREATE SQLUSER nombre IDENTIFIED BY 'clave' SECURE;",
+            "INSERT INTO syslogins (name, password, policy) VALUES ('nombre', 'clave', 1);"
+        ],
+        c: "CREATE LOGIN nombre WITH PASSWORD = 'clave', CHECK_POLICY = ON;",
+        e: "CHECK_POLICY = ON obliga a SQL Server a aplicar las políticas de complejidad y caducidad de contraseñas de Windows a ese login SQL."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "2. Autenticación y Logins",
+        p: "Si utilizamos el procedimiento `sp_revokelogin`, ¿qué estamos haciendo exactamente?",
+        r: [
+            "Quitar la entrada de inicio de sesión de SQL correspondiente a un usuario o grupo de Windows.",
+            "Suspender temporalmente una cuenta SQL por demasiados intentos fallidos.",
+            "Eliminar una base de datos y todos los inicios de sesión asociados a ella.",
+            "Cambiar la contraseña de una cuenta forzando al usuario a cambiarla en su próximo acceso."
+        ],
+        c: "Quitar la entrada de inicio de sesión de SQL correspondiente a un usuario o grupo de Windows.",
+        e: "Revoca la concesión de login que se hizo previamente con sp_grantlogin."
+    },
+
+    // TEMA 3: Usuarios de Base de Datos
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "3. Usuarios de Base de Datos",
+        p: "¿Qué diferencia fundamental hay entre un 'Login' (Inicio de sesión) y un 'Usuario de BD' en SQL Server?",
+        r: [
+            "El Login permite conectarse a la instancia de SQL Server, pero para acceder a una Base de Datos específica se necesita estar mapeado a un Usuario en esa BD.",
+            "No hay diferencia, son dos términos para el mismo concepto en versiones diferentes de SQL Server.",
+            "El Usuario de BD permite configurar la red del servidor, el Login solo permite hacer SELECT.",
+            "Los Logins son solo para cuentas de Windows y los Usuarios son solo para cuentas SQL nativas."
+        ],
+        c: "El Login permite conectarse a la instancia de SQL Server, pero para acceder a una Base de Datos específica se necesita estar mapeado a un Usuario en esa BD.",
+        e: "Un Login sin mapear a un Usuario en una BD no tendrá acceso a los datos de dicha base."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "3. Usuarios de Base de Datos",
+        p: "Al crear una base de datos, ¿qué usuario especial se mapea automáticamente al creador (y a los sysadmin)?",
+        r: [
+            "dbo (Database Owner)",
+            "sa (System Administrator)",
+            "guest",
+            "db_creator"
+        ],
+        c: "dbo (Database Owner)",
+        e: "El login 'sa', los miembros del rol 'sysadmin' y el creador de la base de datos se mapean a la cuenta 'dbo' de la base de datos."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "3. Usuarios de Base de Datos",
+        p: "¿Para qué sirve el usuario especial 'guest' en una base de datos de SQL Server?",
+        r: [
+            "Permite acceder a la base de datos a logins que no tienen una cuenta de usuario explícitamente creada (mapeada) en dicha BD.",
+            "Es una cuenta de superusuario temporal que se usa solo durante la instalación del software.",
+            "Permite conexiones anónimas desde Internet sin necesidad de introducir ninguna contraseña.",
+            "Es el propietario de todas las tablas temporales creadas en la base de datos tempdb."
+        ],
+        c: "Permite acceder a la base de datos a logins que no tienen una cuenta de usuario explícitamente creada (mapeada) en dicha BD.",
+        e: "Por defecto está deshabilitado en las bases de datos de usuario por motivos de seguridad, y requiere ejecutar GRANT CONNECT para activarse."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "3. Usuarios de Base de Datos",
+        p: "Si un mismo Login (ej. 'gestion\\smatsukawa') tiene mapeado un usuario llamado 'Sergio' en la BD 'Ventas' y otro llamado 'Sergio' en la BD 'Personal', ¿qué afirmación es correcta?",
+        r: [
+            "A pesar de llamarse igual, son usuarios de base de datos diferentes, con permisos independientes en cada base de datos.",
+            "Es un error de diseño; SQL Server no permite que dos usuarios de BD en distintas bases se llamen igual si pertenecen al mismo Login.",
+            "Al ser el mismo Login, si se le da un permiso a 'Sergio' en Ventas, automáticamente lo adquiere en Personal.",
+            "El sistema fusiona ambos usuarios en un único rol global llamado 'Sergio' a nivel de servidor."
+        ],
+        c: "A pesar de llamarse igual, son usuarios de base de datos diferentes, con permisos independientes en cada base de datos.",
+        e: "Las cuentas de usuario de base de datos son exclusivas y específicas de cada base de datos, aunque se llamen igual."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "3. Usuarios de Base de Datos",
+        p: "Desde T-SQL moderno, la sintaxis correcta para conceder acceso a una BD a un Login creando un usuario es:",
+        r: [
+            "CREATE USER nombreUsuario FOR LOGIN nombreLogin;",
+            "GRANT DATABASE ACCESS TO nombreLogin AS nombreUsuario;",
+            "ALTER LOGIN nombreLogin ADD USER nombreUsuario;",
+            "MAP USER nombreUsuario TO LOGIN nombreLogin;"
+        ],
+        c: "CREATE USER nombreUsuario FOR LOGIN nombreLogin;",
+        e: "Es el estándar para mapear un inicio de sesión a un usuario de base de datos (CREATE USER... FOR LOGIN...)."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "3. Usuarios de Base de Datos",
+        p: "Utilizando procedimientos almacenados, ¿qué comando otorga acceso a la base de datos actual para un login?",
+        r: [
+            "sp_grantdbaccess 'loginName', 'nombreUsuarioBD'",
+            "sp_adddbuser 'loginName', 'nombreUsuarioBD'",
+            "sp_createdbuser 'loginName'",
+            "sp_maplogin 'loginName', 'nombreUsuarioBD'"
+        ],
+        c: "sp_grantdbaccess 'loginName', 'nombreUsuarioBD'",
+        e: "Es el procedimiento antiguo equivalente a CREATE USER... FOR LOGIN, ejecutable por db_accessadmin o db_owner."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "3. Usuarios de Base de Datos",
+        p: "El procedimiento `sp_revokedbaccess` se utiliza para:",
+        r: [
+            "Eliminar a un usuario de la base de datos actual, quitando su acceso.",
+            "Revocar todos los permisos GRANT que tenga un usuario, pero manteniéndolo en la BD.",
+            "Desconectar abruptamente (matar el proceso) a un usuario que está consumiendo muchos recursos.",
+            "Bloquear temporalmente la base de datos en modo 'Restricted User'."
+        ],
+        c: "Eliminar a un usuario de la base de datos actual, quitando su acceso.",
+        e: "Remueve el usuario mapeado en la BD, por lo que el login asociado ya no podrá entrar a ella (a menos que exista guest)."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "3. Usuarios de Base de Datos",
+        p: "En relación a los 'Esquemas' (Schemas) como límites de seguridad, ¿cómo resuelve SQL Server los nombres de objetos si no se especifican (ej. hacer 'SELECT * FROM Tabla')?",
+        r: [
+            "Primero busca en el esquema por defecto del usuario, y luego busca en el esquema 'dbo'.",
+            "Busca alfabéticamente en todos los esquemas hasta que encuentra una coincidencia.",
+            "Busca únicamente en el esquema 'sys' y falla si el objeto no pertenece a él.",
+            "Da un error de sintaxis exigiendo nombres de dos partes obligatoriamente."
+        ],
+        c: "Primero busca en el esquema por defecto del usuario, y luego busca en el esquema 'dbo'.",
+        e: "Por eso es una buena práctica evitar ambigüedades usando siempre nombres de dos partes (Esquema.Objeto)."
+    },
+
+    // TEMA 4: Roles y Funciones de Servidor
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "4. Roles de Servidor",
+        p: "¿Qué capacidad otorga la función (rol) fija de servidor `sysadmin`?",
+        r: [
+            "Puede realizar cualquier actividad en SQL Server saltándose cualquier verificación de permisos.",
+            "Solo puede crear y eliminar bases de datos, pero no leer los datos contenidos en ellas.",
+            "Solo puede auditar y gestionar inicios de sesión y contraseñas.",
+            "Puede realizar tareas del sistema operativo, como formatear discos, pero no operar la BD."
+        ],
+        c: "Puede realizar cualquier actividad en SQL Server saltándose cualquier verificación de permisos.",
+        e: "Es el rol con más privilegios en la instancia del servidor."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "4. Roles de Servidor",
+        p: "¿A qué rol fijo de servidor debes asignar a un administrador que solo necesita configurar variables globales del servidor y apagarlo, pero no debe acceder a los datos de usuario?",
+        r: [
+            "serveradmin",
+            "securityadmin",
+            "processadmin",
+            "setupadmin"
+        ],
+        c: "serveradmin",
+        e: "El rol 'serveradmin' puede configurar el servidor por completo y apagar el servicio SQL Server."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "4. Roles de Servidor",
+        p: "El rol fijo de servidor `dbcreator` está diseñado específicamente para permitir a un login:",
+        r: [
+            "Generar (crear), alterar y eliminar bases de datos.",
+            "Crear objetos como tablas y vistas dentro de cualquier base de datos existente.",
+            "Hacer copias de seguridad de las bases de datos del sistema.",
+            "Administrar el espacio libre en los discos y crear grupos de archivos."
+        ],
+        c: "Generar (crear), alterar y eliminar bases de datos.",
+        e: "Solo afecta al nivel superior de la base de datos (crearla/borrarla), no manipula las tablas a menos que sea en la BD que acaba de crear (donde es dbo)."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "4. Roles de Servidor",
+        p: "¿Qué rol de servidor asignarías a alguien responsable de gestionar qué procesos se están ejecutando en SQL Server y matar (KILL) bloqueos?",
+        r: [
+            "processadmin",
+            "setupadmin",
+            "diskadmin",
+            "securityadmin"
+        ],
+        c: "processadmin",
+        e: "El 'processadmin' puede ver y detener los procesos ejecutándose en la instancia."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "4. Roles de Servidor",
+        p: "Para agregar un inicio de sesión a un rol fijo de servidor usando el Analizador de Consultas, se usa el procedimiento:",
+        r: [
+            "sp_addsrvrolemember 'login', 'role'",
+            "sp_assignrole 'login', 'role'",
+            "ALTER SERVER ROLE 'role' ADD 'login'",
+            "sp_grant_server_role 'login', 'role'"
+        ],
+        c: "sp_addsrvrolemember 'login', 'role'",
+        e: "Por ejemplo: sp_addsrvrolemember 'maria', 'sysadmin'."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "4. Roles de Servidor",
+        p: "¿Dónde se almacena internamente la información sobre los roles fijos de servidor y sus miembros?",
+        r: [
+            "Se almacenan en la base de datos 'master' y se administran independientemente de las bases de datos de usuario.",
+            "Se almacenan en un archivo de texto encriptado en el sistema operativo llamado sqlroles.cfg.",
+            "Se almacenan dentro de cada base de datos de usuario en la tabla 'sysusers'.",
+            "Se guardan en la base de datos temporal 'tempdb' y se recargan al reiniciar el servicio."
+        ],
+        c: "Se almacenan en la base de datos 'master' y se administran independientemente de las bases de datos de usuario.",
+        e: "La base de datos master (concretamente en tablas como syslogins/syslogins) controla la seguridad a nivel de instancia entera."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "4. Roles de Servidor",
+        p: "Para ver la lista de las funciones (roles) fijas de servidor disponibles en SQL Server, el comando correcto es:",
+        r: [
+            "sp_helpsrvrole",
+            "SHOW SERVER ROLES",
+            "sp_listroles",
+            "SELECT * FROM sys.server_roles"
+        ],
+        c: "sp_helpsrvrole",
+        e: "Este SP muestra los nombres y las descripciones de los roles fijos de servidor integrados."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "4. Roles de Servidor",
+        p: "El rol `securityadmin` a nivel de servidor permite a sus miembros:",
+        r: [
+            "Administrar los inicios de sesión del servidor y leer el registro de errores.",
+            "Asignar permisos SELECT/INSERT en todas las bases de datos.",
+            "Modificar los archivos de datos y de registro en disco.",
+            "Configurar la duplicación (replicación) entre servidores."
+        ],
+        c: "Administrar los inicios de sesión del servidor y leer el registro de errores.",
+        e: "Securityadmin maneja los logins. La duplicación es para 'setupadmin', el disco para 'diskadmin', etc."
+    },
+
+    // TEMA 5: Roles de Base de Datos
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "5. Roles de Base de Datos",
+        p: "¿Qué particularidad tiene el rol de base de datos `public`?",
+        r: [
+            "Todos los usuarios de la base de datos pertenecen a este rol y proporciona los permisos por defecto.",
+            "Es un rol que permite acceso anónimo desde Internet sin iniciar sesión.",
+            "Permite a cualquier usuario convertirse en administrador del servidor temporalmente.",
+            "Solo almacena los procedimientos almacenados del sistema accesibles globalmente."
+        ],
+        c: "Todos los usuarios de la base de datos pertenecen a este rol y proporciona los permisos por defecto.",
+        e: "No se puede eliminar a los usuarios del rol public. Todo lo otorgado a public está disponible para todos."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "5. Roles de Base de Datos",
+        p: "El rol fijo de base de datos `db_owner` equivale a nivel local a lo que sysadmin es a nivel servidor porque:",
+        r: [
+            "Permite la ejecución de cualquier actividad de mantenimiento y configuración sobre esa base de datos específica.",
+            "Permite borrar el servidor completo.",
+            "No puede ser auditado bajo ningún concepto.",
+            "Solo se puede asignar a un usuario por base de datos."
+        ],
+        c: "Permite la ejecución de cualquier actividad de mantenimiento y configuración sobre esa base de datos específica.",
+        e: "Agrupa todos los permisos posibles, pero restringidos exclusivamente al interior de esa base de datos."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "5. Roles de Base de Datos",
+        p: "Si quieres que un grupo de usuarios pueda leer datos (SELECT) de todas las tablas y vistas, pero no modificarlos, ¿qué rol les asignarías?",
+        r: [
+            "db_datareader",
+            "db_datawriter",
+            "db_accessadmin",
+            "db_securityadmin"
+        ],
+        c: "db_datareader",
+        e: "db_datareader permite SELECT global en la BD; db_datawriter permite INSERT/UPDATE/DELETE global."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "5. Roles de Base de Datos",
+        p: "El rol `db_ddladmin` es útil para un usuario que se dedica al diseño y programación porque:",
+        r: [
+            "Permite la adición, modificación y eliminación de objetos (tablas, vistas, SPs) en la base de datos.",
+            "Permite modificar datos (INSERT, UPDATE) ignorando las restricciones y triggers.",
+            "Permite agregar nuevos usuarios a la BD y asignarles contraseñas.",
+            "Permite realizar copias de seguridad de la estructura de la BD."
+        ],
+        c: "Permite la adición, modificación y eliminación de objetos (tablas, vistas, SPs) en la base de datos.",
+        e: "DDL significa Data Definition Language. Este rol permite ejecutar CREATE, ALTER y DROP."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "5. Roles de Base de Datos",
+        p: "Para un becario al que NO se le debe permitir bajo ninguna circunstancia leer datos sensibles que puedan haberse asignado a 'public', ¿qué rol asegura que no lea ninguna tabla?",
+        r: [
+            "db_denydatareader",
+            "db_denydatawriter",
+            "db_securityadmin",
+            "guest_restricted"
+        ],
+        c: "db_denydatareader",
+        e: "Este rol aplica un DENY a la lectura. Como el DENY sobrescribe cualquier GRANT, el usuario no podrá hacer SELECT en ninguna tabla."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "5. Roles de Base de Datos",
+        p: "¿Para qué sirve el procedimiento almacenado `sp_addrolemember`?",
+        r: [
+            "Para agregar un usuario de base de datos a un rol de base de datos específico (ej. sp_addrolemember 'db_datareader', 'Juan').",
+            "Para vincular dos roles de servidor entre sí.",
+            "Para permitir que un rol cambie el propietario de los objetos del esquema.",
+            "Para crear un rol nuevo personalizado en la base de datos."
+        ],
+        c: "Para agregar un usuario de base de datos a un rol de base de datos específico (ej. sp_addrolemember 'db_datareader', 'Juan').",
+        e: "Este es el método T-SQL clásico para asignar usuarios a roles a nivel de BD."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "5. Roles de Base de Datos",
+        p: "¿Qué es un 'Application Role' (Rol de Aplicación) en SQL Server?",
+        r: [
+            "Es un rol sin usuarios asociados que se activa para una conexión completa usando una contraseña, cambiando el contexto de seguridad.",
+            "Es un rol diseñado exclusivamente para conectarse desde aplicaciones web en PHP o Java.",
+            "Es un rol que permite instalar software en el sistema operativo del servidor.",
+            "Es una función de servidor que audita las aplicaciones de terceros conectadas."
+        ],
+        c: "Es un rol sin usuarios asociados que se activa para una conexión completa usando una contraseña, cambiando el contexto de seguridad.",
+        e: "Se usa `sp_setapprole` con contraseña. Sustituye los permisos del usuario por los del rol de aplicación para esa sesión."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "5. Roles de Base de Datos",
+        p: "Para crear tu propio rol de base de datos personalizado (por ejemplo, 'Gerentes') desde el Analizador de Consultas, usarías:",
+        r: [
+            "sp_addrole 'Gerentes'",
+            "CREATE DB_ROLE 'Gerentes'",
+            "sp_creategroup 'Gerentes'",
+            "INSERT INTO sysroles VALUES ('Gerentes')"
+        ],
+        c: "sp_addrole 'Gerentes'",
+        e: "O, en versiones más modernas, `CREATE ROLE Gerentes`. `sp_addrole` es el procedimiento clásico, pudiendo especificar también el owner."
+    },
+
+    // TEMA 6: Permisos: Objeto, Sentencia e Implícitos
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "6. Permisos (Objeto y Sentencia)",
+        p: "¿Cuáles son los tres tipos generales de permisos en SQL Server?",
+        r: [
+            "Instrucción (Sentencia), Objeto e Implícito.",
+            "Lectura, Escritura y Ejecución.",
+            "Grant, Deny y Revoke.",
+            "Sistemas, Metadatos y Datos de Usuario."
+        ],
+        c: "Instrucción (Sentencia), Objeto e Implícito.",
+        e: "Sentencia (CREATE DATABASE...), Objeto (SELECT, EXECUTE...) e Implícitos (los que tiene el creador de un objeto por defecto)."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "6. Permisos (Objeto y Sentencia)",
+        p: "¿Cuál es la diferencia de comportamiento entre los estados DENY y REVOKE en la tabla sysprotects?",
+        r: [
+            "DENY es una prohibición explícita que prevalece sobre cualquier GRANT heredado, mientras que REVOKE solo quita un permiso asignado volviendo a estado 'Ninguno' (pudiendo heredarlo por otro rol).",
+            "REVOKE borra la cuenta de usuario si tiene dependencias, mientras que DENY solo oculta las tablas.",
+            "DENY aplica a sentencias DDL y REVOKE a sentencias DML.",
+            "Son exactamente lo mismo; son sinónimos por compatibilidad con Oracle."
+        ],
+        c: "DENY es una prohibición explícita que prevalece sobre cualquier GRANT heredado, mientras que REVOKE solo quita un permiso asignado volviendo a estado 'Ninguno' (pudiendo heredarlo por otro rol).",
+        e: "El DENY es negativo e insalvable por membresía de roles (salvo sysadmin). El REVOKE es neutro (solo deshace un GRANT o DENY previo)."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "6. Permisos (Objeto y Sentencia)",
+        p: "Los permisos OBJETO controlan la capacidad de ejecutar qué sentencias sobre tablas, vistas o procedimientos:",
+        r: [
+            "SELECT, INSERT, UPDATE, DELETE, REFERENCES y EXECUTE.",
+            "CREATE TABLE, ALTER TABLE, DROP TABLE.",
+            "GRANT, DENY, REVOKE.",
+            "BACKUP DATABASE, RESTORE LOG."
+        ],
+        c: "SELECT, INSERT, UPDATE, DELETE, REFERENCES y EXECUTE.",
+        e: "Son los permisos para manipular los datos dentro del objeto o invocar rutinas."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "6. Permisos (Objeto y Sentencia)",
+        p: "¿Para qué sirve exactamente el permiso a nivel de objeto llamado `REFERENCES`?",
+        r: [
+            "Se necesita cuando se crea una llave foránea hacia una tabla en la que el usuario no tiene permisos de SELECT, para que SQL pueda validar la integridad referencial.",
+            "Permite a un usuario leer la documentación (metadatos) extendida de una tabla.",
+            "Autoriza a una vista a leer datos de las tablas base ocultas.",
+            "Permite exportar datos a otros servidores vinculados (Linked Servers)."
+        ],
+        c: "Se necesita cuando se crea una llave foránea hacia una tabla en la que el usuario no tiene permisos de SELECT, para que SQL pueda validar la integridad referencial.",
+        e: "Sin él o sin SELECT, un usuario no puede añadir una restricción FOREIGN KEY apuntando a esa tabla."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "6. Permisos (Objeto y Sentencia)",
+        p: "Los 'Permisos de Instrucción' (o Sentencia) se refieren a:",
+        r: [
+            "Actividades involucradas con la creación de bases de datos o elementos DDL como CREATE DATABASE, CREATE TABLE, BACKUP LOG.",
+            "Consultas SELECT que involucran más de 3 tablas con JOINs complejos.",
+            "Ejecución de triggers de base de datos o cursores iterativos.",
+            "Manejo exclusivo de transacciones (BEGIN TRAN, COMMIT, ROLLBACK)."
+        ],
+        c: "Actividades involucradas con la creación de bases de datos o elementos DDL como CREATE DATABASE, CREATE TABLE, BACKUP LOG.",
+        e: "Son permisos administrativos y estructurales, generalmente concedidos por los roles sysadmin, db_owner o db_securityadmin."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "6. Permisos (Objeto y Sentencia)",
+        p: "¿Cuál es la sintaxis correcta para otorgar permiso de inserción sobre una tabla llamada 'producto' a dos usuarios, Juan y Ana?",
+        r: [
+            "GRANT INSERT ON producto TO Juan, Ana",
+            "GRANT INSERT TO Juan, Ana FOR TABLE producto",
+            "ALLOW INSERT IN producto FOR Juan AND Ana",
+            "ADD PERMISSION INSERT ON producto TO Juan, Ana"
+        ],
+        c: "GRANT INSERT ON producto TO Juan, Ana",
+        e: "La estructura general es GRANT permiso ON objeto TO usuarios/roles."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "6. Permisos (Objeto y Sentencia)",
+        p: "Si deseamos permitir que el usuario 'Contabilidad' haga SELECT en la tabla 'ListaPagos', y además queremos que él mismo pueda otorgar ese permiso a otros, usaremos:",
+        r: [
+            "GRANT SELECT ON ListaPagos TO Contabilidad WITH GRANT OPTION",
+            "GRANT SELECT ON ListaPagos TO Contabilidad CASCADE",
+            "GRANT SELECT ON ListaPagos TO Contabilidad AND DELEGATE",
+            "GRANT FULL SELECT ON ListaPagos TO Contabilidad"
+        ],
+        c: "GRANT SELECT ON ListaPagos TO Contabilidad WITH GRANT OPTION",
+        e: "La cláusula WITH GRANT OPTION permite al receptor delegar/otorgar ese mismo permiso a terceras cuentas."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "6. Permisos (Objeto y Sentencia)",
+        p: "Para quitarle el permiso explícito de creación de tablas que se le había dado a la usuaria 'Ana' (volviendo al estado neutro), la instrucción es:",
+        r: [
+            "REVOKE CREATE TABLE FROM Ana",
+            "DENY CREATE TABLE TO Ana",
+            "REMOVE CREATE TABLE FOR Ana",
+            "DROP PERMISSION CREATE TABLE ON Ana"
+        ],
+        c: "REVOKE CREATE TABLE FROM Ana",
+        e: "REVOKE elimina una instrucción GRANT o DENY previa. La sintaxis en DDL es REVOKE sentencia FROM usuario."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "6. Permisos (Objeto y Sentencia)",
+        p: "En SQL Server es posible dar permisos a nivel de columnas individuales. ¿Cuál sería la sintaxis para denegar la actualización solo del campo 'Sueldo' en la tabla 'Empleados' para el rol 'Becarios'?",
+        r: [
+            "DENY UPDATE (Sueldo) ON Empleados TO Becarios",
+            "DENY UPDATE ON Empleados.Sueldo TO Becarios",
+            "DENY COLUMN Sueldo UPDATE ON Empleados TO Becarios",
+            "DENY UPDATE TO Becarios ON Empleados WHERE COLUMN = Sueldo"
+        ],
+        c: "DENY UPDATE (Sueldo) ON Empleados TO Becarios",
+        e: "Los permisos de columnas se indican poniendo los nombres de las columnas entre paréntesis tras el nombre del permiso."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "6. Permisos (Objeto y Sentencia)",
+        p: "Una ventaja importante de aplicar permisos sobre un Esquema (SCHEMA) es:",
+        r: [
+            "Los permisos concedidos sobre el esquema se heredan a todos los objetos relevantes actuales y futuros contenidos en él.",
+            "Impide que el servidor genere registros en el archivo de logs (Transact log) de forma innecesaria.",
+            "Comprime los datos de todas las tablas que contenga, ahorrando un 30% de espacio.",
+            "Permite acceder a los objetos incluso si el servicio del motor SQL está apagado."
+        ],
+        c: "Los permisos concedidos sobre el esquema se heredan a todos los objetos relevantes actuales y futuros contenidos en él.",
+        e: "Por ejemplo: GRANT INSERT ON SCHEMA::sales TO sales_writer aplicará a todas las tablas presentes y futuras de ese esquema."
+    },
+    {
+        m: "Gestión de BD",
+        t: "Seguridad en SQLSERVER",
+        u: "6. Permisos (Objeto y Sentencia)",
+        p: "¿Qué significa que el creador de una tabla posea 'permisos predefinidos' o 'implícitos' sobre ella?",
+        r: [
+            "Que como dueño (owner) del objeto, tiene automáticamente derecho a realizar cualquier acción (ALTER, DROP, SELECT, INSERT) sobre la tabla sin necesidad de usar sentencias GRANT.",
+            "Que sus permisos son ocultos y ni siquiera el sysadmin puede ver qué hace.",
+            "Que tiene permisos de lectura, pero para hacer DROP necesita permiso del administrador de la base de datos.",
+            "Que sus permisos dependen del Rol Public y se evalúan implícitamente en cada consulta."
+        ],
+        c: "Que como dueño (owner) del objeto, tiene automáticamente derecho a realizar cualquier acción (ALTER, DROP, SELECT, INSERT) sobre la tabla sin necesidad de usar sentencias GRANT.",
+        e: "Los dueños de los objetos tienen control total inherente sobre los mismos sin requerir asignación de seguridad extra."
+    }
 
 // ==========================================
 // SOSTENIBILIDAD - LOS 17 ODS Y SUS METAS
@@ -1236,322 +3053,332 @@
     ];
 
 let currentQuestions = [];
-    let answeredStatus = {};
-    let startTime, timerInterval;
-    let selectedSubject = "";
-    let selectedCategory = "";
-    let selectedTopicName = "";
+let answeredStatus = {};
+let startTime, timerInterval;
+let selectedSubject = "";
+let selectedCategory = "";
+let selectedTopicName = "";
 
-    window.onload = function() {
-        const container = document.getElementById('subjects-container');
-        // Nivel 1: Materias (Sostenibilidad, Gestión BD...)
-        const subjects = [...new Set(misPreguntas.map(q => q.m))]; 
+window.onload = function() {
+    const container = document.getElementById('subjects-container');
+    const subjects = [...new Set(misPreguntas.map(q => q.m))];
+    const completedTests = JSON.parse(localStorage.getItem('completed_tests_v5') || '[]');
+    
+    subjects.forEach(subject => {
+        const subjectQuestions = misPreguntas.filter(q => q.m === subject);
+        const categories = [...new Set(subjectQuestions.map(q => q.t))];
         
-        const completedTests = JSON.parse(localStorage.getItem('completed_tests_v5') || '[]');
-
-        subjects.forEach(subject => {
-            const subjectQuestions = misPreguntas.filter(q => q.m === subject);
-            // Nivel 2: Bloques (Tema 1, Test por Unidades...)
-            const categories = [...new Set(subjectQuestions.map(q => q.t))]; 
-
-            const subjectDiv = document.createElement('div');
-            subjectDiv.className = 'subject-block';
-            
-            const title = document.createElement('h2');
-            title.className = 'subject-title';
-            title.innerHTML = `📘 ${subject}`;
-            subjectDiv.appendChild(title);
-
-            const grid = document.createElement('div');
-            grid.className = 'topics-grid';
-
-            categories.forEach(category => {
-                const categoryQuestions = subjectQuestions.filter(q => q.t === category);
-                // Nivel 3: Subtemas anidados (Cuestionario, Tema 1, Tema 2...)
-                const topics = [...new Set(categoryQuestions.map(q => q.u))]; 
-
-                // Si solo hay 1 subtema, creamos un botón directo clásico
-                if (topics.length === 1) {
-                    const btn = document.createElement('button');
-                    btn.className = 'topic-card';
-                    
-                    const testId = `${subject}-${category}-${topics[0]}`;
-                    if (completedTests.includes(testId)) {
-                        btn.innerText = `${category} ✅`;
-                        btn.style.background = '#27ae60'; 
-                    } else {
-                        btn.innerText = category;
-                    }
-                    
-                    btn.onclick = () => startTest(subject, category, topics[0]);
-                    btn.oncontextmenu = (e) => { e.preventDefault(); uncheckTest(testId); };
-                    
-                    grid.appendChild(btn);
-                } 
-                // Si hay varios subtemas, creamos un botón desplegable (Accordion)
-                else {
-                    const wrapper = document.createElement('div');
-                    wrapper.style.display = "flex";
-                    wrapper.style.flexDirection = "column";
-                    wrapper.style.gap = "10px";
-
-                    const btnCat = document.createElement('button');
-                    btnCat.className = 'topic-card';
-                    btnCat.style.background = 'var(--primary)';
-                    btnCat.innerHTML = `📂 ${category} ▼`;
-                    
-                    const subGrid = document.createElement('div');
-                    subGrid.style.display = 'none';
-                    subGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(140px, 1fr))';
-                    subGrid.style.gap = '10px';
-                    subGrid.style.padding = '15px';
-                    subGrid.style.background = '#e1e8ed';
-                    subGrid.style.borderRadius = '8px';
-
-                    // Lógica para abrir/cerrar el menú
-                    btnCat.onclick = () => {
-                        if (subGrid.style.display === 'none') {
-                            subGrid.style.display = 'grid';
-                            btnCat.innerHTML = `📂 ${category} ▲`;
-                        } else {
-                            subGrid.style.display = 'none';
-                            btnCat.innerHTML = `📂 ${category} ▼`;
-                        }
-                    };
-
-                    topics.forEach(topic => {
-                        const btnTop = document.createElement('button');
-                        btnTop.className = 'topic-card';
-                        btnTop.style.fontSize = '1rem';
-                        btnTop.style.padding = '10px';
-                        
-                        const testId = `${subject}-${category}-${topic}`;
-                        if (completedTests.includes(testId)) {
-                            btnTop.innerText = `${topic} ✅`;
-                            btnTop.style.background = '#27ae60'; 
-                        } else {
-                            btnTop.innerText = topic;
-                        }
-
-                        btnTop.onclick = () => startTest(subject, category, topic);
-                        btnTop.oncontextmenu = (e) => { e.preventDefault(); uncheckTest(testId); };
-
-                        subGrid.appendChild(btnTop);
-                    });
-
-                    // Añadir botón para hacer TODO EL BLOQUE junto
-                    const btnAll = document.createElement('button');
-                    btnAll.className = 'topic-card';
-                    btnAll.style.fontSize = '1rem';
-                    btnAll.style.padding = '10px';
-                    btnAll.style.background = 'var(--primary)';
-                    
-                    const allId = `${subject}-${category}-Todos`;
-                    if (completedTests.includes(allId)) {
-                        btnAll.innerText = `Todo el bloque ✅`;
-                        btnAll.style.background = '#27ae60';
-                    } else {
-                        btnAll.innerText = `Todo el bloque`;
-                    }
-
-                    btnAll.onclick = () => startTest(subject, category, 'Todos');
-                    btnAll.oncontextmenu = (e) => { e.preventDefault(); uncheckTest(allId); };
-                    
-                    subGrid.appendChild(btnAll);
-
-                    wrapper.appendChild(btnCat);
-                    wrapper.appendChild(subGrid);
-                    grid.appendChild(wrapper);
-                }
-            });
-
-            // Botón para hacer TODA LA MATERIA (Global)
-            const btnSubjectAll = document.createElement('button');
-            btnSubjectAll.className = 'topic-card topic-all';
-            const subjAllId = `${subject}-Global-Todos`;
-            if (completedTests.includes(subjAllId)) {
-                btnSubjectAll.innerText = `Toda la materia ✅`;
-                btnSubjectAll.style.background = '#27ae60';
-            } else {
-                btnSubjectAll.innerText = `Toda la materia`;
-            }
-            btnSubjectAll.onclick = () => startTest(subject, 'Global', 'Todos');
-            btnSubjectAll.oncontextmenu = (e) => { e.preventDefault(); uncheckTest(subjAllId); };
-            grid.appendChild(btnSubjectAll);
-
-            subjectDiv.appendChild(grid);
-            container.appendChild(subjectDiv);
-        });
-    };
-
-    function uncheckTest(testId) {
-        if(confirm(`¿Quieres quitar el check de completado de este tema?`)) {
-            let completed = JSON.parse(localStorage.getItem('completed_tests_v5') || '[]');
-            completed = completed.filter(id => id !== testId);
-            localStorage.setItem('completed_tests_v5', JSON.stringify(completed));
-            location.reload();
-        }
-    }
-
-    function startTest(subject, category, topic) {
-        selectedSubject = subject;
-        selectedCategory = category;
-        selectedTopicName = topic;
+        const subjectDiv = document.createElement('div');
+        subjectDiv.className = 'subject-block';
         
-        // Ajustamos el título de arriba al empezar el test
-        if (category === 'Global') {
-            document.getElementById('display-topic').innerText = `${subject} (Test Global)`;
-            currentQuestions = misPreguntas.filter(q => q.m === subject);
-        } else if (topic === 'Todos') {
-            document.getElementById('display-topic').innerText = `${subject} - ${category}`;
-            currentQuestions = misPreguntas.filter(q => q.m === subject && q.t === category);
-        } else {
-            let isSimple = misPreguntas.filter(q => q.m === subject && q.t === category).map(q => q.u).length === 1;
-            document.getElementById('display-topic').innerText = isSimple ? `${subject} - ${category}` : `${subject} - ${topic}`;
-            currentQuestions = misPreguntas.filter(q => q.m === subject && q.t === category && q.u === topic);
-        }
-
-        document.getElementById('login-section').style.display = 'none';
-        document.getElementById('test-section').style.display = 'block';
+        const title = document.createElement('h2');
+        title.className = 'subject-title';
+        title.innerHTML = ` 📘 ${subject}`;
+        subjectDiv.appendChild(title);
         
-        startTime = new Date();
-        timerInterval = setInterval(updateTimer, 1000);
+        const grid = document.createElement('div');
+        grid.className = 'topics-grid';
         
-        shuffleArray(currentQuestions);
-        renderAllQuestions();
-    }
-
-    function updateTimer() {
-        const diff = Math.floor((new Date() - startTime) / 1000);
-        document.getElementById('timer').innerText = `⏱️ ${Math.floor(diff / 60).toString().padStart(2, '0')}:${(diff % 60).toString().padStart(2, '0')}`;
-    }
-
-    function renderAllQuestions() {
-        const container = document.getElementById('questions-list');
-        container.innerHTML = '';
-        answeredStatus = {};
-
-        currentQuestions.forEach((q, index) => {
-            let options = [...q.r];
-            shuffleArray(options);
+        categories.forEach(category => {
+            const categoryQuestions = subjectQuestions.filter(q => q.t === category);
+            const topics = [...new Set(categoryQuestions.map(q => q.u))];
             
-            const qBlock = document.createElement('div');
-            qBlock.className = 'question-block';
-            
-            const header = document.createElement('h3');
-            header.className = 'question-header';
-            
-            // Título de la pregunta (Limpiamos si es 'Cuestionario')
-            let qTitle = q.u === 'Cuestionario' ? `${q.m} | ${q.t}` : `${q.m} | ${q.t} | ${q.u}`;
-            header.innerText = qTitle;
-            qBlock.appendChild(header);
-            
-            const qText = document.createElement('div');
-            qText.className = 'question-text';
-            qText.innerText = `${index + 1}/${currentQuestions.length}. ${q.p}`;
-            qBlock.appendChild(qText);
-            
-            const optionsContainer = document.createElement('div');
-            optionsContainer.className = 'options-container';
-            optionsContainer.id = `options-${index}`;
-            
-            options.forEach(opt => {
+            if (topics.length === 1) {
                 const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.innerText = opt;
-                btn.onclick = function() {
-                    checkAnswer(this, index, opt, q.c, q.e);
+                btn.className = 'topic-card';
+                const testId = `${subject}-${category}-${topics[0]}`;
+                btn.setAttribute('data-testid', testId);
+                
+                if (completedTests.includes(testId)) {
+                    btn.innerText = `${category} ✅ `;
+                    btn.style.background = '#27ae60';
+                } else {
+                    btn.innerText = category;
+                }
+                
+                btn.onclick = () => startTest(subject, category, topics[0]);
+                btn.oncontextmenu = (e) => { e.preventDefault(); uncheckTest(testId); };
+                grid.appendChild(btn);
+            } else {
+                const wrapper = document.createElement('div');
+                wrapper.style.display = "flex";
+                wrapper.style.flexDirection = "column";
+                wrapper.style.gap = "10px";
+                
+                const btnCat = document.createElement('button');
+                btnCat.className = 'topic-card';
+                btnCat.style.background = 'var(--primary)';
+                btnCat.innerHTML = ` 📂 ${category} ▼ `;
+                
+                const subGrid = document.createElement('div');
+                subGrid.style.display = 'none';
+                subGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(140px, 1fr))';
+                subGrid.style.gap = '10px';
+                subGrid.style.padding = '15px';
+                subGrid.style.background = '#e1e8ed';
+                subGrid.style.borderRadius = '8px';
+                
+                btnCat.onclick = () => {
+                    if (subGrid.style.display === 'none') {
+                        subGrid.style.display = 'grid';
+                        btnCat.innerHTML = ` 📂 ${category} ▲ `;
+                    } else {
+                        subGrid.style.display = 'none';
+                        btnCat.innerHTML = ` 📂 ${category} ▼ `;
+                    }
                 };
-                optionsContainer.appendChild(btn);
-            });
-            qBlock.appendChild(optionsContainer);
-            
-            const expl = document.createElement('div');
-            expl.id = `explanation-${index}`;
-            expl.className = 'explanation';
-            qBlock.appendChild(expl);
-            
-            container.appendChild(qBlock);
+                
+                topics.forEach(topic => {
+                    const btnTop = document.createElement('button');
+                    btnTop.className = 'topic-card';
+                    btnTop.style.fontSize = '1rem';
+                    btnTop.style.padding = '10px';
+                    
+                    const testId = `${subject}-${category}-${topic}`;
+                    btnTop.setAttribute('data-testid', testId);
+                    
+                    if (completedTests.includes(testId)) {
+                        btnTop.innerText = `${topic} ✅ `;
+                        btnTop.style.background = '#27ae60';
+                    } else {
+                        btnTop.innerText = topic;
+                    }
+                    
+                    btnTop.onclick = () => startTest(subject, category, topic);
+                    btnTop.oncontextmenu = (e) => { e.preventDefault(); uncheckTest(testId); };
+                    subGrid.appendChild(btnTop);
+                });
+                
+                const btnAll = document.createElement('button');
+                btnAll.className = 'topic-card';
+                btnAll.style.fontSize = '1rem';
+                btnAll.style.padding = '10px';
+                btnAll.style.background = 'var(--primary)';
+                
+                const allId = `${subject}-${category}-Todos`;
+                btnAll.setAttribute('data-testid', allId);
+                
+                if (completedTests.includes(allId)) {
+                    btnAll.innerText = `Todo el bloque ✅ `;
+                    btnAll.style.background = '#27ae60';
+                } else {
+                    btnAll.innerText = `Todo el bloque`;
+                }
+                
+                btnAll.onclick = () => startTest(subject, category, 'Todos');
+                btnAll.oncontextmenu = (e) => { e.preventDefault(); uncheckTest(allId); };
+                subGrid.appendChild(btnAll);
+                
+                wrapper.appendChild(btnCat);
+                wrapper.appendChild(subGrid);
+                grid.appendChild(wrapper);
+            }
+        });
+        
+        const btnSubjectAll = document.createElement('button');
+        btnSubjectAll.className = 'topic-card topic-all';
+        
+        const subjAllId = `${subject}-Global-Todos`;
+        btnSubjectAll.setAttribute('data-testid', subjAllId);
+        
+        if (completedTests.includes(subjAllId)) {
+            btnSubjectAll.innerText = `Toda la materia ✅ `;
+            btnSubjectAll.style.background = '#27ae60';
+        } else {
+            btnSubjectAll.innerText = `Toda la materia`;
+        }
+        
+        btnSubjectAll.onclick = () => startTest(subject, 'Global', 'Todos');
+        btnSubjectAll.oncontextmenu = (e) => { e.preventDefault(); uncheckTest(subjAllId); };
+        grid.appendChild(btnSubjectAll);
+        
+        subjectDiv.appendChild(grid);
+        container.appendChild(subjectDiv);
+    });
+};
+
+function uncheckTest(testId) {
+    if(confirm(`¿Quieres quitar el check de completado de este tema?`)) {
+        let completed = JSON.parse(localStorage.getItem('completed_tests_v5') || '[]');
+        completed = completed.filter(id => id !== testId);
+        localStorage.setItem('completed_tests_v5', JSON.stringify(completed));
+        location.reload();
+    }
+}
+
+function startTest(subject, category, topic) {
+    selectedSubject = subject;
+    selectedCategory = category;
+    selectedTopicName = topic;
+    
+    if (category === 'Global') {
+        document.getElementById('display-topic').innerText = `${subject} (Test Global)`;
+        currentQuestions = misPreguntas.filter(q => q.m === subject);
+    } else if (topic === 'Todos') {
+        document.getElementById('display-topic').innerText = `${subject} - ${category}`;
+        currentQuestions = misPreguntas.filter(q => q.m === subject && q.t === category);
+    } else {
+        let isSimple = misPreguntas.filter(q => q.m === subject && q.t === category).map(q => q.u).length === 1;
+        document.getElementById('display-topic').innerText = isSimple ? `${subject} - ${category}` : `${subject} - ${topic}`;
+        currentQuestions = misPreguntas.filter(q => q.m === subject && q.t === category && q.u === topic);
+    }
+    
+    document.getElementById('login-section').style.display = 'none';
+    document.getElementById('test-section').style.display = 'block';
+    
+    startTime = new Date();
+    timerInterval = setInterval(updateTimer, 1000);
+    
+    shuffleArray(currentQuestions);
+    renderAllQuestions();
+    
+    // Esto asegura que la página suba siempre arriba al empezar el test
+    window.scrollTo(0,0);
+}
+
+function updateTimer() {
+    const diff = Math.floor((new Date() - startTime) / 1000);
+    document.getElementById('timer').innerText = ` ⏱️  ${Math.floor(diff / 60).toString().padStart(2, '0')}:${(diff % 60).toString().padStart(2, '0')}`;
+}
+
+function renderAllQuestions() {
+    const container = document.getElementById('questions-list');
+    container.innerHTML = '';
+    answeredStatus = {};
+    
+    currentQuestions.forEach((q, index) => {
+        let options = [...q.r];
+        shuffleArray(options);
+        
+        const qBlock = document.createElement('div');
+        qBlock.className = 'question-block';
+        
+        const qText = document.createElement('div');
+        qText.className = 'question-text';
+        qText.innerText = `${index + 1}/${currentQuestions.length}. ${q.p}`;
+        qBlock.appendChild(qText);
+        
+        const optionsContainer = document.createElement('div');
+        optionsContainer.className = 'options-container';
+        optionsContainer.id = `options-${index}`;
+        
+        options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = opt;
+            btn.onclick = function() { checkAnswer(this, index, opt, q.c, q.e); };
+            optionsContainer.appendChild(btn);
+        });
+        
+        qBlock.appendChild(optionsContainer);
+        
+        const expl = document.createElement('div');
+        expl.id = `explanation-${index}`;
+        expl.className = 'explanation';
+        qBlock.appendChild(expl);
+        
+        container.appendChild(qBlock);
+    });
+}
+
+function checkAnswer(btn, index, selected, correct, info) {
+    if (answeredStatus[index] !== undefined) return;
+    const optionsContainer = document.getElementById(`options-${index}`);
+    const buttons = optionsContainer.querySelectorAll('.option-btn');
+    buttons.forEach(b => b.disabled = true);
+    
+    if (selected === correct) {
+        btn.classList.add('correct');
+        answeredStatus[index] = true;
+    } else {
+        btn.classList.add('wrong');
+        answeredStatus[index] = false;
+        buttons.forEach(b => {
+            if(b.innerText === correct) b.classList.add('correct');
         });
     }
+    
+    if (info && info.trim() !== "") {
+        const eb = document.getElementById(`explanation-${index}`);
+        eb.innerHTML = `<strong> 💡 Aclaración:</strong> ${info}`;
+        eb.style.display = 'block';
+    }
+}
 
-    function checkAnswer(btn, index, selected, correct, info) {
-        if (answeredStatus[index] !== undefined) return; 
-
-        const optionsContainer = document.getElementById(`options-${index}`);
-        const buttons = optionsContainer.querySelectorAll('.option-btn');
-        
-        buttons.forEach(b => b.disabled = true);
-
-        if (selected === correct) { 
-            btn.classList.add('correct'); 
-            answeredStatus[index] = true; 
-        } else { 
-            btn.classList.add('wrong'); 
-            answeredStatus[index] = false; 
-            // Marcar la que era correcta
-            buttons.forEach(b => { 
-                if(b.innerText === correct) b.classList.add('correct'); 
-            }); 
-        }
-
-        // Mostrar aclaración si existe
-        if (info && info.trim() !== "") { 
-            const eb = document.getElementById(`explanation-${index}`); 
-            eb.innerHTML = `<strong>💡 Aclaración:</strong> ${info}`; 
-            eb.style.display = 'block'; 
+function finishTest() {
+    const totalQuestions = currentQuestions.length;
+    const totalAnswered = Object.keys(answeredStatus).length;
+    
+    if (totalAnswered < totalQuestions) {
+        if (!confirm(`Has respondido ${totalAnswered} de ${totalQuestions} preguntas. ¿Seguro que quieres finalizar el test?`)) {
+            return;
         }
     }
-
-    function finishTest() {
-        const totalQuestions = currentQuestions.length;
-        const totalAnswered = Object.keys(answeredStatus).length;
-        
-        if (totalAnswered < totalQuestions) {
-            if (!confirm(`Has respondido ${totalAnswered} de ${totalQuestions} preguntas. ¿Seguro que quieres finalizar el test?`)) {
-                return;
-            }
-        }
-
-        clearInterval(timerInterval);
-        
-        // Calcular aciertos y fallos
-        let correctCount = Object.values(answeredStatus).filter(v => v === true).length;
-        let incorrectCount = totalQuestions - correctCount;
-        let percentage = totalQuestions > 0 ? (correctCount / totalQuestions) * 100 : 0;
-
-        // Ocultar test y preparar gráfico
-        document.getElementById('test-section').style.display = 'none';
-        
-        const successColor = getComputedStyle(document.documentElement).getPropertyValue('--success').trim();
-        const errorColor = getComputedStyle(document.documentElement).getPropertyValue('--error').trim();
-        
-        document.getElementById('gauge-chart').style.background = `conic-gradient(${successColor} ${percentage}%, ${errorColor} 0)`;
-        document.getElementById('score-text').innerText = `${correctCount}/${totalQuestions}`;
-        
-        document.getElementById('results-detail-text').innerHTML = `Has acertado <strong><span style="color: var(--success);">${correctCount}</span></strong> y fallado <strong><span style="color: var(--error);">${incorrectCount}</span></strong> de un total de ${totalQuestions} preguntas.`;
-        
-        document.getElementById('results-section').style.display = 'block';
-        
-        // Guardar el progreso
-        let completed = JSON.parse(localStorage.getItem('completed_tests_v5') || '[]');
-        let currentTestId = `${selectedSubject}-${selectedCategory}-${selectedTopicName}`;
-        if (!completed.includes(currentTestId)) {
-            completed.push(currentTestId);
-            localStorage.setItem('completed_tests_v5', JSON.stringify(completed));
-        }
-        
-        window.scrollTo(0,0);
+    
+    clearInterval(timerInterval);
+    document.getElementById('test-section').style.display = 'none';
+    
+    let correctCount = 0;
+    let incorrectCount = 0;
+    Object.values(answeredStatus).forEach(v => {
+        if (v) correctCount++;
+        else incorrectCount++;
+    });
+    
+    let percentage = (correctCount / totalQuestions) * 100;
+    let successColor = getComputedStyle(document.documentElement).getPropertyValue('--success').trim();
+    let errorColor = getComputedStyle(document.documentElement).getPropertyValue('--error').trim();
+    
+    document.getElementById('gauge-chart').style.background = `conic-gradient(${successColor} ${percentage}%, ${errorColor} 0)`;
+    document.getElementById('score-text').innerText = `${correctCount}/${totalQuestions}`;
+    
+    document.getElementById('results-detail-text').innerHTML = `Has acertado <strong><span style="color: var(--success);">${correctCount}</span></strong> y fallado <strong><span style="color: var(--error);">${incorrectCount}</span></strong> de un total de ${totalQuestions} preguntas.`;
+    
+    document.getElementById('results-section').style.display = 'block';
+    
+    let completed = JSON.parse(localStorage.getItem('completed_tests_v5') || '[]');
+    let currentTestId = `${selectedSubject}-${selectedCategory}-${selectedTopicName}`;
+    if (!completed.includes(currentTestId)) {
+        completed.push(currentTestId);
+        localStorage.setItem('completed_tests_v5', JSON.stringify(completed));
     }
+    
+    window.scrollTo(0,0);
+}
 
-    function resetProgress() {
-        if(confirm("¿Seguro que quieres borrar todo tu progreso? Esto quitará todos los ✅ de los temas.")) {
-            localStorage.removeItem('completed_tests_v5');
-            location.reload();
-        }
+function resetProgress() {
+    if(confirm("¿Seguro que quieres borrar todo tu progreso? Esto quitará todos los ✅ de los temas.")) {
+        localStorage.removeItem('completed_tests_v5');
+        location.reload();
     }
+}
 
-    function shuffleArray(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
+function shuffleArray(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+}
+
+function updateCheckmarks() {
+    const completedTests = JSON.parse(localStorage.getItem('completed_tests_v5') || '[]');
+    document.querySelectorAll('.topic-card').forEach(btn => {
+        const testId = btn.getAttribute('data-testid');
+        if (testId && completedTests.includes(testId) && !btn.innerText.includes('✅')) {
+            btn.innerText = btn.innerText + ' ✅ ';
+            btn.style.background = '#27ae60';
+        }
+    });
+}
+
+function goBackToMenu() {
+    document.getElementById('results-section').style.display = 'none';
+    document.getElementById('test-section').style.display = 'none';
+    document.getElementById('login-section').style.display = 'block';
+    clearInterval(timerInterval);
+    updateCheckmarks();
+    window.scrollTo(0,0);
+}
 </script>
 </body>
 </html>
