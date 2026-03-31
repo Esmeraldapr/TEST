@@ -3218,6 +3218,25 @@ function uncheckTest(testId) {
     }
 }
 
+// ==========================================
+// CONTROL DEL BOTÓN "ATRÁS" DEL MÓVIL/NAVEGADOR
+// ==========================================
+history.replaceState({page: 'menu'}, "Menú", "");
+
+window.addEventListener('popstate', function(event) {
+    if (event.state && event.state.page === 'menu') {
+        document.getElementById('results-section').style.display = 'none';
+        document.getElementById('test-section').style.display = 'none';
+        document.getElementById('login-section').style.display = 'block';
+        if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
+        updateCheckmarks();
+        window.scrollTo(0,0);
+    }
+});
+
+// ==========================================
+// FUNCIONES DE LÓGICA DEL TEST
+// ==========================================
 function startTest(subject, category, topic) {
     selectedSubject = subject;
     selectedCategory = category;
@@ -3237,6 +3256,9 @@ function startTest(subject, category, topic) {
     
     document.getElementById('login-section').style.display = 'none';
     document.getElementById('test-section').style.display = 'block';
+    
+    // Le decimos al móvil que hemos entrado a una "nueva pantalla" para que no nos saque al darle atrás
+    history.pushState({page: 'test'}, "Test", "");
     
     startTime = new Date();
     timerInterval = setInterval(updateTimer, 1000);
@@ -3383,12 +3405,8 @@ function updateCheckmarks() {
 }
 
 function goBackToMenu() {
-    document.getElementById('results-section').style.display = 'none';
-    document.getElementById('test-section').style.display = 'none';
-    document.getElementById('login-section').style.display = 'block';
-    clearInterval(timerInterval);
-    updateCheckmarks();
-    window.scrollTo(0,0);
+    // Al pulsar el botón "🔙 Volver" de la pantalla, simulamos que el usuario pulsó el botón "Atrás" del móvil
+    history.back();
 }
 </script>
 </body>
