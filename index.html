@@ -1035,7 +1035,9 @@
         r: [
             "Guiar de forma estratégica las acciones de la organización en materia de sostenibilidad a medio y largo plazo.",
             "Justificar ante Hacienda el impago de multas medioambientales de años anteriores.",
-            "Reflejar exclusivamente los beneficios netos obtenidos durante el último trimestre del año.",
+            "Reflejar exclusivamente los beneficios netos obtenidos durante el último trimestre del año."
+        ],
+    },
             
         
 // MATERIA: GESTIÓN DE BASES DE DATOS
@@ -2258,6 +2260,7 @@
             "Inyecta el código directamente en el motor de almacenamiento InnoDB ignorando la caché.",
             "Detiene todas las consultas del resto de usuarios hasta validar que el procedimiento no tiene bucles infinitos."
         ],
+    },   
 // =========================================================================
     // GESTIÓN DE BD - SEGURIDAD EN SQLSERVER
     // =========================================================================
@@ -2972,7 +2975,7 @@
         ],
         c: "Que como dueño (owner) del objeto, tiene automáticamente derecho a realizar cualquier acción (ALTER, DROP, SELECT, INSERT) sobre la tabla sin necesidad de usar sentencias GRANT.",
         e: "Los dueños de los objetos tienen control total inherente sobre los mismos sin requerir asignación de seguridad extra."
-    }
+    },
 
 // ==========================================
 // SOSTENIBILIDAD - LOS 17 ODS Y SUS METAS
@@ -3049,9 +3052,12 @@
 { m: "Sostenibilidad", t: "Test por Unidades", u: "Los 17 ODS y sus Metas", p: "Si una empresa tecnológica dona ordenadores portátiles a escuelas rurales, ¿qué dos ODS está impulsando principalmente?", r: ["ODS 1 y ODS 2", "ODS 4 y ODS 10", "ODS 7 y ODS 13", "ODS 14 y ODS 15"], c: "ODS 4 y ODS 10", e: "Impulsa la Educación de calidad (ODS 4) y la Reducción de las desigualdades (ODS 10) al acortar la brecha digital." },
 { m: "Sostenibilidad", t: "Test por Unidades", u: "Los 17 ODS y sus Metas", p: "Aumentar el apoyo a la creación de capacidad estadística en los países en desarrollo (para tener datos fiables sobre los propios ODS) pertenece al...", r: ["ODS 4", "ODS 9", "ODS 16", "ODS 17"], c: "ODS 17", e: "La mejora en la recolección de datos y apoyo técnico institucional se enmarca en las metas sistémicas del ODS 17." },
 
+];
 
-    ];
 
+// ==========================================
+// VARIABLES GLOBALES
+// ==========================================
 let currentQuestions = [];
 let answeredStatus = {};
 let startTime, timerInterval;
@@ -3059,6 +3065,9 @@ let selectedSubject = "";
 let selectedCategory = "";
 let selectedTopicName = "";
 
+// ==========================================
+// INICIALIZACIÓN Y CREACIÓN DEL MENÚ
+// ==========================================
 window.onload = function() {
     const container = document.getElementById('subjects-container');
     const subjects = [...new Set(misPreguntas.map(q => q.m))];
@@ -3197,6 +3206,10 @@ window.onload = function() {
     });
 };
 
+// ==========================================
+// FUNCIONES DE LÓGICA DEL TEST
+// ==========================================
+
 function uncheckTest(testId) {
     if(confirm(`¿Quieres quitar el check de completado de este tema?`)) {
         let completed = JSON.parse(localStorage.getItem('completed_tests_v5') || '[]');
@@ -3232,7 +3245,6 @@ function startTest(subject, category, topic) {
     shuffleArray(currentQuestions);
     renderAllQuestions();
     
-    // Esto asegura que la página suba siempre arriba al empezar el test
     window.scrollTo(0,0);
 }
 
